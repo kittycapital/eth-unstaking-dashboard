@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'scripts/**'
 
 permissions:
   contents: write
@@ -65,7 +67,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: main  # Get latest including data updates
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
