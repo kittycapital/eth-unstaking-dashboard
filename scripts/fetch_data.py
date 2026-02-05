@@ -10,6 +10,7 @@ import os
 import requests
 from datetime import datetime, timedelta
 from pathlib import Path
+import time
 
 # API endpoints
 VALIDATOR_QUEUE_URL = "https://raw.githubusercontent.com/etheralpha/validatorqueue-com/main/historical_data.json"
@@ -34,30 +35,39 @@ def fetch_validator_queue():
         return []
 
 
-def fetch_eth_prices(days=365):
-    """Fetch ETH price history from CoinGecko"""
-    print(f"Fetching ETH prices (last {days} days)...")
+def fetch_eth_prices(days=730):
+    """Fetch ETH price history from CoinGecko (server-side, no CORS issues)"""
+    print(f"Fetching ETH prices from CoinGecko (last {days} days)...")
     try:
         params = {
             "vs_currency": "usd",
             "days": days,
             "interval": "daily"
         }
-        response = requests.get(COINGECKO_PRICE_URL, params=params, timeout=30)
+        headers = {
+            "Accept": "application/json",
+            "User-Agent": "ETH-Unstaking-Dashboard/1.0"
+        }
+        
+        response = requests.get(COINGECKO_PRICE_URL, params=params, headers=headers, timeout=60)
         response.raise_for_status()
         data = response.json()
         
-        # Convert to date-price map
-        prices = {}
+        # Convert to date-price map and list
+        prices_map = {}
+        prices_list = []
+        
         for timestamp, price in data.get("prices", []):
             date = datetime.fromtimestamp(timestamp / 1000).strftime("%Y-%m-%d")
-            prices[date] = round(price, 2)
+            price_rounded = round(price, 2)
+            prices_map[date] = price_rounded
+            prices_list.append({"date": date, "price": price_rounded})
         
-        print(f"  ✓ Fetched {len(prices)} price records")
-        return prices
+        print(f"  ✓ Fetched {len(prices_map)} price records")
+        return prices_map, prices_list
     except Exception as e:
         print(f"  ✗ Error fetching prices: {e}")
-        return {}
+        return {}, []
 
 
 def calculate_inflection_points(data, threshold=0.5):
@@ -115,7 +125,7 @@ def calculate_correlation(queue_values, price_values):
     return round(numerator / (denom_q * denom_p), 4)
 
 
-def merge_data(queue_data, prices):
+def merge_data(queue_data, prices_map):
     """Merge queue data with price data"""
     print("Merging queue and price data...")
     merged = []
@@ -131,9 +141,9 @@ def merge_data(queue_data, prices):
         exit_wait = record.get("exit_wait_days") or record.get("exitWaitDays") or 0
         
         # Get price for this date
-        eth_price = prices.get(date, 0)
+        eth_price = prices_map.get(date, 0)
         
-        # Calculate USD value
+        # Calculate USD value (in millions)
         exit_queue_usd = round((exit_queue * eth_price) / 1_000_000, 2) if eth_price else 0
         
         merged.append({
@@ -142,12 +152,17 @@ def merge_data(queue_data, prices):
             "entryQueue": entry_queue,
             "exitWaitDays": exit_wait,
             "ethPrice": eth_price,
-            "exitQueueUSD": exit_queue_usd  # In millions
+            "exitQueueUSD": exit_queue_usd
         })
     
     # Sort by date
     merged.sort(key=lambda x: x["date"])
     print(f"  ✓ Merged {len(merged)} records")
+    
+    # Count records with price data
+    with_price = sum(1 for d in merged if d["ethPrice"] > 0)
+    print(f"  ✓ Records with ETH price: {with_price}")
+    
     return merged
 
 
@@ -159,12 +174,18 @@ def calculate_stats(data):
     if not exit_queues:
         return {}
     
+    # Get matching queue/price pairs for correlation
+    pairs = [(d["exitQueue"], d["ethPrice"]) for d in data if d["exitQueue"] > 0 and d["ethPrice"] > 0]
+    queue_vals = [p[0] for p in pairs]
+    price_vals = [p[1] for p in pairs]
+    
     return {
         "currentQueue": exit_queues[-1] if exit_queues else 0,
         "avgQueue": round(sum(exit_queues) / len(exit_queues), 0),
         "maxQueue": max(exit_queues),
         "minQueue": min(exit_queues),
-        "correlation": calculate_correlation(exit_queues[-len(prices):], prices),
+        "currentPrice": prices[-1] if prices else 0,
+        "correlation": calculate_correlation(queue_vals, price_vals),
         "lastUpdated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     }
 
@@ -181,10 +202,14 @@ def main():
     
     # Fetch data
     queue_data = fetch_validator_queue()
-    prices = fetch_eth_prices(days=730)  # 2 years
+    
+    # Small delay to avoid rate limiting
+    time.sleep(1)
+    
+    prices_map, prices_list = fetch_eth_prices(days=730)  # 2 years
     
     # Merge data
-    merged_data = merge_data(queue_data, prices)
+    merged_data = merge_data(queue_data, prices_map)
     
     if not merged_data:
         print("✗ No data to save")
@@ -199,10 +224,12 @@ def main():
         "meta": {
             "lastUpdated": stats.get("lastUpdated", ""),
             "dataSource": "ValidatorQueue.com + CoinGecko",
-            "recordCount": len(merged_data)
+            "recordCount": len(merged_data),
+            "priceRecords": len(prices_list)
         },
         "stats": stats,
         "inflectionPoints": inflection_points[-20:],  # Last 20 points
+        "ethPrices": prices_list,  # Separate price data for chart
         "data": merged_data
     }
     
@@ -212,8 +239,10 @@ def main():
     
     print(f"\n✓ Data saved to {OUTPUT_FILE}")
     print(f"  Records: {len(merged_data)}")
+    print(f"  Price records: {len(prices_list)}")
     print(f"  Inflection points: {len(inflection_points)}")
     print(f"  Current queue: {stats.get('currentQueue', 0):,.0f} ETH")
+    print(f"  Current price: ${stats.get('currentPrice', 0):,.2f}")
     print(f"  Correlation: {stats.get('correlation', 0):.2%}")
     
     return 0
