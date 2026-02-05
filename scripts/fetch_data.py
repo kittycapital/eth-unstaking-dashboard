@@ -36,7 +36,7 @@ def fetch_validator_queue():
         return []
 
 
-def fetch_eth_prices(days=365):
+def fetch_eth_prices(days=1000):
     """Fetch ETH price data from CoinGecko (no API key needed)"""
     print(f"Fetching ETH prices from CoinGecko (last {days} days)...")
     
@@ -80,6 +80,7 @@ def fetch_eth_prices(days=365):
             
             print(f"  ✓ Fetched {len(prices_list)} price records")
             if prices_list:
+                print(f"  First price: {prices_list[0]}")
                 print(f"  Latest price: {prices_list[-1]}")
             
             return prices_map, prices_list
@@ -232,7 +233,8 @@ def main():
     print("\nWaiting 5s before CoinGecko call...")
     time.sleep(5)
     
-    prices_map, prices_list = fetch_eth_prices(days=365)
+    # Fetch 1000 days of price data for ALL view
+    prices_map, prices_list = fetch_eth_prices(days=1000)
     
     merged_data = merge_data(queue_data, prices_map)
     
