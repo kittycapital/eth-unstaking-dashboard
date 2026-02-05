@@ -1,313 +1,278 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETH 언스테이킹 큐 분석기</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; min-height: 100vh; line-height: 1.6; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #333; }
-        .header h1 { font-size: 28px; font-weight: 700; color: #00d4ff; }
-        .header p { color: #888; font-size: 14px; margin-top: 4px; }
-        .last-updated { color: #666; font-size: 12px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-        .stat-card { background: #111; border: 1px solid #333; padding: 20px; border-radius: 8px; }
-        .stat-label { color: #00d4ff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
-        .stat-value { font-size: 24px; font-weight: 700; color: #fff; }
-        .stat-sub { color: #666; font-size: 11px; margin-top: 4px; }
-        .chart-section { background: #111; border: 1px solid #333; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
-        .chart-title { font-size: 18px; font-weight: 600; color: #00d4ff; margin-bottom: 16px; }
-        .chart-container { position: relative; height: 400px; }
-        .time-range { display: flex; gap: 8px; margin-bottom: 16px; }
-        .time-btn { background: #222; border: 1px solid #444; color: #888; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.2s; }
-        .time-btn:hover { background: #333; color: #fff; }
-        .time-btn.active { background: #00d4ff; color: #000; border-color: #00d4ff; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
-        @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
-        .inflection-list { max-height: 300px; overflow-y: auto; }
-        .inflection-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #222; }
-        .inflection-item:last-child { border-bottom: none; }
-        .inflection-date { font-family: monospace; color: #fff; font-size: 13px; }
-        .inflection-value { color: #888; font-size: 12px; }
-        .inflection-badge { font-size: 11px; padding: 4px 8px; border-radius: 4px; }
-        .badge-peak { background: #330000; color: #ff6666; border: 1px solid #660000; }
-        .badge-trough { background: #003300; color: #66ff66; border: 1px solid #006600; }
-        .insight-card { background: #0a0a0a; border: 1px solid #222; padding: 16px; border-radius: 8px; margin-bottom: 12px; }
-        .insight-title { font-weight: 600; color: #00d4ff; margin-bottom: 8px; font-size: 14px; }
-        .insight-text { color: #999; font-size: 13px; }
-        .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-        @media (max-width: 640px) { .signal-grid { grid-template-columns: 1fr; } }
-        .signal-card { background: #111; border: 1px solid #333; padding: 24px; border-radius: 8px; text-align: center; }
-        .signal-icon { font-size: 32px; margin-bottom: 12px; }
-        .signal-label { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
-        .signal-bearish { color: #ff4444; }
-        .signal-neutral { color: #ffaa00; }
-        .signal-bullish { color: #44ff44; }
-        .signal-desc { color: #666; font-size: 11px; line-height: 1.5; }
-        .footer { text-align: center; padding: 24px; border-top: 1px solid #222; color: #666; font-size: 12px; }
-        .footer a { color: #00d4ff; text-decoration: none; }
-        .loading { text-align: center; padding: 48px; color: #666; }
-        .error-msg { background: #331111; border: 1px solid #662222; color: #ff8888; padding: 16px; border-radius: 8px; margin-bottom: 24px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>ETH 언스테이킹 큐 분석기</h1>
-                <p>Unstaking Queue vs Price Inflection Point Analyzer</p>
-            </div>
-            <div class="last-updated">마지막 업데이트: <span id="lastUpdated">Loading...</span></div>
-        </div>
-        
-        <div class="error-msg" id="errorMsg" style="display: none;"></div>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">현재 EXIT QUEUE</div>
-                <div class="stat-value" id="statCurrentQueue">--</div>
-                <div class="stat-sub">Current Exit Queue</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">평균 QUEUE</div>
-                <div class="stat-value" id="statAvgQueue">--</div>
-                <div class="stat-sub">Average Queue Size</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">역대 최고</div>
-                <div class="stat-value" id="statMaxQueue">--</div>
-                <div class="stat-sub">All-Time High</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">QUEUE-PRICE 상관관계</div>
-                <div class="stat-value" id="statCorrelation">--</div>
-                <div class="stat-sub">Correlation Coefficient</div>
-            </div>
-        </div>
-        
-        <div class="chart-section">
-            <div class="chart-title">Exit Queue vs ETH Price</div>
-            <div class="time-range">
-                <button class="time-btn" data-range="30">30D</button>
-                <button class="time-btn" data-range="90">90D</button>
-                <button class="time-btn" data-range="180">180D</button>
-                <button class="time-btn active" data-range="365">1Y</button>
-            </div>
-            <div class="chart-container">
-                <canvas id="mainChart"></canvas>
-            </div>
-        </div>
-        
-        <div class="two-col">
-            <div class="chart-section">
-                <div class="chart-title">🎯 주요 변곡점 (Key Inflection Points)</div>
-                <div class="inflection-list" id="inflectionList">
-                    <div class="loading">Loading...</div>
-                </div>
-            </div>
-            <div class="chart-section">
-                <div class="chart-title">💡 분석 인사이트</div>
-                <div class="insight-card">
-                    <div class="insight-title">🐋 고래 매도 신호</div>
-                    <div class="insight-text">Exit Queue가 급증하면 대규모 스테이커들의 이익실현 가능성을 시사합니다.</div>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-title">⚖️ Entry vs Exit 비율</div>
-                    <div class="insight-text">Entry Queue가 Exit Queue를 초과하면 장기 강세 신호입니다.</div>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-title">⏰ 대기 시간 지연</div>
-                    <div class="insight-text">Exit 대기 시간이 40일 이상이면 매도 압력이 지연됩니다.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="chart-section">
-            <div class="chart-title">📊 트레이딩 시그널 가이드</div>
-            <div class="signal-grid">
-                <div class="signal-card">
-                    <div class="signal-icon">🔴</div>
-                    <div class="signal-label signal-bearish">BEARISH</div>
-                    <div class="signal-desc">Exit Queue > 2M ETH<br>+ Price ATH 근접</div>
-                </div>
-                <div class="signal-card">
-                    <div class="signal-icon">🟡</div>
-                    <div class="signal-label signal-neutral">NEUTRAL</div>
-                    <div class="signal-desc">Exit Queue 500K-2M ETH<br>Entry/Exit 균형</div>
-                </div>
-                <div class="signal-card">
-                    <div class="signal-icon">🟢</div>
-                    <div class="signal-label signal-bullish">BULLISH</div>
-                    <div class="signal-desc">Entry > Exit Queue<br>+ Exit Queue 감소 추세</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Data Sources: <a href="https://validatorqueue.com" target="_blank">ValidatorQueue.com</a> | <a href="https://coingecko.com" target="_blank">CoinGecko</a></p>
-            <p style="margin-top: 8px;">⚠️ 투자 조언이 아닙니다. 참고용으로만 사용하세요.</p>
-        </div>
-    </div>
+#!/usr/bin/env python3
+"""
+ETH Unstaking Queue Data Fetcher
+Fetches historical validator queue data and ETH prices
+Runs daily via GitHub Actions
+"""
+
+import json
+import requests
+from datetime import datetime
+from pathlib import Path
+import time
+
+# API endpoints
+VALIDATOR_QUEUE_URL = "https://raw.githubusercontent.com/etheralpha/validatorqueue-com/main/historical_data.json"
+
+# CoinGecko API - FREE, no API key needed (max 365 days)
+COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"
+
+# Output paths
+DATA_DIR = Path(__file__).parent.parent / "data"
+OUTPUT_FILE = DATA_DIR / "eth_unstaking_data.json"
+
+
+def fetch_validator_queue():
+    """Fetch historical validator queue data from ValidatorQueue GitHub"""
+    print("Fetching validator queue data...")
+    try:
+        response = requests.get(VALIDATOR_QUEUE_URL, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        print(f"  ✓ Fetched {len(data)} queue records")
+        return data
+    except Exception as e:
+        print(f"  ✗ Error fetching queue data: {e}")
+        return []
+
+
+def fetch_eth_prices(days=365):
+    """Fetch ETH price data from CoinGecko (no API key needed, max 365 days)"""
+    print(f"Fetching ETH prices from CoinGecko (last {days} days)...")
     
-    <script>
-        let DATA = null;
-        let mainChart = null;
-        let currentRange = 365;
-        
-        function formatNumber(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num.toFixed(0);
-        }
-        
-        async function loadData() {
-            try {
-                const response = await fetch('./data/eth_unstaking_data.json');
-                if (!response.ok) throw new Error('Data file not found');
-                DATA = await response.json();
-                updateStats();
-                updateInflectionPoints();
-                updateChart();
-            } catch (error) {
-                document.getElementById('errorMsg').style.display = 'block';
-                document.getElementById('errorMsg').textContent = '⚠️ 데이터 로드 실패: ' + error.message;
-            }
-        }
-        
-        function updateStats() {
-            if (!DATA || !DATA.stats) return;
-            const stats = DATA.stats;
-            document.getElementById('statCurrentQueue').textContent = formatNumber(stats.currentQueue) + ' ETH';
-            document.getElementById('statAvgQueue').textContent = formatNumber(stats.avgQueue) + ' ETH';
-            document.getElementById('statMaxQueue').textContent = formatNumber(stats.maxQueue) + ' ETH';
-            document.getElementById('statCorrelation').textContent = (stats.correlation * 100).toFixed(1) + '%';
-            if (DATA.meta?.lastUpdated) {
-                document.getElementById('lastUpdated').textContent = DATA.meta.lastUpdated;
-            }
-        }
-        
-        function updateInflectionPoints() {
-            if (!DATA) return;
-            const container = document.getElementById('inflectionList');
-            const points = DATA.inflectionPoints || [];
-            if (points.length === 0) {
-                container.innerHTML = '<div class="loading">변곡점 데이터 없음</div>';
-                return;
-            }
-            container.innerHTML = points.slice(-15).reverse().map(point => `
-                <div class="inflection-item">
-                    <div>
-                        <div class="inflection-date">${point.date}</div>
-                        <div class="inflection-value">${formatNumber(point.exitQueue)} ETH ${point.ethPrice ? '@ $' + point.ethPrice.toLocaleString() : ''}</div>
-                    </div>
-                    <span class="inflection-badge ${point.type === 'peak' ? 'badge-peak' : 'badge-trough'}">
-                        ${point.type === 'peak' ? '🔺 PEAK' : '🔻 TROUGH'}
-                    </span>
-                </div>
-            `).join('');
-        }
-        
-        function updateChart() {
-            if (!DATA || !DATA.data) return;
-            const ctx = document.getElementById('mainChart').getContext('2d');
-            const days = parseInt(currentRange);
-            const cutoffDate = new Date();
-            cutoffDate.setDate(cutoffDate.getDate() - days);
-            const startDate = cutoffDate.toISOString().split('T')[0];
+    params = {
+        'vs_currency': 'usd',
+        'days': days,
+        'interval': 'daily'
+    }
+    
+    # Retry up to 3 times with increasing delay
+    for attempt in range(3):
+        try:
+            response = requests.get(COINGECKO_URL, params=params, timeout=30)
+            print(f"  CoinGecko status code: {response.status_code}")
             
-            let filteredData = DATA.data.filter(d => d.date >= startDate);
-            const labels = filteredData.map(d => d.date);
-            const exitQueueData = filteredData.map(d => d.exitQueue);
-            const priceData = filteredData.map(d => d.ethPrice);
-            const hasPrice = priceData.some(p => p > 0);
+            if response.status_code == 429:
+                wait_time = 30 * (attempt + 1)
+                print(f"  Rate limited. Waiting {wait_time}s...")
+                time.sleep(wait_time)
+                continue
             
-            if (mainChart) mainChart.destroy();
+            response.raise_for_status()
+            data = response.json()
             
-            const datasets = [{
-                label: 'Exit Queue (ETH)',
-                data: exitQueueData,
-                borderColor: '#ffffff',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                fill: true,
-                yAxisID: 'y',
-                tension: 0.3,
-                pointRadius: 0,
-                borderWidth: 2
-            }];
+            prices_map = {}
+            prices_list = []
             
-            if (hasPrice) {
-                datasets.push({
-                    label: 'ETH Price (USD)',
-                    data: priceData,
-                    borderColor: '#00d4ff',
-                    backgroundColor: 'transparent',
-                    fill: false,
-                    yAxisID: 'y1',
-                    tension: 0.3,
-                    pointRadius: 0,
-                    borderWidth: 2
-                });
-            }
+            for item in data.get('prices', []):
+                timestamp = item[0] / 1000
+                date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
+                price = round(item[1], 2)
+                prices_map[date] = price
+                prices_list.append({"date": date, "price": price})
             
-            mainChart = new Chart(ctx, {
-                type: 'line',
-                data: { labels, datasets },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    plugins: {
-                        legend: { labels: { color: '#888' } },
-                        tooltip: {
-                            backgroundColor: '#111',
-                            titleColor: '#fff',
-                            bodyColor: '#888',
-                            borderColor: '#333',
-                            borderWidth: 1,
-                            callbacks: {
-                                label: function(context) {
-                                    if (context.datasetIndex === 0) return 'Queue: ' + formatNumber(context.raw) + ' ETH';
-                                    return 'Price: $' + context.raw.toLocaleString();
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: { grid: { color: '#222' }, ticks: { color: '#666', maxTicksLimit: 10 } },
-                        y: {
-                            type: 'linear',
-                            position: 'left',
-                            grid: { color: '#222' },
-                            ticks: { color: '#fff', callback: val => formatNumber(val) },
-                            title: { display: true, text: 'Exit Queue (ETH)', color: '#fff' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            position: 'right',
-                            grid: { drawOnChartArea: false },
-                            ticks: { color: '#00d4ff', callback: val => '$' + val.toLocaleString() },
-                            title: { display: true, text: 'ETH Price (USD)', color: '#00d4ff' }
-                        }
-                    }
-                }
-            });
-        }
+            # Remove duplicates and sort
+            seen = {}
+            for p in prices_list:
+                seen[p["date"]] = p
+            prices_list = sorted(seen.values(), key=lambda x: x["date"])
+            prices_map = {p["date"]: p["price"] for p in prices_list}
+            
+            print(f"  ✓ Fetched {len(prices_list)} price records")
+            if prices_list:
+                print(f"  Latest price: {prices_list[-1]}")
+            
+            return prices_map, prices_list
+            
+        except Exception as e:
+            print(f"  Attempt {attempt + 1}/3 failed: {e}")
+            if attempt < 2:
+                print(f"  Waiting 15s before retry...")
+                time.sleep(15)
+    
+    print("  ✗ All attempts failed")
+    return {}, []
+
+
+def merge_data(queue_data, prices_map):
+    """Merge queue data with price data"""
+    print("Merging queue and price data...")
+    merged = []
+    matched_count = 0
+    
+    for record in queue_data:
+        date = record.get("date") or record.get("timestamp") or ""
         
-        document.querySelectorAll('.time-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentRange = this.dataset.range;
-                updateChart();
-            });
-        });
+        if isinstance(date, (int, float)):
+            date = datetime.fromtimestamp(date).strftime("%Y-%m-%d")
         
-        loadData();
-    </script>
-</body>
-</html>
+        if isinstance(date, str) and "T" in date:
+            date = date.split("T")[0]
+        
+        if not date:
+            continue
+        
+        exit_queue = (
+            record.get("exit_queue_eth") or 
+            record.get("exitQueue") or 
+            record.get("exit_queue") or 
+            record.get("exit_balance") or 0
+        )
+        entry_queue = (
+            record.get("entry_queue_eth") or 
+            record.get("entryQueue") or 
+            record.get("entry_queue") or 
+            record.get("entry_balance") or 0
+        )
+        exit_wait = (
+            record.get("exit_wait_days") or 
+            record.get("exitWaitDays") or 0
+        )
+        
+        eth_price = prices_map.get(date, 0)
+        if eth_price > 0:
+            matched_count += 1
+        
+        exit_queue_usd = round((exit_queue * eth_price) / 1_000_000, 2) if eth_price else 0
+        
+        merged.append({
+            "date": date,
+            "exitQueue": exit_queue,
+            "entryQueue": entry_queue,
+            "exitWaitDays": exit_wait,
+            "ethPrice": eth_price,
+            "exitQueueUSD": exit_queue_usd
+        })
+    
+    merged.sort(key=lambda x: x["date"])
+    
+    print(f"  ✓ Merged {len(merged)} records")
+    print(f"  ✓ Records with ETH price: {matched_count}")
+    
+    return merged
+
+
+def calculate_stats(data):
+    """Calculate summary statistics"""
+    exit_queues = [d["exitQueue"] for d in data if d["exitQueue"] > 0]
+    prices = [d["ethPrice"] for d in data if d["ethPrice"] > 0]
+    
+    if not exit_queues:
+        return {}
+    
+    pairs = [(d["exitQueue"], d["ethPrice"]) for d in data if d["exitQueue"] > 0 and d["ethPrice"] > 0]
+    correlation = 0
+    if len(pairs) > 1:
+        q = [p[0] for p in pairs]
+        p = [p[1] for p in pairs]
+        n = len(pairs)
+        mean_q = sum(q) / n
+        mean_p = sum(p) / n
+        num = sum((q[i] - mean_q) * (p[i] - mean_p) for i in range(n))
+        denom_q = sum((x - mean_q) ** 2 for x in q) ** 0.5
+        denom_p = sum((x - mean_p) ** 2 for x in p) ** 0.5
+        if denom_q > 0 and denom_p > 0:
+            correlation = round(num / (denom_q * denom_p), 4)
+    
+    return {
+        "currentQueue": exit_queues[-1] if exit_queues else 0,
+        "avgQueue": round(sum(exit_queues) / len(exit_queues), 0),
+        "maxQueue": max(exit_queues),
+        "minQueue": min(exit_queues),
+        "currentPrice": prices[-1] if prices else 0,
+        "correlation": correlation,
+        "lastUpdated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    }
+
+
+def calculate_inflection_points(data, threshold=0.5):
+    """Detect inflection points"""
+    points = []
+    for i in range(1, len(data) - 1):
+        prev = data[i - 1].get("exitQueue", 0)
+        curr = data[i].get("exitQueue", 0)
+        next_q = data[i + 1].get("exitQueue", 0)
+        
+        if prev > 0 and curr > 0:
+            change_prev = (curr - prev) / prev
+            change_next = (next_q - curr) / curr if curr > 0 else 0
+            
+            if change_prev > threshold and change_next < 0:
+                points.append({
+                    "date": data[i]["date"],
+                    "type": "peak",
+                    "exitQueue": curr,
+                    "ethPrice": data[i].get("ethPrice", 0)
+                })
+            elif change_prev < -0.3 and change_next > 0.1:
+                points.append({
+                    "date": data[i]["date"],
+                    "type": "trough",
+                    "exitQueue": curr,
+                    "ethPrice": data[i].get("ethPrice", 0)
+                })
+    return points
+
+
+def main():
+    print("=" * 60)
+    print("ETH Unstaking Queue Data Fetcher")
+    print(f"Time: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
+    print("Using CoinGecko (free, no API key, max 365 days)")
+    print("=" * 60)
+    
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    
+    queue_data = fetch_validator_queue()
+    if not queue_data:
+        print("✗ Failed to fetch queue data")
+        return 1
+    
+    # Wait before CoinGecko call (rate limiting)
+    print("\nWaiting 5s before CoinGecko call...")
+    time.sleep(5)
+    
+    # Fetch 365 days of price data (CoinGecko free limit)
+    prices_map, prices_list = fetch_eth_prices(days=365)
+    
+    merged_data = merge_data(queue_data, prices_map)
+    
+    if not merged_data:
+        print("✗ No data to save")
+        return 1
+    
+    stats = calculate_stats(merged_data)
+    inflection_points = calculate_inflection_points(merged_data)
+    
+    output = {
+        "meta": {
+            "lastUpdated": stats.get("lastUpdated", ""),
+            "dataSource": "ValidatorQueue.com + CoinGecko",
+            "recordCount": len(merged_data),
+            "priceRecords": len(prices_list),
+            "recordsWithPrice": sum(1 for d in merged_data if d["ethPrice"] > 0)
+        },
+        "stats": stats,
+        "inflectionPoints": inflection_points[-20:],
+        "ethPrices": prices_list,
+        "data": merged_data
+    }
+    
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    
+    print(f"\n{'=' * 60}")
+    print("SUMMARY")
+    print(f"{'=' * 60}")
+    print(f"✓ Data saved to {OUTPUT_FILE}")
+    print(f"  Records: {len(merged_data)}")
+    print(f"  Price records: {len(prices_list)}")
+    print(f"  Records with price: {output['meta']['recordsWithPrice']}")
+    print(f"  Current queue: {stats.get('currentQueue', 0):,.0f} ETH")
+    print(f"  Current price: ${stats.get('currentPrice', 0):,.2f}")
+    
+    return 0
+
+
+if __name__ == "__main__":
+    exit(main())
