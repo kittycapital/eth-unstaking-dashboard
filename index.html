@@ -6,6 +6,7 @@
     <title>ETH 언스테이킹 큐 분석기</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +15,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #000000;
             color: #ffffff;
             min-height: 100vh;
@@ -40,7 +41,7 @@
         .header h1 {
             font-size: 28px;
             font-weight: 700;
-            color: #ffffff;
+            color: #00d4ff;
         }
         
         .header p {
@@ -70,11 +71,12 @@
         }
         
         .stat-label {
-            color: #888;
+            color: #00d4ff;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
+            font-weight: 600;
         }
         
         .stat-value {
@@ -101,7 +103,7 @@
         .chart-title {
             font-size: 18px;
             font-weight: 600;
-            color: #ffffff;
+            color: #00d4ff;
             margin-bottom: 16px;
         }
         
@@ -125,6 +127,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
+            font-weight: 500;
             transition: all 0.2s;
         }
         
@@ -134,9 +137,9 @@
         }
         
         .time-btn.active {
-            background: #fff;
+            background: #00d4ff;
             color: #000;
-            border-color: #fff;
+            border-color: #00d4ff;
         }
         
         /* Two Column Layout */
@@ -202,8 +205,8 @@
         
         /* Insight Cards */
         .insight-card {
-            background: #111;
-            border: 1px solid #333;
+            background: #0a0a0a;
+            border: 1px solid #222;
             padding: 16px;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -211,7 +214,7 @@
         
         .insight-title {
             font-weight: 600;
-            color: #fff;
+            color: #00d4ff;
             margin-bottom: 8px;
             font-size: 14px;
         }
@@ -274,7 +277,12 @@
         }
         
         .footer a {
-            color: #888;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
         }
         
         /* Loading */
@@ -292,6 +300,19 @@
             border-radius: 8px;
             margin-bottom: 24px;
         }
+        
+        /* Scrollbar */
+        .inflection-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .inflection-list::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+        .inflection-list::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -302,7 +323,7 @@
                 <h1>ETH 언스테이킹 큐 분석기</h1>
                 <p>Unstaking Queue vs Price Inflection Point Analyzer</p>
             </div>
-            <div class="last-updated" id="lastUpdated">Loading...</div>
+            <div class="last-updated">마지막 업데이트: <span id="lastUpdated">Loading...</span></div>
         </div>
         
         <!-- Error Message -->
@@ -311,12 +332,12 @@
         <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-label">현재 Exit Queue</div>
+                <div class="stat-label">현재 EXIT QUEUE</div>
                 <div class="stat-value" id="statCurrentQueue">--</div>
                 <div class="stat-sub">Current Exit Queue</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">평균 Queue</div>
+                <div class="stat-label">평균 QUEUE</div>
                 <div class="stat-value" id="statAvgQueue">--</div>
                 <div class="stat-sub">Average Queue Size</div>
             </div>
@@ -326,7 +347,7 @@
                 <div class="stat-sub">All-Time High</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Queue-Price 상관관계</div>
+                <div class="stat-label">QUEUE-PRICE 상관관계</div>
                 <div class="stat-value" id="statCorrelation">--</div>
                 <div class="stat-sub">Correlation Coefficient</div>
             </div>
@@ -406,7 +427,7 @@
     
     <script>
         // Global variables
-        let rawData = [];
+        let DATA = null;
         let mainChart = null;
         let currentRange = 365;
         
@@ -418,87 +439,55 @@
         }
         
         function formatUSD(num) {
-            return '$' + formatNumber(num);
+            return '$' + num.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
         }
         
-        // Fetch data
-        async function fetchData() {
+        // Load data from JSON file (fetched by Python script)
+        async function loadData() {
             try {
-                // Try local data first
                 const response = await fetch('./data/eth_unstaking_data.json');
-                if (response.ok) {
-                    return await response.json();
-                }
-            } catch (e) {
-                console.log('Local data not found, fetching from APIs...');
-            }
-            
-            // Fallback to direct API calls
-            try {
-                const [queueRes, priceRes] = await Promise.all([
-                    fetch('https://raw.githubusercontent.com/etheralpha/validatorqueue-com/main/historical_data.json'),
-                    fetch('https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=365&interval=daily')
-                ]);
+                if (!response.ok) throw new Error('Data file not found');
+                DATA = await response.json();
                 
-                const queueData = await queueRes.json();
-                const priceData = await priceRes.json();
+                console.log('Data loaded:', DATA.meta);
+                console.log('Records:', DATA.data?.length);
+                console.log('Price records:', DATA.ethPrices?.length);
                 
-                // Create price map
-                const priceMap = {};
-                priceData.prices.forEach(([ts, price]) => {
-                    const date = new Date(ts).toISOString().split('T')[0];
-                    priceMap[date] = price;
-                });
+                // Update UI
+                updateStats();
+                updateInflectionPoints();
+                updateChart();
                 
-                // Merge data
-                const merged = queueData.map(item => {
-                    const date = item.date || item.timestamp;
-                    const exitQueue = item.exit_queue_eth || item.exitQueue || 0;
-                    const entryQueue = item.entry_queue_eth || item.entryQueue || 0;
-                    const ethPrice = priceMap[date] || 0;
-                    return {
-                        date,
-                        exitQueue,
-                        entryQueue,
-                        ethPrice,
-                        exitQueueUSD: (exitQueue * ethPrice) / 1000000
-                    };
-                }).filter(d => d.date).sort((a, b) => a.date.localeCompare(b.date));
-                
-                // Calculate stats
-                const exitQueues = merged.map(d => d.exitQueue).filter(q => q > 0);
-                const stats = {
-                    currentQueue: exitQueues[exitQueues.length - 1] || 0,
-                    avgQueue: exitQueues.reduce((a, b) => a + b, 0) / exitQueues.length,
-                    maxQueue: Math.max(...exitQueues),
-                    correlation: 0,
-                    lastUpdated: new Date().toISOString()
-                };
-                
-                return { data: merged, stats, inflectionPoints: [] };
-            } catch (e) {
-                console.error('API fetch failed:', e);
-                throw e;
+            } catch (error) {
+                console.error('Failed to load data:', error);
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMsg').textContent = '⚠️ 데이터 로드 실패: ' + error.message;
             }
         }
         
         // Update stats display
-        function updateStats(stats) {
+        function updateStats() {
+            if (!DATA || !DATA.stats) return;
+            
+            const stats = DATA.stats;
             document.getElementById('statCurrentQueue').textContent = formatNumber(stats.currentQueue) + ' ETH';
             document.getElementById('statAvgQueue').textContent = formatNumber(stats.avgQueue) + ' ETH';
             document.getElementById('statMaxQueue').textContent = formatNumber(stats.maxQueue) + ' ETH';
             document.getElementById('statCorrelation').textContent = (stats.correlation * 100).toFixed(1) + '%';
             
-            if (stats.lastUpdated) {
-                document.getElementById('lastUpdated').textContent = 'Updated: ' + stats.lastUpdated;
+            if (DATA.meta?.lastUpdated) {
+                document.getElementById('lastUpdated').textContent = DATA.meta.lastUpdated;
             }
         }
         
         // Update inflection points
-        function updateInflectionPoints(points) {
-            const container = document.getElementById('inflectionList');
+        function updateInflectionPoints() {
+            if (!DATA) return;
             
-            if (!points || points.length === 0) {
+            const container = document.getElementById('inflectionList');
+            const points = DATA.inflectionPoints || [];
+            
+            if (points.length === 0) {
                 container.innerHTML = '<div class="loading">변곡점 데이터 없음</div>';
                 return;
             }
@@ -507,7 +496,7 @@
                 <div class="inflection-item">
                     <div>
                         <div class="inflection-date">${point.date}</div>
-                        <div class="inflection-value">${formatNumber(point.exitQueue)} ETH</div>
+                        <div class="inflection-value">${formatNumber(point.exitQueue)} ETH ${point.ethPrice ? '@ $' + point.ethPrice.toLocaleString() : ''}</div>
                     </div>
                     <span class="inflection-badge ${point.type === 'peak' ? 'badge-peak' : 'badge-trough'}">
                         ${point.type === 'peak' ? '🔺 PEAK' : '🔻 TROUGH'}
@@ -516,56 +505,79 @@
             `).join('');
         }
         
+        // Get start date for filtering
+        function getStartDate(range) {
+            if (range === 'all') return null;
+            const days = parseInt(range);
+            const date = new Date();
+            date.setDate(date.getDate() - days);
+            return date.toISOString().split('T')[0];
+        }
+        
         // Create/update chart
-        function updateChart(data, range) {
+        function updateChart() {
+            if (!DATA || !DATA.data) return;
+            
             const ctx = document.getElementById('mainChart').getContext('2d');
+            const startDate = getStartDate(currentRange);
             
             // Filter data by range
-            let filteredData = data;
-            if (range !== 'all') {
-                const cutoff = new Date();
-                cutoff.setDate(cutoff.getDate() - parseInt(range));
-                filteredData = data.filter(d => new Date(d.date) >= cutoff);
+            let filteredData = DATA.data;
+            if (startDate) {
+                filteredData = DATA.data.filter(d => d.date >= startDate);
             }
+            
+            console.log('Filtered data count:', filteredData.length);
+            console.log('Sample data:', filteredData.slice(0, 3));
             
             // Prepare chart data
             const labels = filteredData.map(d => d.date);
             const exitQueueData = filteredData.map(d => d.exitQueue);
             const priceData = filteredData.map(d => d.ethPrice);
             
+            // Check if we have price data
+            const hasPrice = priceData.some(p => p > 0);
+            console.log('Has price data:', hasPrice, 'Sample prices:', priceData.slice(-5));
+            
             if (mainChart) {
                 mainChart.destroy();
+            }
+            
+            const datasets = [
+                {
+                    label: 'Exit Queue (ETH)',
+                    data: exitQueueData,
+                    borderColor: '#ffffff',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    fill: true,
+                    yAxisID: 'y',
+                    tension: 0.3,
+                    pointRadius: 0,
+                    borderWidth: 2
+                }
+            ];
+            
+            // Only add price line if we have price data
+            if (hasPrice) {
+                datasets.push({
+                    label: 'ETH Price (USD)',
+                    data: priceData,
+                    borderColor: '#00d4ff',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    yAxisID: 'y1',
+                    tension: 0.3,
+                    pointRadius: 0,
+                    borderWidth: 2,
+                    borderDash: [8, 4]
+                });
             }
             
             mainChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels,
-                    datasets: [
-                        {
-                            label: 'Exit Queue (ETH)',
-                            data: exitQueueData,
-                            borderColor: '#ffffff',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            fill: true,
-                            yAxisID: 'y',
-                            tension: 0.3,
-                            pointRadius: 0,
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'ETH Price (USD)',
-                            data: priceData,
-                            borderColor: '#888888',
-                            backgroundColor: 'transparent',
-                            fill: false,
-                            yAxisID: 'y1',
-                            tension: 0.3,
-                            pointRadius: 0,
-                            borderWidth: 1.5,
-                            borderDash: [5, 5]
-                        }
-                    ]
+                    datasets
                 },
                 options: {
                     responsive: true,
@@ -577,7 +589,8 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: '#888'
+                                color: '#888',
+                                font: { family: 'Inter' }
                             }
                         },
                         tooltip: {
@@ -591,76 +604,55 @@
                                     if (context.datasetIndex === 0) {
                                         return 'Queue: ' + formatNumber(context.raw) + ' ETH';
                                     }
-                                    return 'Price: $' + context.raw.toFixed(2);
+                                    return 'Price: $' + context.raw.toLocaleString();
                                 }
                             }
                         }
                     },
                     scales: {
                         x: {
-                            grid: {
-                                color: '#222'
-                            },
+                            grid: { color: '#222' },
                             ticks: {
                                 color: '#666',
-                                maxTicksLimit: 10
+                                maxTicksLimit: 10,
+                                font: { family: 'Inter' }
                             }
                         },
                         y: {
                             type: 'linear',
                             position: 'left',
-                            grid: {
-                                color: '#222'
-                            },
+                            grid: { color: '#222' },
                             ticks: {
                                 color: '#fff',
-                                callback: val => formatNumber(val)
+                                callback: val => formatNumber(val),
+                                font: { family: 'Inter' }
                             },
                             title: {
                                 display: true,
                                 text: 'Exit Queue (ETH)',
-                                color: '#fff'
+                                color: '#fff',
+                                font: { family: 'Inter', weight: '600' }
                             }
                         },
                         y1: {
                             type: 'linear',
                             position: 'right',
-                            grid: {
-                                drawOnChartArea: false
-                            },
+                            grid: { drawOnChartArea: false },
                             ticks: {
-                                color: '#888',
-                                callback: val => '$' + val.toFixed(0)
+                                color: '#00d4ff',
+                                callback: val => '$' + val.toLocaleString(),
+                                font: { family: 'Inter' }
                             },
                             title: {
                                 display: true,
                                 text: 'ETH Price (USD)',
-                                color: '#888'
+                                color: '#00d4ff',
+                                font: { family: 'Inter', weight: '600' }
                             }
                         }
                     }
                 }
             });
-        }
-        
-        // Initialize
-        async function init() {
-            try {
-                const result = await fetchData();
-                rawData = result.data || [];
-                
-                if (result.stats) {
-                    updateStats(result.stats);
-                }
-                
-                updateInflectionPoints(result.inflectionPoints || []);
-                updateChart(rawData, currentRange);
-                
-            } catch (e) {
-                console.error('Init error:', e);
-                document.getElementById('errorMsg').style.display = 'block';
-                document.getElementById('errorMsg').textContent = '⚠️ 데이터 로드 실패: ' + e.message;
-            }
         }
         
         // Time range buttons
@@ -669,12 +661,12 @@
                 document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 currentRange = this.dataset.range;
-                updateChart(rawData, currentRange);
+                updateChart();
             });
         });
         
-        // Start
-        init();
+        // Initialize
+        loadData();
     </script>
 </body>
 </html>
