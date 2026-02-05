@@ -6,7 +6,6 @@ Runs daily via GitHub Actions
 """
 
 import json
-import os
 import requests
 from datetime import datetime
 from pathlib import Path
@@ -14,10 +13,9 @@ import time
 
 # API endpoints
 VALIDATOR_QUEUE_URL = "https://raw.githubusercontent.com/etheralpha/validatorqueue-com/main/historical_data.json"
-COINGECKO_PRICE_URL = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"
 
-# Get API key from environment
-COINGECKO_API_KEY = os.environ.get("COINGECKO_API_KEY", "")
+# CoinGecko API - FREE, no API key needed
+COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"
 
 # Output paths
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -38,51 +36,62 @@ def fetch_validator_queue():
         return []
 
 
-def fetch_eth_prices(days=730):
-    """Fetch ETH price history from CoinGecko with API key"""
+def fetch_eth_prices(days=365):
+    """Fetch ETH price data from CoinGecko (no API key needed)"""
     print(f"Fetching ETH prices from CoinGecko (last {days} days)...")
     
-    if not COINGECKO_API_KEY:
-        print("  ⚠ Warning: COINGECKO_API_KEY not set!")
+    params = {
+        'vs_currency': 'usd',
+        'days': days,
+        'interval': 'daily'
+    }
     
-    try:
-        params = {
-            "vs_currency": "usd",
-            "days": days,
-            "interval": "daily"
-        }
-        headers = {
-            "Accept": "application/json",
-            "User-Agent": "ETH-Unstaking-Dashboard/1.0",
-            "x-cg-demo-api-key": COINGECKO_API_KEY
-        }
-        
-        response = requests.get(COINGECKO_PRICE_URL, params=params, headers=headers, timeout=60)
-        print(f"  CoinGecko status code: {response.status_code}")
-        response.raise_for_status()
-        data = response.json()
-        
-        prices_map = {}
-        prices_list = []
-        
-        raw_prices = data.get("prices", [])
-        print(f"  Raw price records from API: {len(raw_prices)}")
-        
-        for timestamp, price in raw_prices:
-            date = datetime.fromtimestamp(timestamp / 1000).strftime("%Y-%m-%d")
-            price_rounded = round(price, 2)
-            prices_map[date] = price_rounded
-            prices_list.append({"date": date, "price": price_rounded})
-        
-        print(f"  ✓ Processed {len(prices_map)} price records")
-        
-        if prices_list:
-            print(f"  Latest price: {prices_list[-1]}")
-        
-        return prices_map, prices_list
-    except Exception as e:
-        print(f"  ✗ Error fetching prices: {e}")
-        return {}, []
+    # Retry up to 3 times with increasing delay
+    for attempt in range(3):
+        try:
+            response = requests.get(COINGECKO_URL, params=params, timeout=30)
+            print(f"  CoinGecko status code: {response.status_code}")
+            
+            if response.status_code == 429:
+                wait_time = 30 * (attempt + 1)
+                print(f"  Rate limited. Waiting {wait_time}s...")
+                time.sleep(wait_time)
+                continue
+            
+            response.raise_for_status()
+            data = response.json()
+            
+            prices_map = {}
+            prices_list = []
+            
+            for item in data.get('prices', []):
+                timestamp = item[0] / 1000
+                date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
+                price = round(item[1], 2)
+                prices_map[date] = price
+                prices_list.append({"date": date, "price": price})
+            
+            # Remove duplicates and sort
+            seen = {}
+            for p in prices_list:
+                seen[p["date"]] = p
+            prices_list = sorted(seen.values(), key=lambda x: x["date"])
+            prices_map = {p["date"]: p["price"] for p in prices_list}
+            
+            print(f"  ✓ Fetched {len(prices_list)} price records")
+            if prices_list:
+                print(f"  Latest price: {prices_list[-1]}")
+            
+            return prices_map, prices_list
+            
+        except Exception as e:
+            print(f"  Attempt {attempt + 1}/3 failed: {e}")
+            if attempt < 2:
+                print(f"  Waiting 15s before retry...")
+                time.sleep(15)
+    
+    print("  ✗ All attempts failed")
+    return {}, []
 
 
 def merge_data(queue_data, prices_map):
@@ -209,7 +218,7 @@ def main():
     print("=" * 60)
     print("ETH Unstaking Queue Data Fetcher")
     print(f"Time: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"API Key set: {'Yes' if COINGECKO_API_KEY else 'No'}")
+    print("Using CoinGecko (free, no API key)")
     print("=" * 60)
     
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -219,9 +228,11 @@ def main():
         print("✗ Failed to fetch queue data")
         return 1
     
-    time.sleep(1)
+    # Wait before CoinGecko call (rate limiting)
+    print("\nWaiting 5s before CoinGecko call...")
+    time.sleep(5)
     
-    prices_map, prices_list = fetch_eth_prices(days=730)
+    prices_map, prices_list = fetch_eth_prices(days=365)
     
     merged_data = merge_data(queue_data, prices_map)
     
