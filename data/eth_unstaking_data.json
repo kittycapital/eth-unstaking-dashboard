@@ -1,143 +1,1604 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-05 00:53 UTC",
+    "lastUpdated": "2026-02-05 01:00 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko",
     "recordCount": 985,
-    "priceRecords": 0,
-    "recordsWithPrice": 0
+    "priceRecords": 365,
+    "recordsWithPrice": 360
   },
   "stats": {
     "currentQueue": 32581,
     "avgQueue": 292141.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 0,
-    "correlation": 0,
-    "lastUpdated": "2026-02-05 00:53 UTC"
+    "currentPrice": 2226.99,
+    "correlation": 0.6993,
+    "lastUpdated": "2026-02-05 01:00 UTC"
   },
   "inflectionPoints": [
     {
       "date": "2025-05-30",
       "type": "peak",
       "exitQueue": 7552,
-      "ethPrice": 0
+      "ethPrice": 2633.14
     },
     {
       "date": "2025-06-10",
       "type": "trough",
       "exitQueue": 32,
-      "ethPrice": 0
+      "ethPrice": 2685.0
     },
     {
       "date": "2025-06-11",
       "type": "peak",
       "exitQueue": 25600,
-      "ethPrice": 0
+      "ethPrice": 2808.5
     },
     {
       "date": "2025-06-24",
       "type": "trough",
       "exitQueue": 32,
-      "ethPrice": 0
+      "ethPrice": 2423.9
     },
     {
       "date": "2025-06-25",
       "type": "peak",
       "exitQueue": 224,
-      "ethPrice": 0
+      "ethPrice": 2446.54
     },
     {
       "date": "2025-06-27",
       "type": "peak",
       "exitQueue": 20817,
-      "ethPrice": 0
+      "ethPrice": 2415.03
     },
     {
       "date": "2025-07-02",
       "type": "trough",
       "exitQueue": 448,
-      "ethPrice": 0
+      "ethPrice": 2405.1
     },
     {
       "date": "2025-07-05",
       "type": "peak",
       "exitQueue": 47584,
-      "ethPrice": 0
+      "ethPrice": 2509.24
     },
     {
       "date": "2025-07-11",
       "type": "peak",
       "exitQueue": 4672,
-      "ethPrice": 0
+      "ethPrice": 2948.45
     },
     {
       "date": "2025-07-13",
       "type": "trough",
       "exitQueue": 448,
-      "ethPrice": 0
+      "ethPrice": 2942.96
     },
     {
       "date": "2025-07-14",
       "type": "peak",
       "exitQueue": 2784,
-      "ethPrice": 0
+      "ethPrice": 2974.27
     },
     {
       "date": "2026-01-12",
       "type": "peak",
       "exitQueue": 52969,
-      "ethPrice": 0
+      "ethPrice": 3119.36
     },
     {
       "date": "2026-01-21",
       "type": "peak",
       "exitQueue": 41595,
-      "ethPrice": 0
+      "ethPrice": 2935.62
     },
     {
       "date": "2026-01-24",
       "type": "peak",
       "exitQueue": 2784,
-      "ethPrice": 0
+      "ethPrice": 2950.91
     },
     {
       "date": "2026-01-25",
       "type": "trough",
       "exitQueue": 64,
-      "ethPrice": 0
+      "ethPrice": 2949.2
     },
     {
       "date": "2026-01-26",
       "type": "peak",
       "exitQueue": 1696,
-      "ethPrice": 0
+      "ethPrice": 2814.19
     },
     {
       "date": "2026-01-30",
       "type": "trough",
       "exitQueue": 64,
-      "ethPrice": 0
+      "ethPrice": 2818.82
     },
     {
       "date": "2026-01-31",
       "type": "peak",
       "exitQueue": 2480,
-      "ethPrice": 0
+      "ethPrice": 2702.41
     },
     {
       "date": "2026-02-02",
       "type": "trough",
       "exitQueue": 32,
-      "ethPrice": 0
+      "ethPrice": 2269.33
     },
     {
       "date": "2026-02-03",
       "type": "peak",
       "exitQueue": 32581,
-      "ethPrice": 0
+      "ethPrice": 2344.51
     }
   ],
-  "ethPrices": [],
+  "ethPrices": [
+    {
+      "date": "2025-02-06",
+      "price": 2790.55
+    },
+    {
+      "date": "2025-02-07",
+      "price": 2686.66
+    },
+    {
+      "date": "2025-02-08",
+      "price": 2623.45
+    },
+    {
+      "date": "2025-02-09",
+      "price": 2635.6
+    },
+    {
+      "date": "2025-02-10",
+      "price": 2632.54
+    },
+    {
+      "date": "2025-02-11",
+      "price": 2660.3
+    },
+    {
+      "date": "2025-02-12",
+      "price": 2603.03
+    },
+    {
+      "date": "2025-02-13",
+      "price": 2736.27
+    },
+    {
+      "date": "2025-02-14",
+      "price": 2675.71
+    },
+    {
+      "date": "2025-02-15",
+      "price": 2724.67
+    },
+    {
+      "date": "2025-02-16",
+      "price": 2692.82
+    },
+    {
+      "date": "2025-02-17",
+      "price": 2659.9
+    },
+    {
+      "date": "2025-02-18",
+      "price": 2741.91
+    },
+    {
+      "date": "2025-02-19",
+      "price": 2669.49
+    },
+    {
+      "date": "2025-02-20",
+      "price": 2714.8
+    },
+    {
+      "date": "2025-02-21",
+      "price": 2741.59
+    },
+    {
+      "date": "2025-02-22",
+      "price": 2658.35
+    },
+    {
+      "date": "2025-02-23",
+      "price": 2764.36
+    },
+    {
+      "date": "2025-02-24",
+      "price": 2827.18
+    },
+    {
+      "date": "2025-02-25",
+      "price": 2503.1
+    },
+    {
+      "date": "2025-02-26",
+      "price": 2495.32
+    },
+    {
+      "date": "2025-02-27",
+      "price": 2325.85
+    },
+    {
+      "date": "2025-02-28",
+      "price": 2305.32
+    },
+    {
+      "date": "2025-03-01",
+      "price": 2235.2
+    },
+    {
+      "date": "2025-03-02",
+      "price": 2212.82
+    },
+    {
+      "date": "2025-03-03",
+      "price": 2517.34
+    },
+    {
+      "date": "2025-03-04",
+      "price": 2148.2
+    },
+    {
+      "date": "2025-03-05",
+      "price": 2171.5
+    },
+    {
+      "date": "2025-03-06",
+      "price": 2241.38
+    },
+    {
+      "date": "2025-03-07",
+      "price": 2202.32
+    },
+    {
+      "date": "2025-03-08",
+      "price": 2140.75
+    },
+    {
+      "date": "2025-03-09",
+      "price": 2200.0
+    },
+    {
+      "date": "2025-03-10",
+      "price": 2017.27
+    },
+    {
+      "date": "2025-03-11",
+      "price": 1879.12
+    },
+    {
+      "date": "2025-03-12",
+      "price": 1921.31
+    },
+    {
+      "date": "2025-03-13",
+      "price": 1910.66
+    },
+    {
+      "date": "2025-03-14",
+      "price": 1862.79
+    },
+    {
+      "date": "2025-03-15",
+      "price": 1910.67
+    },
+    {
+      "date": "2025-03-16",
+      "price": 1939.79
+    },
+    {
+      "date": "2025-03-17",
+      "price": 1887.76
+    },
+    {
+      "date": "2025-03-18",
+      "price": 1929.18
+    },
+    {
+      "date": "2025-03-19",
+      "price": 1932.8
+    },
+    {
+      "date": "2025-03-20",
+      "price": 2060.73
+    },
+    {
+      "date": "2025-03-21",
+      "price": 1980.83
+    },
+    {
+      "date": "2025-03-22",
+      "price": 1964.53
+    },
+    {
+      "date": "2025-03-23",
+      "price": 1979.54
+    },
+    {
+      "date": "2025-03-24",
+      "price": 2001.05
+    },
+    {
+      "date": "2025-03-25",
+      "price": 2077.74
+    },
+    {
+      "date": "2025-03-26",
+      "price": 2068.6
+    },
+    {
+      "date": "2025-03-27",
+      "price": 2009.88
+    },
+    {
+      "date": "2025-03-28",
+      "price": 2003.3
+    },
+    {
+      "date": "2025-03-29",
+      "price": 1896.92
+    },
+    {
+      "date": "2025-03-30",
+      "price": 1829.27
+    },
+    {
+      "date": "2025-03-31",
+      "price": 1805.34
+    },
+    {
+      "date": "2025-04-01",
+      "price": 1824.21
+    },
+    {
+      "date": "2025-04-02",
+      "price": 1907.17
+    },
+    {
+      "date": "2025-04-03",
+      "price": 1795.76
+    },
+    {
+      "date": "2025-04-04",
+      "price": 1818.28
+    },
+    {
+      "date": "2025-04-05",
+      "price": 1814.48
+    },
+    {
+      "date": "2025-04-06",
+      "price": 1809.94
+    },
+    {
+      "date": "2025-04-07",
+      "price": 1574.63
+    },
+    {
+      "date": "2025-04-08",
+      "price": 1555.91
+    },
+    {
+      "date": "2025-04-09",
+      "price": 1471.36
+    },
+    {
+      "date": "2025-04-10",
+      "price": 1662.53
+    },
+    {
+      "date": "2025-04-11",
+      "price": 1523.93
+    },
+    {
+      "date": "2025-04-12",
+      "price": 1568.13
+    },
+    {
+      "date": "2025-04-13",
+      "price": 1645.86
+    },
+    {
+      "date": "2025-04-14",
+      "price": 1595.42
+    },
+    {
+      "date": "2025-04-15",
+      "price": 1621.54
+    },
+    {
+      "date": "2025-04-16",
+      "price": 1587.82
+    },
+    {
+      "date": "2025-04-17",
+      "price": 1577.71
+    },
+    {
+      "date": "2025-04-18",
+      "price": 1583.48
+    },
+    {
+      "date": "2025-04-19",
+      "price": 1589.15
+    },
+    {
+      "date": "2025-04-20",
+      "price": 1615.05
+    },
+    {
+      "date": "2025-04-21",
+      "price": 1585.46
+    },
+    {
+      "date": "2025-04-22",
+      "price": 1577.45
+    },
+    {
+      "date": "2025-04-23",
+      "price": 1759.71
+    },
+    {
+      "date": "2025-04-24",
+      "price": 1793.97
+    },
+    {
+      "date": "2025-04-25",
+      "price": 1769.39
+    },
+    {
+      "date": "2025-04-26",
+      "price": 1788.8
+    },
+    {
+      "date": "2025-04-27",
+      "price": 1821.27
+    },
+    {
+      "date": "2025-04-28",
+      "price": 1793.69
+    },
+    {
+      "date": "2025-04-29",
+      "price": 1799.5
+    },
+    {
+      "date": "2025-04-30",
+      "price": 1796.97
+    },
+    {
+      "date": "2025-05-01",
+      "price": 1794.05
+    },
+    {
+      "date": "2025-05-02",
+      "price": 1838.85
+    },
+    {
+      "date": "2025-05-03",
+      "price": 1841.43
+    },
+    {
+      "date": "2025-05-04",
+      "price": 1834.5
+    },
+    {
+      "date": "2025-05-05",
+      "price": 1808.16
+    },
+    {
+      "date": "2025-05-06",
+      "price": 1820.0
+    },
+    {
+      "date": "2025-05-07",
+      "price": 1816.17
+    },
+    {
+      "date": "2025-05-08",
+      "price": 1810.32
+    },
+    {
+      "date": "2025-05-09",
+      "price": 2197.56
+    },
+    {
+      "date": "2025-05-10",
+      "price": 2341.41
+    },
+    {
+      "date": "2025-05-11",
+      "price": 2583.68
+    },
+    {
+      "date": "2025-05-12",
+      "price": 2507.47
+    },
+    {
+      "date": "2025-05-13",
+      "price": 2492.43
+    },
+    {
+      "date": "2025-05-14",
+      "price": 2676.64
+    },
+    {
+      "date": "2025-05-15",
+      "price": 2603.72
+    },
+    {
+      "date": "2025-05-16",
+      "price": 2542.3
+    },
+    {
+      "date": "2025-05-17",
+      "price": 2544.39
+    },
+    {
+      "date": "2025-05-18",
+      "price": 2475.05
+    },
+    {
+      "date": "2025-05-19",
+      "price": 2465.34
+    },
+    {
+      "date": "2025-05-20",
+      "price": 2526.99
+    },
+    {
+      "date": "2025-05-21",
+      "price": 2524.27
+    },
+    {
+      "date": "2025-05-22",
+      "price": 2558.95
+    },
+    {
+      "date": "2025-05-23",
+      "price": 2657.17
+    },
+    {
+      "date": "2025-05-24",
+      "price": 2519.81
+    },
+    {
+      "date": "2025-05-25",
+      "price": 2529.44
+    },
+    {
+      "date": "2025-05-26",
+      "price": 2546.62
+    },
+    {
+      "date": "2025-05-27",
+      "price": 2562.17
+    },
+    {
+      "date": "2025-05-28",
+      "price": 2662.09
+    },
+    {
+      "date": "2025-05-29",
+      "price": 2676.27
+    },
+    {
+      "date": "2025-05-30",
+      "price": 2633.14
+    },
+    {
+      "date": "2025-05-31",
+      "price": 2524.48
+    },
+    {
+      "date": "2025-06-01",
+      "price": 2532.36
+    },
+    {
+      "date": "2025-06-02",
+      "price": 2538.33
+    },
+    {
+      "date": "2025-06-03",
+      "price": 2609.74
+    },
+    {
+      "date": "2025-06-04",
+      "price": 2595.47
+    },
+    {
+      "date": "2025-06-05",
+      "price": 2610.34
+    },
+    {
+      "date": "2025-06-06",
+      "price": 2421.6
+    },
+    {
+      "date": "2025-06-07",
+      "price": 2481.4
+    },
+    {
+      "date": "2025-06-08",
+      "price": 2526.29
+    },
+    {
+      "date": "2025-06-09",
+      "price": 2508.78
+    },
+    {
+      "date": "2025-06-10",
+      "price": 2685.0
+    },
+    {
+      "date": "2025-06-11",
+      "price": 2808.5
+    },
+    {
+      "date": "2025-06-12",
+      "price": 2776.14
+    },
+    {
+      "date": "2025-06-13",
+      "price": 2653.16
+    },
+    {
+      "date": "2025-06-14",
+      "price": 2577.05
+    },
+    {
+      "date": "2025-06-15",
+      "price": 2534.07
+    },
+    {
+      "date": "2025-06-16",
+      "price": 2547.85
+    },
+    {
+      "date": "2025-06-17",
+      "price": 2561.33
+    },
+    {
+      "date": "2025-06-18",
+      "price": 2514.99
+    },
+    {
+      "date": "2025-06-19",
+      "price": 2521.33
+    },
+    {
+      "date": "2025-06-20",
+      "price": 2522.18
+    },
+    {
+      "date": "2025-06-21",
+      "price": 2405.7
+    },
+    {
+      "date": "2025-06-22",
+      "price": 2270.58
+    },
+    {
+      "date": "2025-06-23",
+      "price": 2227.43
+    },
+    {
+      "date": "2025-06-24",
+      "price": 2423.9
+    },
+    {
+      "date": "2025-06-25",
+      "price": 2446.54
+    },
+    {
+      "date": "2025-06-26",
+      "price": 2417.23
+    },
+    {
+      "date": "2025-06-27",
+      "price": 2415.03
+    },
+    {
+      "date": "2025-06-28",
+      "price": 2423.03
+    },
+    {
+      "date": "2025-06-29",
+      "price": 2437.13
+    },
+    {
+      "date": "2025-06-30",
+      "price": 2502.67
+    },
+    {
+      "date": "2025-07-01",
+      "price": 2488.19
+    },
+    {
+      "date": "2025-07-02",
+      "price": 2405.1
+    },
+    {
+      "date": "2025-07-03",
+      "price": 2574.07
+    },
+    {
+      "date": "2025-07-04",
+      "price": 2590.13
+    },
+    {
+      "date": "2025-07-05",
+      "price": 2509.24
+    },
+    {
+      "date": "2025-07-06",
+      "price": 2517.38
+    },
+    {
+      "date": "2025-07-07",
+      "price": 2571.36
+    },
+    {
+      "date": "2025-07-08",
+      "price": 2543.63
+    },
+    {
+      "date": "2025-07-09",
+      "price": 2615.78
+    },
+    {
+      "date": "2025-07-10",
+      "price": 2772.58
+    },
+    {
+      "date": "2025-07-11",
+      "price": 2948.45
+    },
+    {
+      "date": "2025-07-12",
+      "price": 2958.85
+    },
+    {
+      "date": "2025-07-13",
+      "price": 2942.96
+    },
+    {
+      "date": "2025-07-14",
+      "price": 2974.27
+    },
+    {
+      "date": "2025-07-15",
+      "price": 3012.18
+    },
+    {
+      "date": "2025-07-16",
+      "price": 3133.07
+    },
+    {
+      "date": "2025-07-17",
+      "price": 3368.13
+    },
+    {
+      "date": "2025-07-18",
+      "price": 3481.88
+    },
+    {
+      "date": "2025-07-19",
+      "price": 3547.32
+    },
+    {
+      "date": "2025-07-20",
+      "price": 3594.32
+    },
+    {
+      "date": "2025-07-21",
+      "price": 3758.61
+    },
+    {
+      "date": "2025-07-22",
+      "price": 3765.45
+    },
+    {
+      "date": "2025-07-23",
+      "price": 3746.94
+    },
+    {
+      "date": "2025-07-24",
+      "price": 3630.05
+    },
+    {
+      "date": "2025-07-25",
+      "price": 3708.43
+    },
+    {
+      "date": "2025-07-26",
+      "price": 3723.05
+    },
+    {
+      "date": "2025-07-27",
+      "price": 3742.43
+    },
+    {
+      "date": "2025-07-28",
+      "price": 3864.12
+    },
+    {
+      "date": "2025-07-29",
+      "price": 3786.3
+    },
+    {
+      "date": "2025-07-30",
+      "price": 3788.6
+    },
+    {
+      "date": "2025-07-31",
+      "price": 3807.42
+    },
+    {
+      "date": "2025-08-01",
+      "price": 3696.66
+    },
+    {
+      "date": "2025-08-02",
+      "price": 3483.18
+    },
+    {
+      "date": "2025-08-03",
+      "price": 3397.49
+    },
+    {
+      "date": "2025-08-04",
+      "price": 3497.57
+    },
+    {
+      "date": "2025-08-05",
+      "price": 3715.71
+    },
+    {
+      "date": "2025-08-06",
+      "price": 3612.44
+    },
+    {
+      "date": "2025-08-07",
+      "price": 3684.05
+    },
+    {
+      "date": "2025-08-08",
+      "price": 3911.26
+    },
+    {
+      "date": "2025-08-09",
+      "price": 4012.98
+    },
+    {
+      "date": "2025-08-10",
+      "price": 4265.56
+    },
+    {
+      "date": "2025-08-11",
+      "price": 4253.59
+    },
+    {
+      "date": "2025-08-12",
+      "price": 4228.82
+    },
+    {
+      "date": "2025-08-13",
+      "price": 4606.81
+    },
+    {
+      "date": "2025-08-14",
+      "price": 4763.65
+    },
+    {
+      "date": "2025-08-15",
+      "price": 4554.29
+    },
+    {
+      "date": "2025-08-16",
+      "price": 4430.53
+    },
+    {
+      "date": "2025-08-17",
+      "price": 4426.83
+    },
+    {
+      "date": "2025-08-18",
+      "price": 4487.12
+    },
+    {
+      "date": "2025-08-19",
+      "price": 4317.28
+    },
+    {
+      "date": "2025-08-20",
+      "price": 4074.5
+    },
+    {
+      "date": "2025-08-21",
+      "price": 4330.49
+    },
+    {
+      "date": "2025-08-22",
+      "price": 4224.44
+    },
+    {
+      "date": "2025-08-23",
+      "price": 4829.23
+    },
+    {
+      "date": "2025-08-24",
+      "price": 4773.88
+    },
+    {
+      "date": "2025-08-25",
+      "price": 4778.11
+    },
+    {
+      "date": "2025-08-26",
+      "price": 4381.63
+    },
+    {
+      "date": "2025-08-27",
+      "price": 4602.37
+    },
+    {
+      "date": "2025-08-28",
+      "price": 4500.15
+    },
+    {
+      "date": "2025-08-29",
+      "price": 4507.56
+    },
+    {
+      "date": "2025-08-30",
+      "price": 4364.36
+    },
+    {
+      "date": "2025-08-31",
+      "price": 4373.36
+    },
+    {
+      "date": "2025-09-01",
+      "price": 4388.93
+    },
+    {
+      "date": "2025-09-02",
+      "price": 4303.2
+    },
+    {
+      "date": "2025-09-03",
+      "price": 4325.86
+    },
+    {
+      "date": "2025-09-04",
+      "price": 4449.87
+    },
+    {
+      "date": "2025-09-05",
+      "price": 4298.09
+    },
+    {
+      "date": "2025-09-06",
+      "price": 4306.61
+    },
+    {
+      "date": "2025-09-07",
+      "price": 4273.11
+    },
+    {
+      "date": "2025-09-08",
+      "price": 4304.03
+    },
+    {
+      "date": "2025-09-09",
+      "price": 4309.69
+    },
+    {
+      "date": "2025-09-10",
+      "price": 4309.34
+    },
+    {
+      "date": "2025-09-11",
+      "price": 4347.48
+    },
+    {
+      "date": "2025-09-12",
+      "price": 4459.32
+    },
+    {
+      "date": "2025-09-13",
+      "price": 4708.84
+    },
+    {
+      "date": "2025-09-14",
+      "price": 4667.7
+    },
+    {
+      "date": "2025-09-15",
+      "price": 4609.79
+    },
+    {
+      "date": "2025-09-16",
+      "price": 4524.24
+    },
+    {
+      "date": "2025-09-17",
+      "price": 4504.27
+    },
+    {
+      "date": "2025-09-18",
+      "price": 4591.77
+    },
+    {
+      "date": "2025-09-19",
+      "price": 4590.64
+    },
+    {
+      "date": "2025-09-20",
+      "price": 4470.48
+    },
+    {
+      "date": "2025-09-21",
+      "price": 4481.8
+    },
+    {
+      "date": "2025-09-22",
+      "price": 4452.87
+    },
+    {
+      "date": "2025-09-23",
+      "price": 4199.95
+    },
+    {
+      "date": "2025-09-24",
+      "price": 4166.19
+    },
+    {
+      "date": "2025-09-25",
+      "price": 4148.66
+    },
+    {
+      "date": "2025-09-26",
+      "price": 3863.06
+    },
+    {
+      "date": "2025-09-27",
+      "price": 4037.1
+    },
+    {
+      "date": "2025-09-28",
+      "price": 4018.17
+    },
+    {
+      "date": "2025-09-29",
+      "price": 4141.84
+    },
+    {
+      "date": "2025-09-30",
+      "price": 4215.61
+    },
+    {
+      "date": "2025-10-01",
+      "price": 4144.23
+    },
+    {
+      "date": "2025-10-02",
+      "price": 4343.95
+    },
+    {
+      "date": "2025-10-03",
+      "price": 4484.01
+    },
+    {
+      "date": "2025-10-04",
+      "price": 4515.76
+    },
+    {
+      "date": "2025-10-05",
+      "price": 4487.71
+    },
+    {
+      "date": "2025-10-06",
+      "price": 4515.32
+    },
+    {
+      "date": "2025-10-07",
+      "price": 4689.13
+    },
+    {
+      "date": "2025-10-08",
+      "price": 4454.33
+    },
+    {
+      "date": "2025-10-09",
+      "price": 4527.58
+    },
+    {
+      "date": "2025-10-10",
+      "price": 4368.65
+    },
+    {
+      "date": "2025-10-11",
+      "price": 3835.63
+    },
+    {
+      "date": "2025-10-12",
+      "price": 3749.22
+    },
+    {
+      "date": "2025-10-13",
+      "price": 4159.73
+    },
+    {
+      "date": "2025-10-14",
+      "price": 4246.22
+    },
+    {
+      "date": "2025-10-15",
+      "price": 4128.89
+    },
+    {
+      "date": "2025-10-16",
+      "price": 3983.15
+    },
+    {
+      "date": "2025-10-17",
+      "price": 3890.2
+    },
+    {
+      "date": "2025-10-18",
+      "price": 3831.24
+    },
+    {
+      "date": "2025-10-19",
+      "price": 3889.5
+    },
+    {
+      "date": "2025-10-20",
+      "price": 3985.08
+    },
+    {
+      "date": "2025-10-21",
+      "price": 3978.79
+    },
+    {
+      "date": "2025-10-22",
+      "price": 3877.49
+    },
+    {
+      "date": "2025-10-23",
+      "price": 3801.79
+    },
+    {
+      "date": "2025-10-24",
+      "price": 3855.84
+    },
+    {
+      "date": "2025-10-25",
+      "price": 3933.23
+    },
+    {
+      "date": "2025-10-26",
+      "price": 3952.21
+    },
+    {
+      "date": "2025-10-27",
+      "price": 4161.59
+    },
+    {
+      "date": "2025-10-28",
+      "price": 4123.21
+    },
+    {
+      "date": "2025-10-29",
+      "price": 3982.31
+    },
+    {
+      "date": "2025-10-30",
+      "price": 3897.36
+    },
+    {
+      "date": "2025-10-31",
+      "price": 3802.3
+    },
+    {
+      "date": "2025-11-01",
+      "price": 3847.3
+    },
+    {
+      "date": "2025-11-02",
+      "price": 3872.21
+    },
+    {
+      "date": "2025-11-03",
+      "price": 3910.09
+    },
+    {
+      "date": "2025-11-04",
+      "price": 3600.72
+    },
+    {
+      "date": "2025-11-05",
+      "price": 3296.74
+    },
+    {
+      "date": "2025-11-06",
+      "price": 3427.69
+    },
+    {
+      "date": "2025-11-07",
+      "price": 3308.92
+    },
+    {
+      "date": "2025-11-08",
+      "price": 3434.35
+    },
+    {
+      "date": "2025-11-09",
+      "price": 3401.46
+    },
+    {
+      "date": "2025-11-10",
+      "price": 3576.25
+    },
+    {
+      "date": "2025-11-11",
+      "price": 3564.61
+    },
+    {
+      "date": "2025-11-12",
+      "price": 3416.78
+    },
+    {
+      "date": "2025-11-13",
+      "price": 3409.61
+    },
+    {
+      "date": "2025-11-14",
+      "price": 3235.73
+    },
+    {
+      "date": "2025-11-15",
+      "price": 3106.6
+    },
+    {
+      "date": "2025-11-16",
+      "price": 3170.11
+    },
+    {
+      "date": "2025-11-17",
+      "price": 3101.69
+    },
+    {
+      "date": "2025-11-18",
+      "price": 3021.3
+    },
+    {
+      "date": "2025-11-19",
+      "price": 3117.22
+    },
+    {
+      "date": "2025-11-20",
+      "price": 3017.75
+    },
+    {
+      "date": "2025-11-21",
+      "price": 2832.07
+    },
+    {
+      "date": "2025-11-22",
+      "price": 2764.74
+    },
+    {
+      "date": "2025-11-23",
+      "price": 2768.62
+    },
+    {
+      "date": "2025-11-24",
+      "price": 2799.81
+    },
+    {
+      "date": "2025-11-25",
+      "price": 2953.33
+    },
+    {
+      "date": "2025-11-26",
+      "price": 2955.05
+    },
+    {
+      "date": "2025-11-27",
+      "price": 3027.48
+    },
+    {
+      "date": "2025-11-28",
+      "price": 3015.61
+    },
+    {
+      "date": "2025-11-29",
+      "price": 3033.14
+    },
+    {
+      "date": "2025-11-30",
+      "price": 2991.23
+    },
+    {
+      "date": "2025-12-01",
+      "price": 2992.83
+    },
+    {
+      "date": "2025-12-02",
+      "price": 2799.04
+    },
+    {
+      "date": "2025-12-03",
+      "price": 2995.75
+    },
+    {
+      "date": "2025-12-04",
+      "price": 3195.41
+    },
+    {
+      "date": "2025-12-05",
+      "price": 3133.7
+    },
+    {
+      "date": "2025-12-06",
+      "price": 3022.66
+    },
+    {
+      "date": "2025-12-07",
+      "price": 3039.36
+    },
+    {
+      "date": "2025-12-08",
+      "price": 3052.98
+    },
+    {
+      "date": "2025-12-09",
+      "price": 3125.32
+    },
+    {
+      "date": "2025-12-10",
+      "price": 3322.47
+    },
+    {
+      "date": "2025-12-11",
+      "price": 3326.26
+    },
+    {
+      "date": "2025-12-12",
+      "price": 3236.1
+    },
+    {
+      "date": "2025-12-13",
+      "price": 3085.32
+    },
+    {
+      "date": "2025-12-14",
+      "price": 3115.23
+    },
+    {
+      "date": "2025-12-15",
+      "price": 3065.49
+    },
+    {
+      "date": "2025-12-16",
+      "price": 2964.49
+    },
+    {
+      "date": "2025-12-17",
+      "price": 2964.26
+    },
+    {
+      "date": "2025-12-18",
+      "price": 2827.8
+    },
+    {
+      "date": "2025-12-19",
+      "price": 2826.59
+    },
+    {
+      "date": "2025-12-20",
+      "price": 2976.8
+    },
+    {
+      "date": "2025-12-21",
+      "price": 2977.16
+    },
+    {
+      "date": "2025-12-22",
+      "price": 3001.6
+    },
+    {
+      "date": "2025-12-23",
+      "price": 3005.79
+    },
+    {
+      "date": "2025-12-24",
+      "price": 2965.19
+    },
+    {
+      "date": "2025-12-25",
+      "price": 2945.99
+    },
+    {
+      "date": "2025-12-26",
+      "price": 2904.25
+    },
+    {
+      "date": "2025-12-27",
+      "price": 2926.7
+    },
+    {
+      "date": "2025-12-28",
+      "price": 2948.86
+    },
+    {
+      "date": "2025-12-29",
+      "price": 2947.86
+    },
+    {
+      "date": "2025-12-30",
+      "price": 2934.22
+    },
+    {
+      "date": "2025-12-31",
+      "price": 2970.06
+    },
+    {
+      "date": "2026-01-01",
+      "price": 2966.77
+    },
+    {
+      "date": "2026-01-02",
+      "price": 3000.42
+    },
+    {
+      "date": "2026-01-03",
+      "price": 3121.9
+    },
+    {
+      "date": "2026-01-04",
+      "price": 3126.04
+    },
+    {
+      "date": "2026-01-05",
+      "price": 3139.06
+    },
+    {
+      "date": "2026-01-06",
+      "price": 3228.3
+    },
+    {
+      "date": "2026-01-07",
+      "price": 3295.1
+    },
+    {
+      "date": "2026-01-08",
+      "price": 3164.79
+    },
+    {
+      "date": "2026-01-09",
+      "price": 3104.22
+    },
+    {
+      "date": "2026-01-10",
+      "price": 3083.14
+    },
+    {
+      "date": "2026-01-11",
+      "price": 3082.97
+    },
+    {
+      "date": "2026-01-12",
+      "price": 3119.36
+    },
+    {
+      "date": "2026-01-13",
+      "price": 3090.28
+    },
+    {
+      "date": "2026-01-14",
+      "price": 3319.94
+    },
+    {
+      "date": "2026-01-15",
+      "price": 3356.5
+    },
+    {
+      "date": "2026-01-16",
+      "price": 3318.2
+    },
+    {
+      "date": "2026-01-17",
+      "price": 3296.06
+    },
+    {
+      "date": "2026-01-18",
+      "price": 3306.87
+    },
+    {
+      "date": "2026-01-19",
+      "price": 3284.32
+    },
+    {
+      "date": "2026-01-20",
+      "price": 3185.66
+    },
+    {
+      "date": "2026-01-21",
+      "price": 2935.62
+    },
+    {
+      "date": "2026-01-22",
+      "price": 2976.05
+    },
+    {
+      "date": "2026-01-23",
+      "price": 2948.28
+    },
+    {
+      "date": "2026-01-24",
+      "price": 2950.91
+    },
+    {
+      "date": "2026-01-25",
+      "price": 2949.2
+    },
+    {
+      "date": "2026-01-26",
+      "price": 2814.19
+    },
+    {
+      "date": "2026-01-27",
+      "price": 2927.84
+    },
+    {
+      "date": "2026-01-28",
+      "price": 3021.09
+    },
+    {
+      "date": "2026-01-29",
+      "price": 3006.81
+    },
+    {
+      "date": "2026-01-30",
+      "price": 2818.82
+    },
+    {
+      "date": "2026-01-31",
+      "price": 2702.41
+    },
+    {
+      "date": "2026-02-01",
+      "price": 2443.93
+    },
+    {
+      "date": "2026-02-02",
+      "price": 2269.33
+    },
+    {
+      "date": "2026-02-03",
+      "price": 2344.51
+    },
+    {
+      "date": "2026-02-04",
+      "price": 2226.99
+    },
+    {
+      "date": "2026-02-05",
+      "price": 2145.11
+    }
+  ],
   "data": [
     {
       "date": "2023-05-21",
@@ -5144,2880 +6605,2880 @@
       "exitQueue": 256,
       "entryQueue": 23680,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2790.55,
+      "exitQueueUSD": 0.71
     },
     {
       "date": "2025-02-07",
       "exitQueue": 5408,
       "entryQueue": 16544,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2686.66,
+      "exitQueueUSD": 14.53
     },
     {
       "date": "2025-02-08",
       "exitQueue": 1312,
       "entryQueue": 4704,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2623.45,
+      "exitQueueUSD": 3.44
     },
     {
       "date": "2025-02-09",
       "exitQueue": 64,
       "entryQueue": 3872,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2635.6,
+      "exitQueueUSD": 0.17
     },
     {
       "date": "2025-02-10",
       "exitQueue": 32,
       "entryQueue": 1248,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2632.54,
+      "exitQueueUSD": 0.08
     },
     {
       "date": "2025-02-11",
       "exitQueue": 4192,
       "entryQueue": 2112,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2660.3,
+      "exitQueueUSD": 11.15
     },
     {
       "date": "2025-02-12",
       "exitQueue": 352,
       "entryQueue": 25088,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2603.03,
+      "exitQueueUSD": 0.92
     },
     {
       "date": "2025-02-13",
       "exitQueue": 64,
       "entryQueue": 28736,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2736.27,
+      "exitQueueUSD": 0.18
     },
     {
       "date": "2025-02-14",
       "exitQueue": 32,
       "entryQueue": 5600,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2675.71,
+      "exitQueueUSD": 0.09
     },
     {
       "date": "2025-02-15",
       "exitQueue": 54560,
       "entryQueue": 11328,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2724.67,
+      "exitQueueUSD": 148.66
     },
     {
       "date": "2025-02-16",
       "exitQueue": 512,
       "entryQueue": 8320,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2692.82,
+      "exitQueueUSD": 1.38
     },
     {
       "date": "2025-02-17",
       "exitQueue": 32,
       "entryQueue": 23936,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2659.9,
+      "exitQueueUSD": 0.09
     },
     {
       "date": "2025-02-18",
       "exitQueue": 4096,
       "entryQueue": 13984,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2741.91,
+      "exitQueueUSD": 11.23
     },
     {
       "date": "2025-02-19",
       "exitQueue": 2112,
       "entryQueue": 6144,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2669.49,
+      "exitQueueUSD": 5.64
     },
     {
       "date": "2025-02-20",
       "exitQueue": 64,
       "entryQueue": 5568,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2714.8,
+      "exitQueueUSD": 0.17
     },
     {
       "date": "2025-02-21",
       "exitQueue": 320,
       "entryQueue": 26720,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2741.59,
+      "exitQueueUSD": 0.88
     },
     {
       "date": "2025-02-22",
       "exitQueue": 23616,
       "entryQueue": 28256,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2658.35,
+      "exitQueueUSD": 62.78
     },
     {
       "date": "2025-02-23",
       "exitQueue": 64,
       "entryQueue": 9120,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2764.36,
+      "exitQueueUSD": 0.18
     },
     {
       "date": "2025-02-24",
       "exitQueue": 96,
       "entryQueue": 3712,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2827.18,
+      "exitQueueUSD": 0.27
     },
     {
       "date": "2025-02-25",
       "exitQueue": 2720,
       "entryQueue": 14048,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2503.1,
+      "exitQueueUSD": 6.81
     },
     {
       "date": "2025-02-26",
       "exitQueue": 1376,
       "entryQueue": 17696,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2495.32,
+      "exitQueueUSD": 3.43
     },
     {
       "date": "2025-02-27",
       "exitQueue": 1536,
       "entryQueue": 352,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2325.85,
+      "exitQueueUSD": 3.57
     },
     {
       "date": "2025-02-28",
       "exitQueue": 608,
       "entryQueue": 8064,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2305.32,
+      "exitQueueUSD": 1.4
     },
     {
       "date": "2025-03-01",
       "exitQueue": 32,
       "entryQueue": 992,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2235.2,
+      "exitQueueUSD": 0.07
     },
     {
       "date": "2025-03-02",
       "exitQueue": 128,
       "entryQueue": 2464,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2212.82,
+      "exitQueueUSD": 0.28
     },
     {
       "date": "2025-03-03",
       "exitQueue": 2016,
       "entryQueue": 2496,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2517.34,
+      "exitQueueUSD": 5.07
     },
     {
       "date": "2025-03-04",
       "exitQueue": 544,
       "entryQueue": 384,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2148.2,
+      "exitQueueUSD": 1.17
     },
     {
       "date": "2025-03-05",
       "exitQueue": 544,
       "entryQueue": 32384,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2171.5,
+      "exitQueueUSD": 1.18
     },
     {
       "date": "2025-03-06",
       "exitQueue": 32,
       "entryQueue": 122592,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2241.38,
+      "exitQueueUSD": 0.07
     },
     {
       "date": "2025-03-07",
       "exitQueue": 7136,
       "entryQueue": 106400,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2202.32,
+      "exitQueueUSD": 15.72
     },
     {
       "date": "2025-03-08",
       "exitQueue": 1504,
       "entryQueue": 113152,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2140.75,
+      "exitQueueUSD": 3.22
     },
     {
       "date": "2025-03-09",
       "exitQueue": 32,
       "entryQueue": 78656,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2200.0,
+      "exitQueueUSD": 0.07
     },
     {
       "date": "2025-03-10",
       "exitQueue": 832,
       "entryQueue": 45472,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2017.27,
+      "exitQueueUSD": 1.68
     },
     {
       "date": "2025-03-11",
       "exitQueue": 128,
       "entryQueue": 11328,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1879.12,
+      "exitQueueUSD": 0.24
     },
     {
       "date": "2025-03-12",
       "exitQueue": 3520,
       "entryQueue": 27552,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1921.31,
+      "exitQueueUSD": 6.76
     },
     {
       "date": "2025-03-13",
       "exitQueue": 8256,
       "entryQueue": 17088,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1910.66,
+      "exitQueueUSD": 15.77
     },
     {
       "date": "2025-03-14",
       "exitQueue": 128,
       "entryQueue": 11840,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1862.79,
+      "exitQueueUSD": 0.24
     },
     {
       "date": "2025-03-15",
       "exitQueue": 576,
       "entryQueue": 48224,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1910.67,
+      "exitQueueUSD": 1.1
     },
     {
       "date": "2025-03-16",
       "exitQueue": 32,
       "entryQueue": 14816,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1939.79,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-03-17",
       "exitQueue": 7296,
       "entryQueue": 2208,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1887.76,
+      "exitQueueUSD": 13.77
     },
     {
       "date": "2025-03-18",
       "exitQueue": 192,
       "entryQueue": 18752,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1929.18,
+      "exitQueueUSD": 0.37
     },
     {
       "date": "2025-03-19",
       "exitQueue": 160,
       "entryQueue": 31392,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1932.8,
+      "exitQueueUSD": 0.31
     },
     {
       "date": "2025-03-20",
       "exitQueue": 19104,
       "entryQueue": 101600,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2060.73,
+      "exitQueueUSD": 39.37
     },
     {
       "date": "2025-03-21",
       "exitQueue": 128,
       "entryQueue": 103360,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1980.83,
+      "exitQueueUSD": 0.25
     },
     {
       "date": "2025-03-22",
       "exitQueue": 32,
       "entryQueue": 131552,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1964.53,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-03-23",
       "exitQueue": 352,
       "entryQueue": 143840,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1979.54,
+      "exitQueueUSD": 0.7
     },
     {
       "date": "2025-03-24",
       "exitQueue": 96,
       "entryQueue": 124064,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2001.05,
+      "exitQueueUSD": 0.19
     },
     {
       "date": "2025-03-25",
       "exitQueue": 224,
       "entryQueue": 145632,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2077.74,
+      "exitQueueUSD": 0.47
     },
     {
       "date": "2025-03-26",
       "exitQueue": 832,
       "entryQueue": 160256,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2068.6,
+      "exitQueueUSD": 1.72
     },
     {
       "date": "2025-03-27",
       "exitQueue": 32,
       "entryQueue": 208448,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2009.88,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-03-28",
       "exitQueue": 608,
       "entryQueue": 176000,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2003.3,
+      "exitQueueUSD": 1.22
     },
     {
       "date": "2025-03-29",
       "exitQueue": 96,
       "entryQueue": 197632,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1896.92,
+      "exitQueueUSD": 0.18
     },
     {
       "date": "2025-03-30",
       "exitQueue": 160,
       "entryQueue": 170560,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1829.27,
+      "exitQueueUSD": 0.29
     },
     {
       "date": "2025-03-31",
       "exitQueue": 2304,
       "entryQueue": 136736,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1805.34,
+      "exitQueueUSD": 4.16
     },
     {
       "date": "2025-04-01",
       "exitQueue": 80032,
       "entryQueue": 99616,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1824.21,
+      "exitQueueUSD": 146.0
     },
     {
       "date": "2025-04-02",
       "exitQueue": 384,
       "entryQueue": 84736,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1907.17,
+      "exitQueueUSD": 0.73
     },
     {
       "date": "2025-04-03",
       "exitQueue": 256,
       "entryQueue": 81152,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1795.76,
+      "exitQueueUSD": 0.46
     },
     {
       "date": "2025-04-04",
       "exitQueue": 160,
       "entryQueue": 93088,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1818.28,
+      "exitQueueUSD": 0.29
     },
     {
       "date": "2025-04-05",
       "exitQueue": 32,
       "entryQueue": 49504,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1814.48,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-04-06",
       "exitQueue": 32,
       "entryQueue": 25312,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1809.94,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-04-07",
       "exitQueue": 74208,
       "entryQueue": 4128,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1574.63,
+      "exitQueueUSD": 116.85
     },
     {
       "date": "2025-04-08",
       "exitQueue": 88800,
       "entryQueue": 4064,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1555.91,
+      "exitQueueUSD": 138.16
     },
     {
       "date": "2025-04-09",
       "exitQueue": 55328,
       "entryQueue": 17568,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1471.36,
+      "exitQueueUSD": 81.41
     },
     {
       "date": "2025-04-10",
       "exitQueue": 576,
       "entryQueue": 10112,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1662.53,
+      "exitQueueUSD": 0.96
     },
     {
       "date": "2025-04-11",
       "exitQueue": 3136,
       "entryQueue": 120416,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1523.93,
+      "exitQueueUSD": 4.78
     },
     {
       "date": "2025-04-12",
       "exitQueue": 512,
       "entryQueue": 131904,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1568.13,
+      "exitQueueUSD": 0.8
     },
     {
       "date": "2025-04-13",
       "exitQueue": 128,
       "entryQueue": 86976,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1645.86,
+      "exitQueueUSD": 0.21
     },
     {
       "date": "2025-04-14",
       "exitQueue": 111712,
       "entryQueue": 48736,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1595.42,
+      "exitQueueUSD": 178.23
     },
     {
       "date": "2025-04-15",
       "exitQueue": 16000,
       "entryQueue": 4672,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1621.54,
+      "exitQueueUSD": 25.94
     },
     {
       "date": "2025-04-16",
       "exitQueue": 832,
       "entryQueue": 6624,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1587.82,
+      "exitQueueUSD": 1.32
     },
     {
       "date": "2025-04-17",
       "exitQueue": 4704,
       "entryQueue": 4096,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1577.71,
+      "exitQueueUSD": 7.42
     },
     {
       "date": "2025-04-18",
       "exitQueue": 576,
       "entryQueue": 101056,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1583.48,
+      "exitQueueUSD": 0.91
     },
     {
       "date": "2025-04-19",
       "exitQueue": 41952,
       "entryQueue": 70464,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1589.15,
+      "exitQueueUSD": 66.67
     },
     {
       "date": "2025-04-20",
       "exitQueue": 640,
       "entryQueue": 42976,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1615.05,
+      "exitQueueUSD": 1.03
     },
     {
       "date": "2025-04-21",
       "exitQueue": 32,
       "entryQueue": 3296,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1585.46,
+      "exitQueueUSD": 0.05
     },
     {
       "date": "2025-04-22",
       "exitQueue": 64,
       "entryQueue": 1568,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1577.45,
+      "exitQueueUSD": 0.1
     },
     {
       "date": "2025-04-23",
       "exitQueue": 64,
       "entryQueue": 74976,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1759.71,
+      "exitQueueUSD": 0.11
     },
     {
       "date": "2025-04-24",
       "exitQueue": 896,
       "entryQueue": 81632,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1793.97,
+      "exitQueueUSD": 1.61
     },
     {
       "date": "2025-04-25",
       "exitQueue": 7808,
       "entryQueue": 54368,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1769.39,
+      "exitQueueUSD": 13.82
     },
     {
       "date": "2025-04-26",
       "exitQueue": 192,
       "entryQueue": 21504,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1788.8,
+      "exitQueueUSD": 0.34
     },
     {
       "date": "2025-04-27",
       "exitQueue": 1952,
       "entryQueue": 1728,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1821.27,
+      "exitQueueUSD": 3.56
     },
     {
       "date": "2025-04-28",
       "exitQueue": 576,
       "entryQueue": 4256,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1793.69,
+      "exitQueueUSD": 1.03
     },
     {
       "date": "2025-04-29",
       "exitQueue": 32,
       "entryQueue": 9952,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1799.5,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-04-30",
       "exitQueue": 1152,
       "entryQueue": 4160,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1796.97,
+      "exitQueueUSD": 2.07
     },
     {
       "date": "2025-05-01",
       "exitQueue": 32,
       "entryQueue": 12480,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1794.05,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-05-02",
       "exitQueue": 2656,
       "entryQueue": 38560,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1838.85,
+      "exitQueueUSD": 4.88
     },
     {
       "date": "2025-05-03",
       "exitQueue": 416,
       "entryQueue": 13568,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1841.43,
+      "exitQueueUSD": 0.77
     },
     {
       "date": "2025-05-04",
       "exitQueue": 32,
       "entryQueue": 4096,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1834.5,
+      "exitQueueUSD": 0.06
     },
     {
       "date": "2025-05-05",
       "exitQueue": 192,
       "entryQueue": 320,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1808.16,
+      "exitQueueUSD": 0.35
     },
     {
       "date": "2025-05-07",
       "exitQueue": 2,
       "entryQueue": 2879,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1816.17,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-05-08",
       "exitQueue": 21,
       "entryQueue": 430,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 1810.32,
+      "exitQueueUSD": 0.04
     },
     {
       "date": "2025-05-09",
       "exitQueue": 275,
       "entryQueue": 2016,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2197.56,
+      "exitQueueUSD": 0.6
     },
     {
       "date": "2025-05-10",
       "exitQueue": 6327,
       "entryQueue": 3261,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2341.41,
+      "exitQueueUSD": 14.81
     },
     {
       "date": "2025-05-11",
       "exitQueue": 7019,
       "entryQueue": 1697,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2583.68,
+      "exitQueueUSD": 18.13
     },
     {
       "date": "2025-05-12",
       "exitQueue": 7364,
       "entryQueue": 1503,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2507.47,
+      "exitQueueUSD": 18.47
     },
     {
       "date": "2025-05-13",
       "exitQueue": 11509,
       "entryQueue": 4031,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2492.43,
+      "exitQueueUSD": 28.69
     },
     {
       "date": "2025-05-14",
       "exitQueue": 10586,
       "entryQueue": 3206,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2676.64,
+      "exitQueueUSD": 28.33
     },
     {
       "date": "2025-05-15",
       "exitQueue": 9790,
       "entryQueue": 2694,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2603.72,
+      "exitQueueUSD": 25.49
     },
     {
       "date": "2025-05-16",
       "exitQueue": 8325,
       "entryQueue": 2574,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2542.3,
+      "exitQueueUSD": 21.16
     },
     {
       "date": "2025-05-17",
       "exitQueue": 7642,
       "entryQueue": 3253,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2544.39,
+      "exitQueueUSD": 19.44
     },
     {
       "date": "2025-05-18",
       "exitQueue": 6667,
       "entryQueue": 2655,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2475.05,
+      "exitQueueUSD": 16.5
     },
     {
       "date": "2025-05-19",
       "exitQueue": 4885,
       "entryQueue": 1529,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2465.34,
+      "exitQueueUSD": 12.04
     },
     {
       "date": "2025-05-20",
       "exitQueue": 4326,
       "entryQueue": 1296,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2526.99,
+      "exitQueueUSD": 10.93
     },
     {
       "date": "2025-05-21",
       "exitQueue": 3076,
       "entryQueue": 1285,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2524.27,
+      "exitQueueUSD": 7.76
     },
     {
       "date": "2025-05-22",
       "exitQueue": 88898,
       "entryQueue": 105446,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2558.95,
+      "exitQueueUSD": 227.49
     },
     {
       "date": "2025-05-23",
       "exitQueue": 74786,
       "entryQueue": 106702,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2657.17,
+      "exitQueueUSD": 198.72
     },
     {
       "date": "2025-05-24",
       "exitQueue": 55882,
       "entryQueue": 113009,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2519.81,
+      "exitQueueUSD": 140.81
     },
     {
       "date": "2025-05-25",
       "exitQueue": 13216,
       "entryQueue": 78321,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2529.44,
+      "exitQueueUSD": 33.43
     },
     {
       "date": "2025-05-26",
       "exitQueue": 0,
       "entryQueue": 32216,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2546.62,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-05-27",
       "exitQueue": 32,
       "entryQueue": 12742,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2562.17,
+      "exitQueueUSD": 0.08
     },
     {
       "date": "2025-05-28",
       "exitQueue": 64,
       "entryQueue": 35999,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2662.09,
+      "exitQueueUSD": 0.17
     },
     {
       "date": "2025-05-29",
       "exitQueue": 544,
       "entryQueue": 81417,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2676.27,
+      "exitQueueUSD": 1.46
     },
     {
       "date": "2025-05-30",
       "exitQueue": 7552,
       "entryQueue": 83252,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2633.14,
+      "exitQueueUSD": 19.89
     },
     {
       "date": "2025-05-31",
       "exitQueue": 1632,
       "entryQueue": 98151,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2524.48,
+      "exitQueueUSD": 4.12
     },
     {
       "date": "2025-06-01",
       "exitQueue": 128,
       "entryQueue": 124443,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2532.36,
+      "exitQueueUSD": 0.32
     },
     {
       "date": "2025-06-02",
       "exitQueue": 0,
       "entryQueue": 117982,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2538.33,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-03",
       "exitQueue": 416,
       "entryQueue": 281492,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2609.74,
+      "exitQueueUSD": 1.09
     },
     {
       "date": "2025-06-04",
       "exitQueue": 288,
       "entryQueue": 306438,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2595.47,
+      "exitQueueUSD": 0.75
     },
     {
       "date": "2025-06-05",
       "exitQueue": 128,
       "entryQueue": 351013,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2610.34,
+      "exitQueueUSD": 0.33
     },
     {
       "date": "2025-06-06",
       "exitQueue": 0,
       "entryQueue": 344480,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2421.6,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-07",
       "exitQueue": 0,
       "entryQueue": 308455,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2481.4,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-08",
       "exitQueue": 0,
       "entryQueue": 327581,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2526.29,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-09",
       "exitQueue": 448,
       "entryQueue": 300233,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2508.78,
+      "exitQueueUSD": 1.12
     },
     {
       "date": "2025-06-10",
       "exitQueue": 32,
       "entryQueue": 311956,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2685.0,
+      "exitQueueUSD": 0.09
     },
     {
       "date": "2025-06-11",
       "exitQueue": 25600,
       "entryQueue": 319946,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2808.5,
+      "exitQueueUSD": 71.9
     },
     {
       "date": "2025-06-12",
       "exitQueue": 11200,
       "entryQueue": 340220,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2776.14,
+      "exitQueueUSD": 31.09
     },
     {
       "date": "2025-06-13",
       "exitQueue": 0,
       "entryQueue": 306417,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2653.16,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-14",
       "exitQueue": 480,
       "entryQueue": 379774,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2577.05,
+      "exitQueueUSD": 1.24
     },
     {
       "date": "2025-06-15",
       "exitQueue": 224,
       "entryQueue": 397647,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2534.07,
+      "exitQueueUSD": 0.57
     },
     {
       "date": "2025-06-16",
       "exitQueue": 0,
       "entryQueue": 355397,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2547.85,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-17",
       "exitQueue": 128,
       "entryQueue": 433667,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2561.33,
+      "exitQueueUSD": 0.33
     },
     {
       "date": "2025-06-18",
       "exitQueue": 32,
       "entryQueue": 449605,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2514.99,
+      "exitQueueUSD": 0.08
     },
     {
       "date": "2025-06-19",
       "exitQueue": 0,
       "entryQueue": 432862,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2521.33,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-20",
       "exitQueue": 0,
       "entryQueue": 409214,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2522.18,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-21",
       "exitQueue": 32,
       "entryQueue": 400608,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2405.7,
+      "exitQueueUSD": 0.08
     },
     {
       "date": "2025-06-22",
       "exitQueue": 0,
       "entryQueue": 456721,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2270.58,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-23",
       "exitQueue": 12576,
       "entryQueue": 444477,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2227.43,
+      "exitQueueUSD": 28.01
     },
     {
       "date": "2025-06-24",
       "exitQueue": 32,
       "entryQueue": 441489,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2423.9,
+      "exitQueueUSD": 0.08
     },
     {
       "date": "2025-06-25",
       "exitQueue": 224,
       "entryQueue": 413652,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2446.54,
+      "exitQueueUSD": 0.55
     },
     {
       "date": "2025-06-26",
       "exitQueue": 160,
       "entryQueue": 375577,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2417.23,
+      "exitQueueUSD": 0.39
     },
     {
       "date": "2025-06-27",
       "exitQueue": 20817,
       "entryQueue": 333719,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2415.03,
+      "exitQueueUSD": 50.27
     },
     {
       "date": "2025-06-28",
       "exitQueue": 352,
       "entryQueue": 292779,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2423.03,
+      "exitQueueUSD": 0.85
     },
     {
       "date": "2025-06-29",
       "exitQueue": 0,
       "entryQueue": 267871,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2437.13,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-06-30",
       "exitQueue": 800,
       "entryQueue": 247652,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2502.67,
+      "exitQueueUSD": 2.0
     },
     {
       "date": "2025-07-01",
       "exitQueue": 704,
       "entryQueue": 220080,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2488.19,
+      "exitQueueUSD": 1.75
     },
     {
       "date": "2025-07-02",
       "exitQueue": 448,
       "entryQueue": 223212,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2405.1,
+      "exitQueueUSD": 1.08
     },
     {
       "date": "2025-07-03",
       "exitQueue": 3392,
       "entryQueue": 206990,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2574.07,
+      "exitQueueUSD": 8.73
     },
     {
       "date": "2025-07-04",
       "exitQueue": 3961,
       "entryQueue": 182722,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2590.13,
+      "exitQueueUSD": 10.26
     },
     {
       "date": "2025-07-05",
       "exitQueue": 47584,
       "entryQueue": 213754,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2509.24,
+      "exitQueueUSD": 119.4
     },
     {
       "date": "2025-07-06",
       "exitQueue": 0,
       "entryQueue": 176999,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2517.38,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-07-07",
       "exitQueue": 460,
       "entryQueue": 146174,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2571.36,
+      "exitQueueUSD": 1.18
     },
     {
       "date": "2025-07-08",
       "exitQueue": 0,
       "entryQueue": 264023,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2543.63,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-07-09",
       "exitQueue": 512,
       "entryQueue": 333216,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2615.78,
+      "exitQueueUSD": 1.34
     },
     {
       "date": "2025-07-10",
       "exitQueue": 896,
       "entryQueue": 389619,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2772.58,
+      "exitQueueUSD": 2.48
     },
     {
       "date": "2025-07-11",
       "exitQueue": 4672,
       "entryQueue": 395909,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2948.45,
+      "exitQueueUSD": 13.78
     },
     {
       "date": "2025-07-12",
       "exitQueue": 768,
       "entryQueue": 416492,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2958.85,
+      "exitQueueUSD": 2.27
     },
     {
       "date": "2025-07-13",
       "exitQueue": 448,
       "entryQueue": 396037,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2942.96,
+      "exitQueueUSD": 1.32
     },
     {
       "date": "2025-07-14",
       "exitQueue": 2784,
       "entryQueue": 354270,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2974.27,
+      "exitQueueUSD": 8.28
     },
     {
       "date": "2025-07-15",
       "exitQueue": 0,
       "entryQueue": 399760,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3012.18,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2025-07-16",
       "exitQueue": 1920,
       "entryQueue": 409503,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3133.07,
+      "exitQueueUSD": 6.02
     },
     {
       "date": "2025-07-17",
       "exitQueue": 55232,
       "entryQueue": 435083,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3368.13,
+      "exitQueueUSD": 186.03
     },
     {
       "date": "2025-07-18",
       "exitQueue": 93248,
       "entryQueue": 415202,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3481.88,
+      "exitQueueUSD": 324.68
     },
     {
       "date": "2025-07-19",
       "exitQueue": 255584,
       "entryQueue": 433544,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3547.32,
+      "exitQueueUSD": 906.64
     },
     {
       "date": "2025-07-20",
       "exitQueue": 295427,
       "entryQueue": 404528,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3594.32,
+      "exitQueueUSD": 1061.86
     },
     {
       "date": "2025-07-21",
       "exitQueue": 354820,
       "entryQueue": 365941,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3758.61,
+      "exitQueueUSD": 1333.63
     },
     {
       "date": "2025-07-22",
       "exitQueue": 475708,
       "entryQueue": 389431,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3765.45,
+      "exitQueueUSD": 1791.25
     },
     {
       "date": "2025-07-23",
       "exitQueue": 521252,
       "entryQueue": 359557,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3746.94,
+      "exitQueueUSD": 1953.1
     },
     {
       "date": "2025-07-24",
       "exitQueue": 640874,
       "entryQueue": 326858,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3630.05,
+      "exitQueueUSD": 2326.4
     },
     {
       "date": "2025-07-25",
       "exitQueue": 688346,
       "entryQueue": 308713,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3708.43,
+      "exitQueueUSD": 2552.68
     },
     {
       "date": "2025-07-26",
       "exitQueue": 743989,
       "entryQueue": 264648,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3723.05,
+      "exitQueueUSD": 2769.91
     },
     {
       "date": "2025-07-27",
       "exitQueue": 699834,
       "entryQueue": 227141,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3742.43,
+      "exitQueueUSD": 2619.08
     },
     {
       "date": "2025-07-28",
       "exitQueue": 655033,
       "entryQueue": 257943,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3864.12,
+      "exitQueueUSD": 2531.13
     },
     {
       "date": "2025-07-29",
       "exitQueue": 668856,
       "entryQueue": 263067,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3786.3,
+      "exitQueueUSD": 2532.49
     },
     {
       "date": "2025-07-30",
       "exitQueue": 671129,
       "entryQueue": 243480,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3788.6,
+      "exitQueueUSD": 2542.64
     },
     {
       "date": "2025-07-31",
       "exitQueue": 623989,
       "entryQueue": 220834,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3807.42,
+      "exitQueueUSD": 2375.79
     },
     {
       "date": "2025-08-01",
       "exitQueue": 595894,
       "entryQueue": 197248,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3696.66,
+      "exitQueueUSD": 2202.82
     },
     {
       "date": "2025-08-02",
       "exitQueue": 610072,
       "entryQueue": 180008,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3483.18,
+      "exitQueueUSD": 2124.99
     },
     {
       "date": "2025-08-03",
       "exitQueue": 565364,
       "entryQueue": 131067,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3397.49,
+      "exitQueueUSD": 1920.82
     },
     {
       "date": "2025-08-04",
       "exitQueue": 521752,
       "entryQueue": 149659,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3497.57,
+      "exitQueueUSD": 1824.86
     },
     {
       "date": "2025-08-05",
       "exitQueue": 488686,
       "entryQueue": 125718,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3715.71,
+      "exitQueueUSD": 1815.82
     },
     {
       "date": "2025-08-06",
       "exitQueue": 453232,
       "entryQueue": 104877,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3612.44,
+      "exitQueueUSD": 1637.27
     },
     {
       "date": "2025-08-07",
       "exitQueue": 417461,
       "entryQueue": 68191,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3684.05,
+      "exitQueueUSD": 1537.95
     },
     {
       "date": "2025-08-08",
       "exitQueue": 450325,
       "entryQueue": 37956,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3911.26,
+      "exitQueueUSD": 1761.34
     },
     {
       "date": "2025-08-09",
       "exitQueue": 466575,
       "entryQueue": 48968,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4012.98,
+      "exitQueueUSD": 1872.36
     },
     {
       "date": "2025-08-10",
       "exitQueue": 479898,
       "entryQueue": 4386,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4265.56,
+      "exitQueueUSD": 2047.03
     },
     {
       "date": "2025-08-11",
       "exitQueue": 454489,
       "entryQueue": 19684,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4253.59,
+      "exitQueueUSD": 1933.21
     },
     {
       "date": "2025-08-12",
       "exitQueue": 507689,
       "entryQueue": 11704,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4228.82,
+      "exitQueueUSD": 2146.93
     },
     {
       "date": "2025-08-13",
       "exitQueue": 567700,
       "entryQueue": 66256,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4606.81,
+      "exitQueueUSD": 2615.29
     },
     {
       "date": "2025-08-14",
       "exitQueue": 671093,
       "entryQueue": 105618,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4763.65,
+      "exitQueueUSD": 3196.85
     },
     {
       "date": "2025-08-15",
       "exitQueue": 767536,
       "entryQueue": 324542,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4554.29,
+      "exitQueueUSD": 3495.58
     },
     {
       "date": "2025-08-16",
       "exitQueue": 873682,
       "entryQueue": 344782,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4430.53,
+      "exitQueueUSD": 3870.87
     },
     {
       "date": "2025-08-17",
       "exitQueue": 893599,
       "entryQueue": 295808,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4426.83,
+      "exitQueueUSD": 3955.81
     },
     {
       "date": "2025-08-18",
       "exitQueue": 868125,
       "entryQueue": 254122,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4487.12,
+      "exitQueueUSD": 3895.38
     },
     {
       "date": "2025-08-19",
       "exitQueue": 910461,
       "entryQueue": 268217,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4317.28,
+      "exitQueueUSD": 3930.72
     },
     {
       "date": "2025-08-20",
       "exitQueue": 916647,
       "entryQueue": 250368,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4074.5,
+      "exitQueueUSD": 3734.88
     },
     {
       "date": "2025-08-21",
       "exitQueue": 888854,
       "entryQueue": 213383,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4330.49,
+      "exitQueueUSD": 3849.17
     },
     {
       "date": "2025-08-22",
       "exitQueue": 841457,
       "entryQueue": 214150,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4224.44,
+      "exitQueueUSD": 3554.68
     },
     {
       "date": "2025-08-23",
       "exitQueue": 855534,
       "entryQueue": 198202,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4829.23,
+      "exitQueueUSD": 4131.57
     },
     {
       "date": "2025-08-24",
       "exitQueue": 880281,
       "entryQueue": 152625,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4773.88,
+      "exitQueueUSD": 4202.36
     },
     {
       "date": "2025-08-25",
       "exitQueue": 846142,
       "entryQueue": 404500,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4778.11,
+      "exitQueueUSD": 4042.96
     },
     {
       "date": "2025-08-26",
       "exitQueue": 906306,
       "entryQueue": 627133,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4381.63,
+      "exitQueueUSD": 3971.1
     },
     {
       "date": "2025-08-27",
       "exitQueue": 986824,
       "entryQueue": 591707,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4602.37,
+      "exitQueueUSD": 4541.73
     },
     {
       "date": "2025-08-28",
       "exitQueue": 1029562,
       "entryQueue": 753832,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4500.15,
+      "exitQueueUSD": 4633.18
     },
     {
       "date": "2025-08-29",
       "exitQueue": 1058531,
       "entryQueue": 735126,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4507.56,
+      "exitQueueUSD": 4771.39
     },
     {
       "date": "2025-08-30",
       "exitQueue": 1022817,
       "entryQueue": 753680,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4364.36,
+      "exitQueueUSD": 4463.94
     },
     {
       "date": "2025-08-31",
       "exitQueue": 981762,
       "entryQueue": 787255,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4373.36,
+      "exitQueueUSD": 4293.6
     },
     {
       "date": "2025-09-01",
       "exitQueue": 927926,
       "entryQueue": 735678,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4388.93,
+      "exitQueueUSD": 4072.6
     },
     {
       "date": "2025-09-02",
       "exitQueue": 881687,
       "entryQueue": 860369,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4303.2,
+      "exitQueueUSD": 3794.08
     },
     {
       "date": "2025-09-03",
       "exitQueue": 851831,
       "entryQueue": 817213,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4325.86,
+      "exitQueueUSD": 3684.9
     },
     {
       "date": "2025-09-04",
       "exitQueue": 831053,
       "entryQueue": 793457,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4449.87,
+      "exitQueueUSD": 3698.08
     },
     {
       "date": "2025-09-05",
       "exitQueue": 821293,
       "entryQueue": 959717,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4298.09,
+      "exitQueueUSD": 3529.99
     },
     {
       "date": "2025-09-06",
       "exitQueue": 769773,
       "entryQueue": 919910,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4306.61,
+      "exitQueueUSD": 3315.11
     },
     {
       "date": "2025-09-07",
       "exitQueue": 716715,
       "entryQueue": 873335,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4273.11,
+      "exitQueueUSD": 3062.6
     },
     {
       "date": "2025-09-08",
       "exitQueue": 662566,
       "entryQueue": 828204,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4304.03,
+      "exitQueueUSD": 2851.7
     },
     {
       "date": "2025-09-09",
       "exitQueue": 616898,
       "entryQueue": 787085,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4309.69,
+      "exitQueueUSD": 2658.64
     },
     {
       "date": "2025-09-10",
       "exitQueue": 1055761,
       "entryQueue": 823057,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4309.34,
+      "exitQueueUSD": 4549.63
     },
     {
       "date": "2025-09-11",
       "exitQueue": 2650032,
       "entryQueue": 781620,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4347.48,
+      "exitQueueUSD": 11520.96
     },
     {
       "date": "2025-09-12",
       "exitQueue": 2660897,
       "entryQueue": 734424,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4459.32,
+      "exitQueueUSD": 11865.79
     },
     {
       "date": "2025-09-13",
       "exitQueue": 2673349,
       "entryQueue": 701658,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4708.84,
+      "exitQueueUSD": 12588.37
     },
     {
       "date": "2025-09-14",
       "exitQueue": 2639030,
       "entryQueue": 651845,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4667.7,
+      "exitQueueUSD": 12318.2
     },
     {
       "date": "2025-09-15",
       "exitQueue": 2614325,
       "entryQueue": 597701,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4609.79,
+      "exitQueueUSD": 12051.49
     },
     {
       "date": "2025-09-16",
       "exitQueue": 2576847,
       "entryQueue": 550711,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4524.24,
+      "exitQueueUSD": 11658.27
     },
     {
       "date": "2025-09-17",
       "exitQueue": 2539275,
       "entryQueue": 512755,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4504.27,
+      "exitQueueUSD": 11437.58
     },
     {
       "date": "2025-09-18",
       "exitQueue": 2494285,
       "entryQueue": 462882,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4591.77,
+      "exitQueueUSD": 11453.18
     },
     {
       "date": "2025-09-19",
       "exitQueue": 2470641,
       "entryQueue": 417025,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4590.64,
+      "exitQueueUSD": 11341.82
     },
     {
       "date": "2025-09-20",
       "exitQueue": 2469791,
       "entryQueue": 375967,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4470.48,
+      "exitQueueUSD": 11041.15
     },
     {
       "date": "2025-09-21",
       "exitQueue": 2421827,
       "entryQueue": 331270,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4481.8,
+      "exitQueueUSD": 10854.14
     },
     {
       "date": "2025-09-22",
       "exitQueue": 2369257,
       "entryQueue": 349606,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4452.87,
+      "exitQueueUSD": 10549.99
     },
     {
       "date": "2025-09-23",
       "exitQueue": 2324265,
       "entryQueue": 304941,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4199.95,
+      "exitQueueUSD": 9761.8
     },
     {
       "date": "2025-09-24",
       "exitQueue": 2294883,
       "entryQueue": 272462,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4166.19,
+      "exitQueueUSD": 9560.92
     },
     {
       "date": "2025-09-25",
       "exitQueue": 2246598,
       "entryQueue": 277932,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4148.66,
+      "exitQueueUSD": 9320.37
     },
     {
       "date": "2025-09-26",
       "exitQueue": 2212715,
       "entryQueue": 238004,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3863.06,
+      "exitQueueUSD": 8547.85
     },
     {
       "date": "2025-09-27",
       "exitQueue": 2190679,
       "entryQueue": 231945,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4037.1,
+      "exitQueueUSD": 8843.99
     },
     {
       "date": "2025-09-28",
       "exitQueue": 2139964,
       "entryQueue": 182869,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4018.17,
+      "exitQueueUSD": 8598.74
     },
     {
       "date": "2025-09-29",
       "exitQueue": 2091792,
       "entryQueue": 211268,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4141.84,
+      "exitQueueUSD": 8663.87
     },
     {
       "date": "2025-09-30",
       "exitQueue": 2073172,
       "entryQueue": 219171,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4215.61,
+      "exitQueueUSD": 8739.68
     },
     {
       "date": "2025-10-01",
       "exitQueue": 2032710,
       "entryQueue": 198313,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4144.23,
+      "exitQueueUSD": 8424.02
     },
     {
       "date": "2025-10-02",
       "exitQueue": 2009533,
       "entryQueue": 191159,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4343.95,
+      "exitQueueUSD": 8729.31
     },
     {
       "date": "2025-10-03",
       "exitQueue": 1985788,
       "entryQueue": 189235,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4484.01,
+      "exitQueueUSD": 8904.29
     },
     {
       "date": "2025-10-04",
       "exitQueue": 1991984,
       "entryQueue": 200507,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4515.76,
+      "exitQueueUSD": 8995.32
     },
     {
       "date": "2025-10-05",
       "exitQueue": 2488999,
       "entryQueue": 155144,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4487.71,
+      "exitQueueUSD": 11169.91
     },
     {
       "date": "2025-10-06",
       "exitQueue": 2443002,
       "entryQueue": 110788,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4515.32,
+      "exitQueueUSD": 11030.94
     },
     {
       "date": "2025-10-07",
       "exitQueue": 2426439,
       "entryQueue": 181944,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4689.13,
+      "exitQueueUSD": 11377.89
     },
     {
       "date": "2025-10-08",
       "exitQueue": 2424509,
       "entryQueue": 485377,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4454.33,
+      "exitQueueUSD": 10799.56
     },
     {
       "date": "2025-10-09",
       "exitQueue": 2422657,
       "entryQueue": 1377477,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4527.58,
+      "exitQueueUSD": 10968.77
     },
     {
       "date": "2025-10-10",
       "exitQueue": 2389032,
       "entryQueue": 1356688,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4368.65,
+      "exitQueueUSD": 10436.84
     },
     {
       "date": "2025-10-11",
       "exitQueue": 2357676,
       "entryQueue": 1386514,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3835.63,
+      "exitQueueUSD": 9043.17
     },
     {
       "date": "2025-10-12",
       "exitQueue": 2338897,
       "entryQueue": 1363678,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3749.22,
+      "exitQueueUSD": 8769.04
     },
     {
       "date": "2025-10-13",
       "exitQueue": 2346651,
       "entryQueue": 1359133,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4159.73,
+      "exitQueueUSD": 9761.43
     },
     {
       "date": "2025-10-14",
       "exitQueue": 2318384,
       "entryQueue": 1365404,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4246.22,
+      "exitQueueUSD": 9844.37
     },
     {
       "date": "2025-10-15",
       "exitQueue": 2303642,
       "entryQueue": 1346970,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4128.89,
+      "exitQueueUSD": 9511.48
     },
     {
       "date": "2025-10-16",
       "exitQueue": 2319522,
       "entryQueue": 1334056,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3983.15,
+      "exitQueueUSD": 9239.0
     },
     {
       "date": "2025-10-17",
       "exitQueue": 2339137,
       "entryQueue": 1387435,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3890.2,
+      "exitQueueUSD": 9099.71
     },
     {
       "date": "2025-10-18",
       "exitQueue": 2381640,
       "entryQueue": 1376327,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3831.24,
+      "exitQueueUSD": 9124.63
     },
     {
       "date": "2025-10-19",
       "exitQueue": 2334987,
       "entryQueue": 1330919,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3889.5,
+      "exitQueueUSD": 9081.93
     },
     {
       "date": "2025-10-20",
       "exitQueue": 2285789,
       "entryQueue": 1277619,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3985.08,
+      "exitQueueUSD": 9109.05
     },
     {
       "date": "2025-10-21",
       "exitQueue": 2249446,
       "entryQueue": 1260462,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3978.79,
+      "exitQueueUSD": 8950.07
     },
     {
       "date": "2025-10-22",
       "exitQueue": 2201055,
       "entryQueue": 1244900,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3877.49,
+      "exitQueueUSD": 8534.57
     },
     {
       "date": "2025-10-23",
       "exitQueue": 2224981,
       "entryQueue": 1253415,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3801.79,
+      "exitQueueUSD": 8458.91
     },
     {
       "date": "2025-10-24",
       "exitQueue": 2209441,
       "entryQueue": 1230210,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3855.84,
+      "exitQueueUSD": 8519.25
     },
     {
       "date": "2025-10-25",
       "exitQueue": 2167402,
       "entryQueue": 1309885,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3933.23,
+      "exitQueueUSD": 8524.89
     },
     {
       "date": "2025-10-26",
       "exitQueue": 2458219,
       "entryQueue": 1271501,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3952.21,
+      "exitQueueUSD": 9715.4
     },
     {
       "date": "2025-10-27",
       "exitQueue": 2411633,
       "entryQueue": 1229616,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4161.59,
+      "exitQueueUSD": 10036.23
     },
     {
       "date": "2025-10-28",
       "exitQueue": 2422779,
       "entryQueue": 1217662,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 4123.21,
+      "exitQueueUSD": 9989.63
     },
     {
       "date": "2025-10-29",
       "exitQueue": 2468328,
       "entryQueue": 1232461,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3982.31,
+      "exitQueueUSD": 9829.65
     },
     {
       "date": "2025-10-30",
       "exitQueue": 2549599,
       "entryQueue": 1339644,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3897.36,
+      "exitQueueUSD": 9936.71
     },
     {
       "date": "2025-10-31",
       "exitQueue": 2498850,
       "entryQueue": 1458599,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3802.3,
+      "exitQueueUSD": 9501.38
     },
     {
       "date": "2025-11-01",
       "exitQueue": 2453310,
       "entryQueue": 1544819,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3847.3,
+      "exitQueueUSD": 9438.62
     },
     {
       "date": "2025-11-02",
       "exitQueue": 2424419,
       "entryQueue": 1527976,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3872.21,
+      "exitQueueUSD": 9387.86
     },
     {
       "date": "2025-11-03",
       "exitQueue": 2371268,
       "entryQueue": 1487997,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3910.09,
+      "exitQueueUSD": 9271.87
     },
     {
       "date": "2025-11-04",
       "exitQueue": 2330778,
       "entryQueue": 1466316,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3600.72,
+      "exitQueueUSD": 8392.48
     },
     {
       "date": "2025-11-05",
       "exitQueue": 2311211,
       "entryQueue": 1429341,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3296.74,
+      "exitQueueUSD": 7619.46
     },
     {
       "date": "2025-11-06",
       "exitQueue": 2266957,
       "entryQueue": 1441765,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3427.69,
+      "exitQueueUSD": 7770.43
     },
     {
       "date": "2025-11-07",
       "exitQueue": 2265727,
       "entryQueue": 1486403,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3308.92,
+      "exitQueueUSD": 7497.11
     },
     {
       "date": "2025-11-08",
       "exitQueue": 2267825,
       "entryQueue": 1448444,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3434.35,
+      "exitQueueUSD": 7788.5
     },
     {
       "date": "2025-11-09",
       "exitQueue": 2217363,
       "entryQueue": 1396725,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3401.46,
+      "exitQueueUSD": 7542.27
     },
     {
       "date": "2025-11-10",
       "exitQueue": 2199090,
       "entryQueue": 1343566,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3576.25,
+      "exitQueueUSD": 7864.5
     },
     {
       "date": "2025-11-11",
       "exitQueue": 2156606,
       "entryQueue": 1294847,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3564.61,
+      "exitQueueUSD": 7687.46
     },
     {
       "date": "2025-11-12",
       "exitQueue": 2113342,
       "entryQueue": 1279238,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3416.78,
+      "exitQueueUSD": 7220.82
     },
     {
       "date": "2025-11-13",
       "exitQueue": 2143735,
       "entryQueue": 1250810,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3409.61,
+      "exitQueueUSD": 7309.3
     },
     {
       "date": "2025-11-14",
       "exitQueue": 2082042,
       "entryQueue": 1226318,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3235.73,
+      "exitQueueUSD": 6736.93
     },
     {
       "date": "2025-11-15",
       "exitQueue": 2037442,
       "entryQueue": 1201286,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3106.6,
+      "exitQueueUSD": 6329.52
     },
     {
       "date": "2025-11-16",
       "exitQueue": 1986800,
       "entryQueue": 1163725,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3170.11,
+      "exitQueueUSD": 6298.37
     },
     {
       "date": "2025-11-17",
       "exitQueue": 1939074,
       "entryQueue": 1125256,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3101.69,
+      "exitQueueUSD": 6014.41
     },
     {
       "date": "2025-11-18",
       "exitQueue": 1917596,
       "entryQueue": 1105103,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3021.3,
+      "exitQueueUSD": 5793.63
     },
     {
       "date": "2025-11-19",
       "exitQueue": 1885218,
       "entryQueue": 1130944,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3117.22,
+      "exitQueueUSD": 5876.64
     },
     {
       "date": "2025-11-20",
       "exitQueue": 1850308,
       "entryQueue": 1105066,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3017.75,
+      "exitQueueUSD": 5583.77
     },
     {
       "date": "2025-11-21",
       "exitQueue": 1810243,
       "entryQueue": 1064239,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2832.07,
+      "exitQueueUSD": 5126.73
     },
     {
       "date": "2025-11-22",
       "exitQueue": 1771326,
       "entryQueue": 1030740,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2764.74,
+      "exitQueueUSD": 4897.26
     },
     {
       "date": "2025-11-23",
       "exitQueue": 1727836,
       "entryQueue": 1006345,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2768.62,
+      "exitQueueUSD": 4783.72
     },
     {
       "date": "2025-11-24",
       "exitQueue": 1684322,
       "entryQueue": 962991,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2799.81,
+      "exitQueueUSD": 4715.78
     },
     {
       "date": "2025-11-25",
       "exitQueue": 1642461,
       "entryQueue": 916704,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2953.33,
+      "exitQueueUSD": 4850.73
     },
     {
       "date": "2025-11-26",
       "exitQueue": 1718363,
       "entryQueue": 890573,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2955.05,
+      "exitQueueUSD": 5077.85
     },
     {
       "date": "2025-11-27",
       "exitQueue": 1680959,
       "entryQueue": 846418,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3027.48,
+      "exitQueueUSD": 5089.07
     },
     {
       "date": "2025-11-28",
       "exitQueue": 1635446,
       "entryQueue": 823155,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3015.61,
+      "exitQueueUSD": 4931.87
     },
     {
       "date": "2025-11-29",
       "exitQueue": 1590441,
       "entryQueue": 781997,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3033.14,
+      "exitQueueUSD": 4824.03
     },
     {
       "date": "2025-11-30",
       "exitQueue": 1551422,
       "entryQueue": 740825,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2991.23,
+      "exitQueueUSD": 4640.66
     },
     {
       "date": "2025-12-01",
       "exitQueue": 1494750,
       "entryQueue": 688738,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2992.83,
+      "exitQueueUSD": 4473.53
     },
     {
       "date": "2025-12-02",
       "exitQueue": 1450708,
       "entryQueue": 680185,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2799.04,
+      "exitQueueUSD": 4060.59
     },
     {
       "date": "2025-12-03",
       "exitQueue": 1398378,
       "entryQueue": 679092,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2995.75,
+      "exitQueueUSD": 4189.19
     },
     {
       "date": "2025-12-04",
       "exitQueue": 1375378,
       "entryQueue": 640533,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3195.41,
+      "exitQueueUSD": 4394.9
     },
     {
       "date": "2025-12-05",
       "exitQueue": 1329400,
       "entryQueue": 598108,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3133.7,
+      "exitQueueUSD": 4165.94
     },
     {
       "date": "2025-12-06",
       "exitQueue": 1283615,
       "entryQueue": 610570,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3022.66,
+      "exitQueueUSD": 3879.93
     },
     {
       "date": "2025-12-07",
       "exitQueue": 1237726,
       "entryQueue": 593360,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3039.36,
+      "exitQueueUSD": 3761.89
     },
     {
       "date": "2025-12-08",
       "exitQueue": 1185072,
       "entryQueue": 557947,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3052.98,
+      "exitQueueUSD": 3618.0
     },
     {
       "date": "2025-12-09",
       "exitQueue": 1145737,
       "entryQueue": 539450,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3125.32,
+      "exitQueueUSD": 3580.79
     },
     {
       "date": "2025-12-10",
       "exitQueue": 1102677,
       "entryQueue": 552460,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3322.47,
+      "exitQueueUSD": 3663.61
     },
     {
       "date": "2025-12-11",
       "exitQueue": 1073923,
       "entryQueue": 548200,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3326.26,
+      "exitQueueUSD": 3572.15
     },
     {
       "date": "2025-12-15",
       "exitQueue": 857056,
       "entryQueue": 531713,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3065.49,
+      "exitQueueUSD": 2627.3
     },
     {
       "date": "2025-12-16",
       "exitQueue": 838850,
       "entryQueue": 523468,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2964.49,
+      "exitQueueUSD": 2486.76
     },
     {
       "date": "2025-12-17",
       "exitQueue": 793849,
       "entryQueue": 485307,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2964.26,
+      "exitQueueUSD": 2353.17
     },
     {
       "date": "2025-12-18",
       "exitQueue": 760083,
       "entryQueue": 448483,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2827.8,
+      "exitQueueUSD": 2149.36
     },
     {
       "date": "2025-12-19",
       "exitQueue": 716310,
       "entryQueue": 485517,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2826.59,
+      "exitQueueUSD": 2024.71
     },
     {
       "date": "2025-12-20",
       "exitQueue": 724002,
       "entryQueue": 542216,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2976.8,
+      "exitQueueUSD": 2155.21
     },
     {
       "date": "2025-12-21",
       "exitQueue": 709916,
       "entryQueue": 507060,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2977.16,
+      "exitQueueUSD": 2113.53
     },
     {
       "date": "2025-12-22",
       "exitQueue": 656333,
       "entryQueue": 471217,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3001.6,
+      "exitQueueUSD": 1970.05
     },
     {
       "date": "2025-12-23",
       "exitQueue": 603047,
       "entryQueue": 449854,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3005.79,
+      "exitQueueUSD": 1812.63
     },
     {
       "date": "2025-12-24",
       "exitQueue": 559607,
       "entryQueue": 433648,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2965.19,
+      "exitQueueUSD": 1659.34
     },
     {
       "date": "2025-12-25",
       "exitQueue": 510309,
       "entryQueue": 456508,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2945.99,
+      "exitQueueUSD": 1503.37
     },
     {
       "date": "2025-12-26",
       "exitQueue": 513774,
       "entryQueue": 435066,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2904.25,
+      "exitQueueUSD": 1492.13
     },
     {
       "date": "2025-12-27",
       "exitQueue": 459340,
       "entryQueue": 469408,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2926.7,
+      "exitQueueUSD": 1344.35
     },
     {
       "date": "2025-12-28",
       "exitQueue": 410938,
       "entryQueue": 690968,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2948.86,
+      "exitQueueUSD": 1211.8
     },
     {
       "date": "2025-12-29",
       "exitQueue": 360518,
       "entryQueue": 745619,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2947.86,
+      "exitQueueUSD": 1062.76
     },
     {
       "date": "2025-12-30",
       "exitQueue": 317115,
       "entryQueue": 793443,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2934.22,
+      "exitQueueUSD": 930.49
     },
     {
       "date": "2025-12-31",
       "exitQueue": 267149,
       "entryQueue": 890134,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2970.06,
+      "exitQueueUSD": 793.45
     },
     {
       "date": "2026-01-01",
       "exitQueue": 223083,
       "entryQueue": 901446,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2966.77,
+      "exitQueueUSD": 661.84
     },
     {
       "date": "2026-01-02",
       "exitQueue": 172896,
       "entryQueue": 904051,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3000.42,
+      "exitQueueUSD": 518.76
     },
     {
       "date": "2026-01-03",
       "exitQueue": 124113,
       "entryQueue": 986811,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3121.9,
+      "exitQueueUSD": 387.47
     },
     {
       "date": "2026-01-04",
       "exitQueue": 69631,
       "entryQueue": 1002722,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3126.04,
+      "exitQueueUSD": 217.67
     },
     {
       "date": "2026-01-05",
       "exitQueue": 15424,
       "entryQueue": 1087571,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3139.06,
+      "exitQueueUSD": 48.42
     },
     {
       "date": "2026-01-06",
       "exitQueue": 0,
       "entryQueue": 1304355,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3228.3,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-07",
       "exitQueue": 13248,
       "entryQueue": 1420540,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3295.1,
+      "exitQueueUSD": 43.65
     },
     {
       "date": "2026-01-08",
       "exitQueue": 0,
       "entryQueue": 1469257,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3164.79,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-09",
       "exitQueue": 96,
       "entryQueue": 1776102,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3104.22,
+      "exitQueueUSD": 0.3
     },
     {
       "date": "2026-01-10",
       "exitQueue": 0,
       "entryQueue": 1758910,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3083.14,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-11",
       "exitQueue": 192,
       "entryQueue": 1823501,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3082.97,
+      "exitQueueUSD": 0.59
     },
     {
       "date": "2026-01-12",
       "exitQueue": 52969,
       "entryQueue": 1903004,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3119.36,
+      "exitQueueUSD": 165.23
     },
     {
       "date": "2026-01-13",
       "exitQueue": 11063,
       "entryQueue": 2170452,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3090.28,
+      "exitQueueUSD": 34.19
     },
     {
       "date": "2026-01-14",
       "exitQueue": 32,
       "entryQueue": 2346071,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3319.94,
+      "exitQueueUSD": 0.11
     },
     {
       "date": "2026-01-15",
       "exitQueue": 0,
       "entryQueue": 2556764,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3356.5,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-16",
       "exitQueue": 5440,
       "entryQueue": 2546815,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3318.2,
+      "exitQueueUSD": 18.05
     },
     {
       "date": "2026-01-17",
       "exitQueue": 96,
       "entryQueue": 2575289,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3296.06,
+      "exitQueueUSD": 0.32
     },
     {
       "date": "2026-01-18",
       "exitQueue": 64,
       "entryQueue": 2601593,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3306.87,
+      "exitQueueUSD": 0.21
     },
     {
       "date": "2026-01-19",
       "exitQueue": 0,
       "entryQueue": 2582115,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3284.32,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-20",
       "exitQueue": 96,
       "entryQueue": 2738050,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3185.66,
+      "exitQueueUSD": 0.31
     },
     {
       "date": "2026-01-21",
       "exitQueue": 41595,
       "entryQueue": 2803056,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2935.62,
+      "exitQueueUSD": 122.11
     },
     {
       "date": "2026-01-22",
       "exitQueue": 0,
       "entryQueue": 2814176,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2976.05,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-23",
       "exitQueue": 32,
       "entryQueue": 3051197,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2948.28,
+      "exitQueueUSD": 0.09
     },
     {
       "date": "2026-01-24",
       "exitQueue": 2784,
       "entryQueue": 3126593,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2950.91,
+      "exitQueueUSD": 8.22
     },
     {
       "date": "2026-01-25",
       "exitQueue": 64,
       "entryQueue": 3094769,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2949.2,
+      "exitQueueUSD": 0.19
     },
     {
       "date": "2026-01-26",
       "exitQueue": 1696,
       "entryQueue": 3128174,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2814.19,
+      "exitQueueUSD": 4.77
     },
     {
       "date": "2026-01-27",
       "exitQueue": 640,
       "entryQueue": 3342972,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2927.84,
+      "exitQueueUSD": 1.87
     },
     {
       "date": "2026-01-28",
       "exitQueue": 0,
       "entryQueue": 3348523,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3021.09,
+      "exitQueueUSD": 0.0
     },
     {
       "date": "2026-01-29",
       "exitQueue": 44448,
       "entryQueue": 3668369,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 3006.81,
+      "exitQueueUSD": 133.65
     },
     {
       "date": "2026-01-30",
       "exitQueue": 64,
       "entryQueue": 4072327,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2818.82,
+      "exitQueueUSD": 0.18
     },
     {
       "date": "2026-01-31",
       "exitQueue": 2480,
       "entryQueue": 4044279,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2702.41,
+      "exitQueueUSD": 6.7
     },
     {
       "date": "2026-02-01",
       "exitQueue": 1952,
       "entryQueue": 4037229,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2443.93,
+      "exitQueueUSD": 4.77
     },
     {
       "date": "2026-02-02",
       "exitQueue": 32,
       "entryQueue": 4089036,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2269.33,
+      "exitQueueUSD": 0.07
     },
     {
       "date": "2026-02-03",
       "exitQueue": 32581,
       "entryQueue": 4080985,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2344.51,
+      "exitQueueUSD": 76.39
     },
     {
       "date": "2026-02-04",
       "exitQueue": 0,
       "entryQueue": 4077233,
       "exitWaitDays": 0,
-      "ethPrice": 0,
-      "exitQueueUSD": 0
+      "ethPrice": 2226.99,
+      "exitQueueUSD": 0.0
     }
   ]
 }
