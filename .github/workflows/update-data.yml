@@ -8,8 +8,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'scripts/**'
 
 permissions:
   contents: write
@@ -59,11 +57,15 @@ jobs:
     needs: update-data
     runs-on: ubuntu-latest
     
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main  # Get latest including data updates
+          ref: main
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
