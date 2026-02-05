@@ -1,9 +1,10 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-05 00:35 UTC",
+    "lastUpdated": "2026-02-05 00:53 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko",
     "recordCount": 985,
-    "priceRecords": 0
+    "priceRecords": 0,
+    "recordsWithPrice": 0
   },
   "stats": {
     "currentQueue": 32581,
@@ -12,7 +13,7 @@
     "minQueue": 2,
     "currentPrice": 0,
     "correlation": 0,
-    "lastUpdated": "2026-02-05 00:35 UTC"
+    "lastUpdated": "2026-02-05 00:53 UTC"
   },
   "inflectionPoints": [
     {
