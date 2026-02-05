@@ -8,11 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -22,13 +18,8 @@
             line-height: 1.6;
         }
         
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 24px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
         
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -38,24 +29,10 @@
             border-bottom: 1px solid #333;
         }
         
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #00d4ff;
-        }
+        .header h1 { font-size: 28px; font-weight: 700; color: #00d4ff; }
+        .header p { color: #888; font-size: 14px; margin-top: 4px; }
+        .last-updated { color: #666; font-size: 12px; }
         
-        .header p {
-            color: #888;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-        
-        .last-updated {
-            color: #666;
-            font-size: 12px;
-        }
-        
-        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -79,19 +56,9 @@
             font-weight: 600;
         }
         
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff;
-        }
+        .stat-value { font-size: 24px; font-weight: 700; color: #ffffff; }
+        .stat-sub { color: #666; font-size: 11px; margin-top: 4px; }
         
-        .stat-sub {
-            color: #666;
-            font-size: 11px;
-            margin-top: 4px;
-        }
-        
-        /* Chart Section */
         .chart-section {
             background: #111;
             border: 1px solid #333;
@@ -100,24 +67,10 @@
             margin-bottom: 24px;
         }
         
-        .chart-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 16px;
-        }
+        .chart-title { font-size: 18px; font-weight: 600; color: #00d4ff; margin-bottom: 16px; }
+        .chart-container { position: relative; height: 400px; }
         
-        .chart-container {
-            position: relative;
-            height: 400px;
-        }
-        
-        /* Time Range Buttons */
-        .time-range {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
+        .time-range { display: flex; gap: 8px; margin-bottom: 16px; }
         
         .time-btn {
             background: #222;
@@ -131,18 +84,9 @@
             transition: all 0.2s;
         }
         
-        .time-btn:hover {
-            background: #333;
-            color: #fff;
-        }
+        .time-btn:hover { background: #333; color: #fff; }
+        .time-btn.active { background: #00d4ff; color: #000; border-color: #00d4ff; }
         
-        .time-btn.active {
-            background: #00d4ff;
-            color: #000;
-            border-color: #00d4ff;
-        }
-        
-        /* Two Column Layout */
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -150,17 +94,9 @@
             margin-bottom: 24px;
         }
         
-        @media (max-width: 768px) {
-            .two-col {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
         
-        /* Inflection Points */
-        .inflection-list {
-            max-height: 300px;
-            overflow-y: auto;
-        }
+        .inflection-list { max-height: 300px; overflow-y: auto; }
         
         .inflection-item {
             display: flex;
@@ -170,40 +106,13 @@
             border-bottom: 1px solid #222;
         }
         
-        .inflection-item:last-child {
-            border-bottom: none;
-        }
+        .inflection-item:last-child { border-bottom: none; }
+        .inflection-date { font-family: monospace; color: #fff; font-size: 13px; }
+        .inflection-value { color: #888; font-size: 12px; }
+        .inflection-badge { font-size: 11px; padding: 4px 8px; border-radius: 4px; }
+        .badge-peak { background: #330000; color: #ff6666; border: 1px solid #660000; }
+        .badge-trough { background: #003300; color: #66ff66; border: 1px solid #006600; }
         
-        .inflection-date {
-            font-family: monospace;
-            color: #fff;
-            font-size: 13px;
-        }
-        
-        .inflection-value {
-            color: #888;
-            font-size: 12px;
-        }
-        
-        .inflection-badge {
-            font-size: 11px;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-        
-        .badge-peak {
-            background: #330000;
-            color: #ff6666;
-            border: 1px solid #660000;
-        }
-        
-        .badge-trough {
-            background: #003300;
-            color: #66ff66;
-            border: 1px solid #006600;
-        }
-        
-        /* Insight Cards */
         .insight-card {
             background: #0a0a0a;
             border: 1px solid #222;
@@ -212,19 +121,9 @@
             margin-bottom: 12px;
         }
         
-        .insight-title {
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
+        .insight-title { font-weight: 600; color: #00d4ff; margin-bottom: 8px; font-size: 14px; }
+        .insight-text { color: #999; font-size: 13px; }
         
-        .insight-text {
-            color: #999;
-            font-size: 13px;
-        }
-        
-        /* Signal Section */
         .signal-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -232,11 +131,7 @@
             margin-bottom: 24px;
         }
         
-        @media (max-width: 640px) {
-            .signal-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 640px) { .signal-grid { grid-template-columns: 1fr; } }
         
         .signal-card {
             background: #111;
@@ -246,28 +141,13 @@
             text-align: center;
         }
         
-        .signal-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-        
-        .signal-label {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-        
+        .signal-icon { font-size: 32px; margin-bottom: 12px; }
+        .signal-label { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
         .signal-bearish { color: #ff4444; }
         .signal-neutral { color: #ffaa00; }
         .signal-bullish { color: #44ff44; }
+        .signal-desc { color: #666; font-size: 11px; line-height: 1.5; }
         
-        .signal-desc {
-            color: #666;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-        
-        /* Footer */
         .footer {
             text-align: center;
             padding: 24px;
@@ -276,21 +156,10 @@
             font-size: 12px;
         }
         
-        .footer a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
+        .footer a { color: #00d4ff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
         
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 48px;
-            color: #666;
-        }
+        .loading { text-align: center; padding: 48px; color: #666; }
         
         .error-msg {
             background: #331111;
@@ -301,23 +170,13 @@
             margin-bottom: 24px;
         }
         
-        /* Scrollbar */
-        .inflection-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        .inflection-list::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-        .inflection-list::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 3px;
-        }
+        .inflection-list::-webkit-scrollbar { width: 6px; }
+        .inflection-list::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 3px; }
+        .inflection-list::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div>
                 <h1>ETH 언스테이킹 큐 분석기</h1>
@@ -326,10 +185,8 @@
             <div class="last-updated">마지막 업데이트: <span id="lastUpdated">Loading...</span></div>
         </div>
         
-        <!-- Error Message -->
         <div class="error-msg" id="errorMsg" style="display: none;"></div>
         
-        <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-label">현재 EXIT QUEUE</div>
@@ -353,7 +210,6 @@
             </div>
         </div>
         
-        <!-- Main Chart -->
         <div class="chart-section">
             <div class="chart-title">Exit Queue vs ETH Price</div>
             <div class="time-range">
@@ -368,9 +224,7 @@
             </div>
         </div>
         
-        <!-- Two Column Section -->
         <div class="two-col">
-            <!-- Inflection Points -->
             <div class="chart-section">
                 <div class="chart-title">🎯 주요 변곡점 (Key Inflection Points)</div>
                 <div class="inflection-list" id="inflectionList">
@@ -378,25 +232,23 @@
                 </div>
             </div>
             
-            <!-- Insights -->
             <div class="chart-section">
                 <div class="chart-title">💡 분석 인사이트</div>
                 <div class="insight-card">
                     <div class="insight-title">🐋 고래 매도 신호</div>
-                    <div class="insight-text">Exit Queue가 급증하면 대규모 스테이커들의 이익실현 가능성을 시사합니다. 2024년 8월 $3.9B 기록 후 ETH 가격 조정이 있었습니다.</div>
+                    <div class="insight-text">Exit Queue가 급증하면 대규모 스테이커들의 이익실현 가능성을 시사합니다.</div>
                 </div>
                 <div class="insight-card">
                     <div class="insight-title">⚖️ Entry vs Exit 비율</div>
-                    <div class="insight-text">Entry Queue가 Exit Queue를 초과하면 장기 강세 신호입니다. 2025년 9월 Entry가 Exit을 역전했습니다.</div>
+                    <div class="insight-text">Entry Queue가 Exit Queue를 초과하면 장기 강세 신호입니다.</div>
                 </div>
                 <div class="insight-card">
                     <div class="insight-title">⏰ 대기 시간 지연</div>
-                    <div class="insight-text">현재 Exit 대기 시간이 40일 이상이면 매도 압력이 지연됩니다. 즉각적인 가격 영향이 제한됩니다.</div>
+                    <div class="insight-text">Exit 대기 시간이 40일 이상이면 매도 압력이 지연됩니다.</div>
                 </div>
             </div>
         </div>
         
-        <!-- Trading Signals -->
         <div class="chart-section">
             <div class="chart-title">📊 트레이딩 시그널 가이드</div>
             <div class="signal-grid">
@@ -418,7 +270,6 @@
             </div>
         </div>
         
-        <!-- Footer -->
         <div class="footer">
             <p>Data Sources: <a href="https://validatorqueue.com" target="_blank">ValidatorQueue.com</a> | <a href="https://coingecko.com" target="_blank">CoinGecko</a></p>
             <p style="margin-top: 8px;">⚠️ 투자 조언이 아닙니다. 참고용으로만 사용하세요.</p>
@@ -426,34 +277,22 @@
     </div>
     
     <script>
-        // Global variables
         let DATA = null;
         let mainChart = null;
         let currentRange = 365;
         
-        // Format numbers
         function formatNumber(num) {
             if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
             if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
             return num.toFixed(0);
         }
         
-        function formatUSD(num) {
-            return '$' + num.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        }
-        
-        // Load data from JSON file (fetched by Python script)
         async function loadData() {
             try {
                 const response = await fetch('./data/eth_unstaking_data.json');
                 if (!response.ok) throw new Error('Data file not found');
                 DATA = await response.json();
                 
-                console.log('Data loaded:', DATA.meta);
-                console.log('Records:', DATA.data?.length);
-                console.log('Price records:', DATA.ethPrices?.length);
-                
-                // Update UI
                 updateStats();
                 updateInflectionPoints();
                 updateChart();
@@ -465,7 +304,6 @@
             }
         }
         
-        // Update stats display
         function updateStats() {
             if (!DATA || !DATA.stats) return;
             
@@ -480,7 +318,6 @@
             }
         }
         
-        // Update inflection points
         function updateInflectionPoints() {
             if (!DATA) return;
             
@@ -505,7 +342,6 @@
             `).join('');
         }
         
-        // Get start date for filtering
         function getStartDate(range) {
             if (range === 'all') return null;
             const days = parseInt(range);
@@ -514,30 +350,22 @@
             return date.toISOString().split('T')[0];
         }
         
-        // Create/update chart
         function updateChart() {
             if (!DATA || !DATA.data) return;
             
             const ctx = document.getElementById('mainChart').getContext('2d');
             const startDate = getStartDate(currentRange);
             
-            // Filter data by range
             let filteredData = DATA.data;
             if (startDate) {
                 filteredData = DATA.data.filter(d => d.date >= startDate);
             }
             
-            console.log('Filtered data count:', filteredData.length);
-            console.log('Sample data:', filteredData.slice(0, 3));
-            
-            // Prepare chart data
             const labels = filteredData.map(d => d.date);
             const exitQueueData = filteredData.map(d => d.exitQueue);
             const priceData = filteredData.map(d => d.ethPrice);
             
-            // Check if we have price data
             const hasPrice = priceData.some(p => p > 0);
-            console.log('Has price data:', hasPrice, 'Sample prices:', priceData.slice(-5));
             
             if (mainChart) {
                 mainChart.destroy();
@@ -557,7 +385,6 @@
                 }
             ];
             
-            // Only add price line if we have price data
             if (hasPrice) {
                 datasets.push({
                     label: 'ETH Price (USD)',
@@ -568,30 +395,21 @@
                     yAxisID: 'y1',
                     tension: 0.3,
                     pointRadius: 0,
-                    borderWidth: 2,
-                    borderDash: [8, 4]
+                    borderWidth: 2
+                    // NO borderDash - solid line
                 });
             }
             
             mainChart = new Chart(ctx, {
                 type: 'line',
-                data: {
-                    labels,
-                    datasets
-                },
+                data: { labels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false
-                    },
+                    interaction: { mode: 'index', intersect: false },
                     plugins: {
                         legend: {
-                            labels: {
-                                color: '#888',
-                                font: { family: 'Inter' }
-                            }
+                            labels: { color: '#888', font: { family: 'Inter' } }
                         },
                         tooltip: {
                             backgroundColor: '#111',
@@ -612,50 +430,27 @@
                     scales: {
                         x: {
                             grid: { color: '#222' },
-                            ticks: {
-                                color: '#666',
-                                maxTicksLimit: 10,
-                                font: { family: 'Inter' }
-                            }
+                            ticks: { color: '#666', maxTicksLimit: 10, font: { family: 'Inter' } }
                         },
                         y: {
                             type: 'linear',
                             position: 'left',
                             grid: { color: '#222' },
-                            ticks: {
-                                color: '#fff',
-                                callback: val => formatNumber(val),
-                                font: { family: 'Inter' }
-                            },
-                            title: {
-                                display: true,
-                                text: 'Exit Queue (ETH)',
-                                color: '#fff',
-                                font: { family: 'Inter', weight: '600' }
-                            }
+                            ticks: { color: '#fff', callback: val => formatNumber(val), font: { family: 'Inter' } },
+                            title: { display: true, text: 'Exit Queue (ETH)', color: '#fff', font: { family: 'Inter', weight: '600' } }
                         },
                         y1: {
                             type: 'linear',
                             position: 'right',
                             grid: { drawOnChartArea: false },
-                            ticks: {
-                                color: '#00d4ff',
-                                callback: val => '$' + val.toLocaleString(),
-                                font: { family: 'Inter' }
-                            },
-                            title: {
-                                display: true,
-                                text: 'ETH Price (USD)',
-                                color: '#00d4ff',
-                                font: { family: 'Inter', weight: '600' }
-                            }
+                            ticks: { color: '#00d4ff', callback: val => '$' + val.toLocaleString(), font: { family: 'Inter' } },
+                            title: { display: true, text: 'ETH Price (USD)', color: '#00d4ff', font: { family: 'Inter', weight: '600' } }
                         }
                     }
                 }
             });
         }
         
-        // Time range buttons
         document.querySelectorAll('.time-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
@@ -665,7 +460,6 @@
             });
         });
         
-        // Initialize
         loadData();
     </script>
 </body>
