@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETH 언스테이킹 큐 분석기</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        .last-updated {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .stat-sub {
+            color: #666;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        
+        /* Chart Section */
+        .chart-section {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+        }
+        
+        /* Time Range Buttons */
+        .time-range {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .time-btn {
+            background: #222;
+            border: 1px solid #444;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        .time-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+        
+        .time-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+        
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Inflection Points */
+        .inflection-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .inflection-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #222;
+        }
+        
+        .inflection-item:last-child {
+            border-bottom: none;
+        }
+        
+        .inflection-date {
+            font-family: monospace;
+            color: #fff;
+            font-size: 13px;
+        }
+        
+        .inflection-value {
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .inflection-badge {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .badge-peak {
+            background: #330000;
+            color: #ff6666;
+            border: 1px solid #660000;
+        }
+        
+        .badge-trough {
+            background: #003300;
+            color: #66ff66;
+            border: 1px solid #006600;
+        }
+        
+        /* Insight Cards */
+        .insight-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .insight-text {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        /* Signal Section */
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        @media (max-width: 640px) {
+            .signal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .signal-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .signal-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .signal-label {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .signal-bearish { color: #ff4444; }
+        .signal-neutral { color: #ffaa00; }
+        .signal-bullish { color: #44ff44; }
+        
+        .signal-desc {
+            color: #666;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .footer a {
+            color: #888;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 48px;
+            color: #666;
+        }
+        
+        .error-msg {
+            background: #331111;
+            border: 1px solid #662222;
+            color: #ff8888;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>ETH 언스테이킹 큐 분석기</h1>
+                <p>Unstaking Queue vs Price Inflection Point Analyzer</p>
+            </div>
+            <div class="last-updated" id="lastUpdated">Loading...</div>
+        </div>
+        
+        <!-- Error Message -->
+        <div class="error-msg" id="errorMsg" style="display: none;"></div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">현재 Exit Queue</div>
+                <div class="stat-value" id="statCurrentQueue">--</div>
+                <div class="stat-sub">Current Exit Queue</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">평균 Queue</div>
+                <div class="stat-value" id="statAvgQueue">--</div>
+                <div class="stat-sub">Average Queue Size</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">역대 최고</div>
+                <div class="stat-value" id="statMaxQueue">--</div>
+                <div class="stat-sub">All-Time High</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Queue-Price 상관관계</div>
+                <div class="stat-value" id="statCorrelation">--</div>
+                <div class="stat-sub">Correlation Coefficient</div>
+            </div>
+        </div>
+        
+        <!-- Main Chart -->
+        <div class="chart-section">
+            <div class="chart-title">Exit Queue vs ETH Price</div>
+            <div class="time-range">
+                <button class="time-btn" data-range="30">30D</button>
+                <button class="time-btn" data-range="90">90D</button>
+                <button class="time-btn" data-range="180">180D</button>
+                <button class="time-btn active" data-range="365">1Y</button>
+                <button class="time-btn" data-range="all">ALL</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Two Column Section -->
+        <div class="two-col">
+            <!-- Inflection Points -->
+            <div class="chart-section">
+                <div class="chart-title">🎯 주요 변곡점 (Key Inflection Points)</div>
+                <div class="inflection-list" id="inflectionList">
+                    <div class="loading">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Insights -->
+            <div class="chart-section">
+                <div class="chart-title">💡 분석 인사이트</div>
+                <div class="insight-card">
+                    <div class="insight-title">🐋 고래 매도 신호</div>
+                    <div class="insight-text">Exit Queue가 급증하면 대규모 스테이커들의 이익실현 가능성을 시사합니다. 2024년 8월 $3.9B 기록 후 ETH 가격 조정이 있었습니다.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title">⚖️ Entry vs Exit 비율</div>
+                    <div class="insight-text">Entry Queue가 Exit Queue를 초과하면 장기 강세 신호입니다. 2025년 9월 Entry가 Exit을 역전했습니다.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title">⏰ 대기 시간 지연</div>
+                    <div class="insight-text">현재 Exit 대기 시간이 40일 이상이면 매도 압력이 지연됩니다. 즉각적인 가격 영향이 제한됩니다.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trading Signals -->
+        <div class="chart-section">
+            <div class="chart-title">📊 트레이딩 시그널 가이드</div>
+            <div class="signal-grid">
+                <div class="signal-card">
+                    <div class="signal-icon">🔴</div>
+                    <div class="signal-label signal-bearish">BEARISH</div>
+                    <div class="signal-desc">Exit Queue > 2M ETH<br>+ Price ATH 근접</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-icon">🟡</div>
+                    <div class="signal-label signal-neutral">NEUTRAL</div>
+                    <div class="signal-desc">Exit Queue 500K-2M ETH<br>Entry/Exit 균형</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-icon">🟢</div>
+                    <div class="signal-label signal-bullish">BULLISH</div>
+                    <div class="signal-desc">Entry > Exit Queue<br>+ Exit Queue 감소 추세</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Data Sources: <a href="https://validatorqueue.com" target="_blank">ValidatorQueue.com</a> | <a href="https://coingecko.com" target="_blank">CoinGecko</a></p>
+            <p style="margin-top: 8px;">⚠️ 투자 조언이 아닙니다. 참고용으로만 사용하세요.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Global variables
+        let rawData = [];
+        let mainChart = null;
+        let currentRange = 365;
+        
+        // Format numbers
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toFixed(0);
+        }
+        
+        function formatUSD(num) {
+            return '$' + formatNumber(num);
+        }
+        
+        // Fetch data
+        async function fetchData() {
+            try {
+                // Try local data first
+                const response = await fetch('./data/eth_unstaking_data.json');
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (e) {
+                console.log('Local data not found, fetching from APIs...');
+            }
+            
+            // Fallback to direct API calls
+            try {
+                const [queueRes, priceRes] = await Promise.all([
+                    fetch('https://raw.githubusercontent.com/etheralpha/validatorqueue-com/main/historical_data.json'),
+                    fetch('https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=365&interval=daily')
+                ]);
+                
+                const queueData = await queueRes.json();
+                const priceData = await priceRes.json();
+                
+                // Create price map
+                const priceMap = {};
+                priceData.prices.forEach(([ts, price]) => {
+                    const date = new Date(ts).toISOString().split('T')[0];
+                    priceMap[date] = price;
+                });
+                
+                // Merge data
+                const merged = queueData.map(item => {
+                    const date = item.date || item.timestamp;
+                    const exitQueue = item.exit_queue_eth || item.exitQueue || 0;
+                    const entryQueue = item.entry_queue_eth || item.entryQueue || 0;
+                    const ethPrice = priceMap[date] || 0;
+                    return {
+                        date,
+                        exitQueue,
+                        entryQueue,
+                        ethPrice,
+                        exitQueueUSD: (exitQueue * ethPrice) / 1000000
+                    };
+                }).filter(d => d.date).sort((a, b) => a.date.localeCompare(b.date));
+                
+                // Calculate stats
+                const exitQueues = merged.map(d => d.exitQueue).filter(q => q > 0);
+                const stats = {
+                    currentQueue: exitQueues[exitQueues.length - 1] || 0,
+                    avgQueue: exitQueues.reduce((a, b) => a + b, 0) / exitQueues.length,
+                    maxQueue: Math.max(...exitQueues),
+                    correlation: 0,
+                    lastUpdated: new Date().toISOString()
+                };
+                
+                return { data: merged, stats, inflectionPoints: [] };
+            } catch (e) {
+                console.error('API fetch failed:', e);
+                throw e;
+            }
+        }
+        
+        // Update stats display
+        function updateStats(stats) {
+            document.getElementById('statCurrentQueue').textContent = formatNumber(stats.currentQueue) + ' ETH';
+            document.getElementById('statAvgQueue').textContent = formatNumber(stats.avgQueue) + ' ETH';
+            document.getElementById('statMaxQueue').textContent = formatNumber(stats.maxQueue) + ' ETH';
+            document.getElementById('statCorrelation').textContent = (stats.correlation * 100).toFixed(1) + '%';
+            
+            if (stats.lastUpdated) {
+                document.getElementById('lastUpdated').textContent = 'Updated: ' + stats.lastUpdated;
+            }
+        }
+        
+        // Update inflection points
+        function updateInflectionPoints(points) {
+            const container = document.getElementById('inflectionList');
+            
+            if (!points || points.length === 0) {
+                container.innerHTML = '<div class="loading">변곡점 데이터 없음</div>';
+                return;
+            }
+            
+            container.innerHTML = points.slice(-15).reverse().map(point => `
+                <div class="inflection-item">
+                    <div>
+                        <div class="inflection-date">${point.date}</div>
+                        <div class="inflection-value">${formatNumber(point.exitQueue)} ETH</div>
+                    </div>
+                    <span class="inflection-badge ${point.type === 'peak' ? 'badge-peak' : 'badge-trough'}">
+                        ${point.type === 'peak' ? '🔺 PEAK' : '🔻 TROUGH'}
+                    </span>
+                </div>
+            `).join('');
+        }
+        
+        // Create/update chart
+        function updateChart(data, range) {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            
+            // Filter data by range
+            let filteredData = data;
+            if (range !== 'all') {
+                const cutoff = new Date();
+                cutoff.setDate(cutoff.getDate() - parseInt(range));
+                filteredData = data.filter(d => new Date(d.date) >= cutoff);
+            }
+            
+            // Prepare chart data
+            const labels = filteredData.map(d => d.date);
+            const exitQueueData = filteredData.map(d => d.exitQueue);
+            const priceData = filteredData.map(d => d.ethPrice);
+            
+            if (mainChart) {
+                mainChart.destroy();
+            }
+            
+            mainChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Exit Queue (ETH)',
+                            data: exitQueueData,
+                            borderColor: '#ffffff',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            fill: true,
+                            yAxisID: 'y',
+                            tension: 0.3,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'ETH Price (USD)',
+                            data: priceData,
+                            borderColor: '#888888',
+                            backgroundColor: 'transparent',
+                            fill: false,
+                            yAxisID: 'y1',
+                            tension: 0.3,
+                            pointRadius: 0,
+                            borderWidth: 1.5,
+                            borderDash: [5, 5]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#888'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#111',
+                            titleColor: '#fff',
+                            bodyColor: '#888',
+                            borderColor: '#333',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.datasetIndex === 0) {
+                                        return 'Queue: ' + formatNumber(context.raw) + ' ETH';
+                                    }
+                                    return 'Price: $' + context.raw.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#222'
+                            },
+                            ticks: {
+                                color: '#666',
+                                maxTicksLimit: 10
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            grid: {
+                                color: '#222'
+                            },
+                            ticks: {
+                                color: '#fff',
+                                callback: val => formatNumber(val)
+                            },
+                            title: {
+                                display: true,
+                                text: 'Exit Queue (ETH)',
+                                color: '#fff'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                color: '#888',
+                                callback: val => '$' + val.toFixed(0)
+                            },
+                            title: {
+                                display: true,
+                                text: 'ETH Price (USD)',
+                                color: '#888'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Initialize
+        async function init() {
+            try {
+                const result = await fetchData();
+                rawData = result.data || [];
+                
+                if (result.stats) {
+                    updateStats(result.stats);
+                }
+                
+                updateInflectionPoints(result.inflectionPoints || []);
+                updateChart(rawData, currentRange);
+                
+            } catch (e) {
+                console.error('Init error:', e);
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMsg').textContent = '⚠️ 데이터 로드 실패: ' + e.message;
+            }
+        }
+        
+        // Time range buttons
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentRange = this.dataset.range;
+                updateChart(rawData, currentRange);
+            });
+        });
+        
+        // Start
+        init();
+    </script>
+</body>
+</html>

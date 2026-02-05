@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "lastUpdated": "2025-02-04 07:00 UTC",
+    "dataSource": "ValidatorQueue.com + CoinGecko",
+    "recordCount": 0,
+    "note": "This is placeholder data. Run the fetch script to get real data."
+  },
+  "stats": {
+    "currentQueue": 2578174,
+    "avgQueue": 1200000,
+    "maxQueue": 2670000,
+    "minQueue": 50000,
+    "correlation": 0.42,
+    "lastUpdated": "2025-02-04 07:00 UTC"
+  },
+  "inflectionPoints": [
+    {"date": "2024-08-15", "type": "peak", "exitQueue": 816000, "ethPrice": 4780},
+    {"date": "2024-09-05", "type": "trough", "exitQueue": 450000, "ethPrice": 3200},
+    {"date": "2024-10-08", "type": "peak", "exitQueue": 2400000, "ethPrice": 4500},
+    {"date": "2025-01-15", "type": "peak", "exitQueue": 2578174, "ethPrice": 4063}
+  ],
+  "data": [
+    {"date": "2024-04-01", "exitQueue": 100000, "entryQueue": 150000, "ethPrice": 3300, "exitQueueUSD": 330},
+    {"date": "2024-05-01", "exitQueue": 180000, "entryQueue": 120000, "ethPrice": 3100, "exitQueueUSD": 558},
+    {"date": "2024-06-01", "exitQueue": 220000, "entryQueue": 100000, "ethPrice": 3500, "exitQueueUSD": 770},
+    {"date": "2024-07-01", "exitQueue": 350000, "entryQueue": 80000, "ethPrice": 3200, "exitQueueUSD": 1120},
+    {"date": "2024-08-01", "exitQueue": 550000, "entryQueue": 90000, "ethPrice": 4200, "exitQueueUSD": 2310},
+    {"date": "2024-08-15", "exitQueue": 816000, "entryQueue": 100000, "ethPrice": 4780, "exitQueueUSD": 3900},
+    {"date": "2024-09-01", "exitQueue": 910000, "entryQueue": 800000, "ethPrice": 4200, "exitQueueUSD": 3822},
+    {"date": "2024-09-15", "exitQueue": 600000, "entryQueue": 950000, "ethPrice": 3800, "exitQueueUSD": 2280},
+    {"date": "2024-10-01", "exitQueue": 2000000, "entryQueue": 500000, "ethPrice": 4300, "exitQueueUSD": 8600},
+    {"date": "2024-10-08", "exitQueue": 2400000, "entryQueue": 490000, "ethPrice": 4500, "exitQueueUSD": 10800},
+    {"date": "2024-11-01", "exitQueue": 2600000, "entryQueue": 1000000, "ethPrice": 4300, "exitQueueUSD": 11180},
+    {"date": "2024-12-01", "exitQueue": 2000000, "entryQueue": 1500000, "ethPrice": 3800, "exitQueueUSD": 7600},
+    {"date": "2025-01-01", "exitQueue": 2578174, "entryQueue": 2500000, "ethPrice": 4063, "exitQueueUSD": 10475},
+    {"date": "2025-02-01", "exitQueue": 4063588, "entryQueue": 2578174, "ethPrice": 3200, "exitQueueUSD": 13003}
+  ]
+}
