@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,6 +37,8 @@ jobs:
           pip install requests
       
       - name: Fetch ETH unstaking data
+        env:
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
         run: python scripts/fetch_data.py
       
       - name: Check for changes
@@ -53,6 +57,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add data/
           git commit -m "📊 Update ETH unstaking data - $(date +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin main
           git push
 
   deploy:
@@ -67,7 +72,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main  # Get latest including data updates
+          ref: main
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
