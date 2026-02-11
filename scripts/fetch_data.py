@@ -155,6 +155,7 @@ def merge_data(queue_data, prices_map):
 def calculate_stats(data):
     """Calculate summary statistics"""
     exit_queues = [d["exitQueue"] for d in data if d["exitQueue"] > 0]
+    entry_queues = [d["entryQueue"] for d in data if d["entryQueue"] > 0]
     prices = [d["ethPrice"] for d in data if d["ethPrice"] > 0]
     
     if not exit_queues:
@@ -174,8 +175,15 @@ def calculate_stats(data):
         if denom_q > 0 and denom_p > 0:
             correlation = round(num / (denom_q * denom_p), 4)
     
+    # Calculate net flow (entry - exit) for latest record
+    current_entry = entry_queues[-1] if entry_queues else 0
+    current_exit = exit_queues[-1] if exit_queues else 0
+    current_net_flow = round(current_entry - current_exit, 2)
+    
     return {
         "currentQueue": exit_queues[-1] if exit_queues else 0,
+        "currentEntryQueue": current_entry,
+        "currentNetFlow": current_net_flow,
         "avgQueue": round(sum(exit_queues) / len(exit_queues), 0),
         "maxQueue": max(exit_queues),
         "minQueue": min(exit_queues),
