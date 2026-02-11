@@ -20,6 +20,7 @@ COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"
 # Output paths
 DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_FILE = DATA_DIR / "eth_unstaking_data.json"
+HISTORICAL_PRICES_CSV = DATA_DIR / "eth_historical_prices.csv"
 
 
 def fetch_validator_queue():
@@ -34,6 +35,54 @@ def fetch_validator_queue():
     except Exception as e:
         print(f"  ✗ Error fetching queue data: {e}")
         return []
+
+
+def load_historical_prices():
+    """Load historical ETH prices from CSV (backfill for dates beyond CoinGecko 365-day limit)"""
+    print("Loading historical prices from CSV...")
+    prices_map = {}
+    
+    if not HISTORICAL_PRICES_CSV.exists():
+        print("  ⚠ Historical CSV not found, skipping")
+        return prices_map
+    
+    try:
+        with open(HISTORICAL_PRICES_CSV, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        
+        # Skip header
+        for line in lines[1:]:
+            line = line.strip().replace("\r", "")
+            if not line:
+                continue
+            
+            # Tab-separated: Date, Price, Open, High, Low, Vol., Change %
+            parts = line.split("\t")
+            if len(parts) < 2:
+                continue
+            
+            try:
+                # Parse date: MM/DD/YYYY -> YYYY-MM-DD
+                date_str = parts[0].strip()
+                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+                date_key = date_obj.strftime("%Y-%m-%d")
+                
+                # Parse price: remove quotes and commas
+                price_str = parts[1].strip().strip('"').replace(",", "")
+                price = round(float(price_str), 2)
+                
+                prices_map[date_key] = price
+            except (ValueError, IndexError):
+                continue
+        
+        print(f"  ✓ Loaded {len(prices_map)} historical price records")
+        if prices_map:
+            dates = sorted(prices_map.keys())
+            print(f"  Range: {dates[0]} ~ {dates[-1]}")
+    except Exception as e:
+        print(f"  ✗ Error loading CSV: {e}")
+    
+    return prices_map
 
 
 def fetch_eth_prices(days=365):
@@ -226,7 +275,7 @@ def main():
     print("=" * 60)
     print("ETH Unstaking Queue Data Fetcher")
     print(f"Time: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
-    print("Using CoinGecko (free, no API key, max 365 days)")
+    print("Using Historical CSV + CoinGecko (free, 365 days)")
     print("=" * 60)
     
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -236,12 +285,25 @@ def main():
         print("✗ Failed to fetch queue data")
         return 1
     
-    # Wait before CoinGecko call (rate limiting)
+    # Step 1: Load historical prices from CSV (backfill)
+    prices_map = load_historical_prices()
+    
+    # Step 2: Wait before CoinGecko call (rate limiting)
     print("\nWaiting 5s before CoinGecko call...")
     time.sleep(5)
     
-    # Fetch 365 days of price data (CoinGecko free limit)
-    prices_map, prices_list = fetch_eth_prices(days=365)
+    # Step 3: Fetch 365 days from CoinGecko and overlay (overwrites CSV for recent dates)
+    coingecko_map, _ = fetch_eth_prices(days=365)
+    prices_map.update(coingecko_map)  # CoinGecko takes priority for recent dates
+    
+    # Build final prices_list from merged map
+    prices_list = sorted(
+        [{"date": d, "price": p} for d, p in prices_map.items()],
+        key=lambda x: x["date"]
+    )
+    print(f"\n  ✓ Total price records after merge: {len(prices_list)}")
+    if prices_list:
+        print(f"  Range: {prices_list[0]['date']} ~ {prices_list[-1]['date']}")
     
     merged_data = merge_data(queue_data, prices_map)
     
@@ -255,7 +317,7 @@ def main():
     output = {
         "meta": {
             "lastUpdated": stats.get("lastUpdated", ""),
-            "dataSource": "ValidatorQueue.com + CoinGecko",
+            "dataSource": "ValidatorQueue.com + CoinGecko + Historical CSV",
             "recordCount": len(merged_data),
             "priceRecords": len(prices_list),
             "recordsWithPrice": sum(1 for d in merged_data if d["ethPrice"] > 0)
