@@ -412,6 +412,8 @@
             const ctx = document.getElementById('netFlowChart').getContext('2d');
             const labels = filteredData.map(d => d.date);
             const netFlowData = filteredData.map(d => (d.entryQueue || 0) - (d.exitQueue || 0));
+            const priceData = filteredData.map(d => d.ethPrice);
+            const hasPrice = priceData.some(p => p > 0);
             
             if (netFlowChart) netFlowChart.destroy();
 
@@ -419,33 +421,48 @@
             const positiveData = netFlowData.map(v => v >= 0 ? v : 0);
             const negativeData = netFlowData.map(v => v < 0 ? v : 0);
             
+            const datasets = [
+                {
+                    label: '순유입 (Entry > Exit)',
+                    data: positiveData,
+                    borderColor: '#44ff44',
+                    backgroundColor: 'rgba(68, 255, 68, 0.2)',
+                    fill: 'origin',
+                    yAxisID: 'y',
+                    tension: 0.3,
+                    pointRadius: 0,
+                    borderWidth: 1.5
+                },
+                {
+                    label: '순유출 (Exit > Entry)',
+                    data: negativeData,
+                    borderColor: '#ff4444',
+                    backgroundColor: 'rgba(255, 68, 68, 0.2)',
+                    fill: 'origin',
+                    yAxisID: 'y',
+                    tension: 0.3,
+                    pointRadius: 0,
+                    borderWidth: 1.5
+                }
+            ];
+
+            if (hasPrice) {
+                datasets.push({
+                    label: 'ETH Price (USD)',
+                    data: priceData,
+                    borderColor: '#00d4ff',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    yAxisID: 'y1',
+                    tension: 0.3,
+                    pointRadius: 0,
+                    borderWidth: 2
+                });
+            }
+            
             netFlowChart = new Chart(ctx, {
                 type: 'line',
-                data: {
-                    labels,
-                    datasets: [
-                        {
-                            label: '순유입 (Entry > Exit)',
-                            data: positiveData,
-                            borderColor: '#44ff44',
-                            backgroundColor: 'rgba(68, 255, 68, 0.2)',
-                            fill: 'origin',
-                            tension: 0.3,
-                            pointRadius: 0,
-                            borderWidth: 1.5
-                        },
-                        {
-                            label: '순유출 (Exit > Entry)',
-                            data: negativeData,
-                            borderColor: '#ff4444',
-                            backgroundColor: 'rgba(255, 68, 68, 0.2)',
-                            fill: 'origin',
-                            tension: 0.3,
-                            pointRadius: 0,
-                            borderWidth: 1.5
-                        }
-                    ]
-                },
+                data: { labels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
@@ -460,14 +477,16 @@
                             borderWidth: 1,
                             callbacks: {
                                 label(context) {
+                                    if (context.datasetIndex === 2) return 'Price: $' + context.raw.toLocaleString();
                                     const idx = context.dataIndex;
                                     const actual = netFlowData[idx];
                                     const sign = actual >= 0 ? '+' : '';
                                     return 'Net Flow: ' + sign + formatNumber(actual) + ' ETH';
                                 }
                             },
-                            // Only show one tooltip line (not both datasets)
                             filter(tooltipItem) {
+                                // Show price always, but only show the active net flow dataset
+                                if (tooltipItem.datasetIndex === 2) return true;
                                 return tooltipItem.datasetIndex === 0 ? 
                                     netFlowData[tooltipItem.dataIndex] >= 0 : 
                                     netFlowData[tooltipItem.dataIndex] < 0;
@@ -478,6 +497,7 @@
                         x: { grid: { color: '#222' }, ticks: { color: '#666', maxTicksLimit: 10 } },
                         y: {
                             type: 'linear',
+                            position: 'left',
                             grid: { 
                                 color(context) {
                                     return context.tick.value === 0 ? '#555' : '#222';
@@ -494,6 +514,13 @@
                                 }
                             },
                             title: { display: true, text: 'Net Flow (ETH)', color: '#888' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#00d4ff', callback: val => '$' + val.toLocaleString() },
+                            title: { display: true, text: 'ETH Price (USD)', color: '#00d4ff' }
                         }
                     }
                 }
