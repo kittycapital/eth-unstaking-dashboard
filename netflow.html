@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETH Net Flow & 변곡점 분석</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js" crossorigin="anonymous" async></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; min-height: 100vh; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #333; }
+        .header h1 { font-size: 28px; font-weight: 700; color: #00d4ff; }
+        .header p { color: #888; font-size: 14px; margin-top: 4px; }
+        .last-updated { color: #666; font-size: 12px; }
+
+        .chart-section { background: #111; border: 1px solid #333; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+        .chart-title { font-size: 18px; font-weight: 600; color: #00d4ff; margin-bottom: 16px; }
+        .chart-container { position: relative; height: 400px; }
+        .time-range { display: flex; gap: 8px; margin-bottom: 16px; }
+        .time-btn { background: #222; border: 1px solid #444; color: #888; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.2s; }
+        .time-btn:hover { background: #333; color: #fff; }
+        .time-btn.active { background: #00d4ff; color: #000; border-color: #00d4ff; }
+
+        .error-msg { background: #331111; border: 1px solid #662222; color: #ff8888; padding: 16px; border-radius: 8px; margin-bottom: 24px; }
+
+        /* INFLECTION LIST */
+        .inflection-list { max-height: 400px; overflow-y: auto; }
+        .inflection-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #222; }
+        .inflection-item:last-child { border-bottom: none; }
+        .inflection-date { font-family: monospace; color: #fff; font-size: 13px; }
+        .inflection-value { color: #888; font-size: 12px; }
+        .inflection-badge { font-size: 11px; padding: 4px 8px; border-radius: 4px; }
+        .badge-peak { background: #330000; color: #ff6666; border: 1px solid #660000; }
+        .badge-trough { background: #003300; color: #66ff66; border: 1px solid #006600; }
+
+        /* SHARE BAR */
+        .share-wrap{background:#111;border:1px solid rgba(255,255,255,0.06);border-radius:14px;margin-top:24px;overflow:hidden}
+        .share-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#0a0a0a}
+        .share-bar-preview{font-size:.75rem;color:#555;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:50%;line-height:1.4;font-family:'JetBrains Mono',monospace}
+        .share-bar-preview span{color:#8a8a8a;font-weight:500}
+        .share-bar-buttons{display:flex;align-items:center;gap:6px;flex-shrink:0}
+        .share-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-size:.75rem;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:all 150ms ease;border:1px solid rgba(255,255,255,0.12);background:#111;color:#999;white-space:nowrap}
+        .share-btn:hover{transform:translateY(-1px);box-shadow:0 1px 3px rgba(0,0,0,.5);color:#e5e5e5}
+        .share-btn svg{flex-shrink:0}
+        .share-btn--x:hover{border-color:#fff;color:#fff;background:#111}
+        .share-btn--kakao:hover{border-color:#FEE500;color:#191919;background:#FEE500}
+        .share-btn--tg:hover{border-color:#26A5E4;color:#fff;background:rgba(38,165,228,.15)}
+        .share-btn--ig:hover{border-color:#E4405F;color:#fff;background:rgba(228,64,95,.15)}
+        .share-btn--copy:hover{border-color:#3b82f6;color:#60a5fa;background:rgba(59,130,246,0.12)}
+
+        /* TOAST */
+        .toast-wrap{position:fixed;bottom:20px;right:20px;z-index:200;display:flex;flex-direction:column;gap:8px}
+        .toast{background:#1a1a1a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 18px;font-size:.788rem;color:#e5e5e5;box-shadow:0 8px 32px rgba(0,0,0,.7);animation:toastIn .3s ease;border-left:3px solid #22c55e}
+        @keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+        .loading { text-align: center; padding: 48px; color: #666; }
+
+        @media(max-width:768px){
+            .share-bar{flex-direction:column;gap:10px;align-items:stretch}
+            .share-bar-preview{max-width:100%}
+            .share-bar-buttons{justify-content:center;flex-wrap:wrap}
+            .share-btn span.label-text{display:none}
+            .share-btn{padding:8px 10px}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>ETH Net Flow & 변곡점</h1>
+                <p>Net Staking Flow &amp; Key Inflection Points</p>
+            </div>
+            <div class="last-updated">마지막 업데이트: <span id="lastUpdated">Loading...</span></div>
+        </div>
+        
+        <div class="error-msg" id="errorMsg" style="display: none;"></div>
+
+        <div class="time-range" id="globalTimeRange">
+            <button class="time-btn" data-range="30">30D</button>
+            <button class="time-btn" data-range="90">90D</button>
+            <button class="time-btn" data-range="180">180D</button>
+            <button class="time-btn active" data-range="365">1Y</button>
+            <button class="time-btn" data-range="all">ALL</button>
+        </div>
+
+        <div class="chart-section">
+            <div class="chart-title">⚡ Net Flow (Entry − Exit) — 순유입/유출</div>
+            <div class="chart-container">
+                <canvas id="netFlowChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <div class="chart-title">🎯 주요 변곡점 (Key Inflection Points)</div>
+            <div class="inflection-list" id="inflectionList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <!-- SHARE BAR -->
+        <div class="share-wrap">
+            <div class="share-bar">
+                <div class="share-bar-preview"><span>ETH Net Flow & 변곡점</span> — herdvibe.com</div>
+                <div class="share-bar-buttons">
+                    <button class="share-btn share-btn--x" onclick="doShare('twitter')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="label-text">트위터</span></button>
+                    <button class="share-btn share-btn--kakao" onclick="doShare('kakao')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.112 4.508 6.458l-1.148 4.265a.5.5 0 0 0 .764.533l4.94-3.26c.304.02.612.03.936.03 5.523 0 10-3.462 10-7.735C22 6.463 17.523 3 12 3z"/></svg><span class="label-text">카카오톡</span></button>
+                    <button class="share-btn share-btn--tg" onclick="doShare('telegram')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span class="label-text">텔레그램</span></button>
+                    <button class="share-btn share-btn--ig" onclick="doShare('instagram',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="label-text">인스타</span></button>
+                    <button class="share-btn share-btn--copy" onclick="doShare('link',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="label-text">링크 복사</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        /* ===== SHARE CONFIG ===== */
+        var SHARE_URL = 'https://herdvibe.com/42';
+        var SHARE_TITLE = 'ETH Net Flow & 변곡점 분석';
+        var SHARE_DESC = 'Net Staking Flow 및 주요 변곡점 실시간 분석';
+        var OG_IMAGE = 'https://raw.githubusercontent.com/kittycapital/kittycapital.github.io/main/assets/herdvibe-og.png';
+
+        /* ===== KAKAO SDK ===== */
+        function ensureKakao(){try{if(typeof Kakao!=='undefined'&&!Kakao.isInitialized())Kakao.init('a43ed7b39fac35458f4f9df925a279b5');return typeof Kakao!=='undefined'&&Kakao.isInitialized();}catch(e){return false;}}
+        ensureKakao();
+
+        function kakaoShare(){if(!ensureKakao()){copyToClipboard(SHARE_URL);toast('링크 복사완료! 카카오톡에 붙여넣기 하세요');return;}try{Kakao.Share.sendDefault({objectType:'feed',content:{title:SHARE_TITLE,description:SHARE_DESC,imageUrl:OG_IMAGE,link:{mobileWebUrl:SHARE_URL,webUrl:SHARE_URL}},buttons:[{title:'대시보드 보기',link:{mobileWebUrl:SHARE_URL,webUrl:SHARE_URL}}]});}catch(e){copyToClipboard(SHARE_URL);toast('링크 복사완료! 카카오톡에 붙여넣기 하세요');}}
+
+        /* ===== CLIPBOARD (iframe-safe) ===== */
+        function copyToClipboard(text){try{window.parent.postMessage({type:'clipboard',text:text},'*');}catch(e){}try{navigator.clipboard.writeText(text);}catch(e){}}
+
+        /* ===== FLASH COPIED ===== */
+        function flashCopied(btn){if(!btn)return;var orig=btn.innerHTML;btn.style.background='#22c55e';btn.style.color='#fff';btn.style.borderColor='#22c55e';var hasLabel=btn.querySelector('.label-text');btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>'+(hasLabel?'<span class="label-text" style="color:#fff">복사됨!</span>':'');setTimeout(function(){btn.style.background='';btn.style.color='';btn.style.borderColor='';btn.innerHTML=orig;},2000);}
+
+        /* ===== SHARE ===== */
+        function doShare(p,btn){var u=SHARE_URL;var t=encodeURIComponent(SHARE_TITLE+' | herdvibe.com');var eu=encodeURIComponent(u);switch(p){case'twitter':window.open('https://twitter.com/intent/tweet?text='+t+'&url='+eu,'_blank');break;case'telegram':window.open('https://t.me/share/url?url='+eu+'&text='+t,'_blank');break;case'kakao':kakaoShare();break;case'instagram':copyToClipboard(u);flashCopied(btn);toast('링크 복사완료! 인스타그램에 붙여넣기 하세요');break;case'link':copyToClipboard(u);flashCopied(btn);toast('링크가 복사되었습니다 ✓');break;}}
+
+        /* ===== TOAST ===== */
+        function toast(msg){var c=document.querySelector('.toast-wrap');if(!c){c=document.createElement('div');c.className='toast-wrap';document.body.appendChild(c);}var t=document.createElement('div');t.className='toast';t.textContent=msg;c.appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transform='translateY(12px)';t.style.transition='.3s';setTimeout(function(){t.remove();},300);},3000);}
+
+        /* ===== CHART DATA ===== */
+        let DATA = null;
+        let netFlowChart = null;
+        let currentRange = 365;
+        
+        function formatNumber(num) {
+            if (Math.abs(num) >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+            if (Math.abs(num) >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toFixed(0);
+        }
+        
+        function formatNumberSigned(num) {
+            const prefix = num >= 0 ? '+' : '';
+            return prefix + formatNumber(num);
+        }
+        
+        async function loadData() {
+            try {
+                const response = await fetch('./data/eth_unstaking_data.json');
+                if (!response.ok) throw new Error('Data file not found');
+                DATA = await response.json();
+                updateInflectionPoints();
+                updateAllCharts();
+                if (DATA.meta?.lastUpdated) {
+                    document.getElementById('lastUpdated').textContent = DATA.meta.lastUpdated;
+                }
+            } catch (error) {
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMsg').textContent = '⚠️ 데이터 로드 실패: ' + error.message;
+            }
+        }
+        
+        function updateInflectionPoints() {
+            if (!DATA) return;
+            const container = document.getElementById('inflectionList');
+            const points = DATA.inflectionPoints || [];
+            if (points.length === 0) {
+                container.innerHTML = '<div class="loading">변곡점 데이터 없음</div>';
+                return;
+            }
+            container.innerHTML = points.slice(-15).reverse().map(point => `
+                <div class="inflection-item">
+                    <div>
+                        <div class="inflection-date">${point.date}</div>
+                        <div class="inflection-value">${formatNumber(point.exitQueue)} ETH ${point.ethPrice ? '@ $' + point.ethPrice.toLocaleString() : ''}</div>
+                    </div>
+                    <span class="inflection-badge ${point.type === 'peak' ? 'badge-peak' : 'badge-trough'}">
+                        ${point.type === 'peak' ? '🔺 PEAK' : '🔻 TROUGH'}
+                    </span>
+                </div>
+            `).join('');
+            sendHeight();
+        }
+
+        function getFilteredData() {
+            if (!DATA || !DATA.data) return [];
+            if (currentRange === 'all') return DATA.data;
+            const days = parseInt(currentRange);
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - days);
+            const startDate = cutoffDate.toISOString().split('T')[0];
+            return DATA.data.filter(d => d.date >= startDate);
+        }
+
+        function updateNetFlowChart(filteredData) {
+            const ctx = document.getElementById('netFlowChart').getContext('2d');
+            const labels = filteredData.map(d => d.date);
+            const netFlowData = filteredData.map(d => (d.entryQueue || 0) - (d.exitQueue || 0));
+            const priceData = filteredData.map(d => d.ethPrice);
+            const hasPrice = priceData.some(p => p > 0);
+            
+            if (netFlowChart) netFlowChart.destroy();
+
+            const positiveData = netFlowData.map(v => v >= 0 ? v : 0);
+            const negativeData = netFlowData.map(v => v < 0 ? v : 0);
+            
+            const datasets = [
+                { label: '순유입 (Entry > Exit)', data: positiveData, borderColor: '#44ff44', backgroundColor: 'rgba(68,255,68,0.2)', fill: 'origin', yAxisID: 'y', tension: 0.3, pointRadius: 0, borderWidth: 1.5 },
+                { label: '순유출 (Exit > Entry)', data: negativeData, borderColor: '#ff4444', backgroundColor: 'rgba(255,68,68,0.2)', fill: 'origin', yAxisID: 'y', tension: 0.3, pointRadius: 0, borderWidth: 1.5 }
+            ];
+
+            if (hasPrice) {
+                datasets.push({ label: 'ETH Price (USD)', data: priceData, borderColor: '#00d4ff', backgroundColor: 'transparent', fill: false, yAxisID: 'y1', tension: 0.3, pointRadius: 0, borderWidth: 2 });
+            }
+            
+            netFlowChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels, datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { color: '#888' } },
+                        tooltip: {
+                            backgroundColor: '#111', titleColor: '#fff', bodyColor: '#888', borderColor: '#333', borderWidth: 1,
+                            callbacks: {
+                                label(context) {
+                                    if (context.datasetIndex === 2) return 'Price: $' + context.raw.toLocaleString();
+                                    const idx = context.dataIndex;
+                                    const actual = netFlowData[idx];
+                                    const sign = actual >= 0 ? '+' : '';
+                                    return 'Net Flow: ' + sign + formatNumber(actual) + ' ETH';
+                                }
+                            },
+                            filter(tooltipItem) {
+                                if (tooltipItem.datasetIndex === 2) return true;
+                                return tooltipItem.datasetIndex === 0 ? netFlowData[tooltipItem.dataIndex] >= 0 : netFlowData[tooltipItem.dataIndex] < 0;
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { color: '#222' }, ticks: { color: '#666', maxTicksLimit: 10 } },
+                        y: {
+                            type: 'linear', position: 'left',
+                            grid: { color(context) { return context.tick.value === 0 ? '#555' : '#222'; }, lineWidth(context) { return context.tick.value === 0 ? 2 : 1; } },
+                            ticks: { color: '#888', callback(val) { const sign = val >= 0 ? '+' : ''; return sign + formatNumber(val); } },
+                            title: { display: true, text: 'Net Flow (ETH)', color: '#888' }
+                        },
+                        y1: {
+                            type: 'linear', position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#00d4ff', callback: val => '$' + val.toLocaleString() },
+                            title: { display: true, text: 'ETH Price (USD)', color: '#00d4ff' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateAllCharts() {
+            const filteredData = getFilteredData();
+            updateNetFlowChart(filteredData);
+            sendHeight();
+        }
+        
+        document.querySelectorAll('#globalTimeRange .time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#globalTimeRange .time-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentRange = this.dataset.range;
+                updateAllCharts();
+            });
+        });
+
+        /* ===== IFRAME RESIZE ===== */
+        var _lastH=0,_ht;
+        function sendHeight(){clearTimeout(_ht);_ht=setTimeout(function(){var h=document.body.scrollHeight;if(Math.abs(h-_lastH)>5){_lastH=h;try{window.parent.postMessage({type:'resize',height:h},'*');}catch(e){}}},150);}
+        window.addEventListener('resize',sendHeight);
+        window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500);});
+        new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true,attributes:true});
+        setInterval(function(){var h=document.body.scrollHeight;if(Math.abs(h-_lastH)>5){_lastH=h;try{window.parent.postMessage({type:'resize',height:h},'*');}catch(e){}}},2000);
+        
+        loadData();
+    </script>
+</body>
+</html>
