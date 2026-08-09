@@ -1,21 +1,21 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-08 22:35 UTC",
+    "lastUpdated": "2026-08-09 22:36 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko + Historical CSV",
-    "recordCount": 1165,
-    "priceRecords": 3804,
-    "recordsWithPrice": 1165
+    "recordCount": 1166,
+    "priceRecords": 3805,
+    "recordsWithPrice": 1166
   },
   "stats": {
     "currentQueue": 32,
-    "currentEntryQueue": 2469237,
-    "currentNetFlow": 2469205,
+    "currentEntryQueue": 2426164,
+    "currentNetFlow": 2426132,
     "avgQueue": 262820.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1918.58,
-    "correlation": 0.5155,
-    "lastUpdated": "2026-08-08 22:35 UTC"
+    "currentPrice": 1922.19,
+    "correlation": 0.5153,
+    "lastUpdated": "2026-08-09 22:36 UTC"
   },
   "inflectionPoints": [
     {
@@ -13898,7 +13898,7 @@
     },
     {
       "date": "2025-08-09",
-      "price": 4010.92
+      "price": 4260.74
     },
     {
       "date": "2025-08-10",
@@ -15354,7 +15354,11 @@
     },
     {
       "date": "2026-08-08",
-      "price": 1918.58
+      "price": 1912.16
+    },
+    {
+      "date": "2026-08-09",
+      "price": 1922.19
     }
   ],
   "data": [
@@ -21827,8 +21831,8 @@
       "exitQueue": 466575,
       "entryQueue": 48968,
       "exitWaitDays": 0,
-      "ethPrice": 4010.92,
-      "exitQueueUSD": 1871.39
+      "ethPrice": 4260.74,
+      "exitQueueUSD": 1987.95
     },
     {
       "date": "2025-08-10",
@@ -24675,8 +24679,16 @@
       "exitQueue": 32,
       "entryQueue": 2469237,
       "exitWaitDays": 0,
-      "ethPrice": 1918.58,
+      "ethPrice": 1912.16,
       "exitQueueUSD": 0.06
+    },
+    {
+      "date": "2026-08-09",
+      "exitQueue": 0,
+      "entryQueue": 2426164,
+      "exitWaitDays": 0,
+      "ethPrice": 1922.19,
+      "exitQueueUSD": 0.0
     }
   ]
 }
