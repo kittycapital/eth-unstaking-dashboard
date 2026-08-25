@@ -1,29 +1,23 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-24 22:32 UTC",
+    "lastUpdated": "2026-08-25 22:33 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko + Historical CSV",
-    "recordCount": 1181,
-    "priceRecords": 3820,
-    "recordsWithPrice": 1181
+    "recordCount": 1182,
+    "priceRecords": 3821,
+    "recordsWithPrice": 1182
   },
   "stats": {
-    "currentQueue": 32,
-    "currentEntryQueue": 2199123,
-    "currentNetFlow": 2199091,
-    "avgQueue": 260219.0,
+    "currentQueue": 64,
+    "currentEntryQueue": 2216207,
+    "currentNetFlow": 2216143,
+    "avgQueue": 259961.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 2477.55,
-    "correlation": 0.5158,
-    "lastUpdated": "2026-08-24 22:32 UTC"
+    "currentPrice": 2444.99,
+    "correlation": 0.5161,
+    "lastUpdated": "2026-08-25 22:33 UTC"
   },
   "inflectionPoints": [
-    {
-      "date": "2026-04-03",
-      "type": "trough",
-      "exitQueue": 7232,
-      "ethPrice": 2052.34
-    },
     {
       "date": "2026-04-07",
       "type": "trough",
@@ -137,6 +131,12 @@
       "type": "peak",
       "exitQueue": 5071,
       "ethPrice": 2326.71
+    },
+    {
+      "date": "2026-08-24",
+      "type": "trough",
+      "exitQueue": 32,
+      "ethPrice": 2460.93
     }
   ],
   "ethPrices": [
@@ -13962,7 +13962,7 @@
     },
     {
       "date": "2025-08-25",
-      "price": 4780.26
+      "price": 4374.73
     },
     {
       "date": "2025-08-26",
@@ -15418,7 +15418,11 @@
     },
     {
       "date": "2026-08-24",
-      "price": 2477.55
+      "price": 2460.93
+    },
+    {
+      "date": "2026-08-25",
+      "price": 2444.99
     }
   ],
   "data": [
@@ -22019,8 +22023,8 @@
       "exitQueue": 846142,
       "entryQueue": 404500,
       "exitWaitDays": 0,
-      "ethPrice": 4780.26,
-      "exitQueueUSD": 4044.78
+      "ethPrice": 4374.73,
+      "exitQueueUSD": 3701.64
     },
     {
       "date": "2025-08-26",
@@ -24867,8 +24871,16 @@
       "exitQueue": 32,
       "entryQueue": 2199123,
       "exitWaitDays": 0,
-      "ethPrice": 2477.55,
+      "ethPrice": 2460.93,
       "exitQueueUSD": 0.08
+    },
+    {
+      "date": "2026-08-25",
+      "exitQueue": 64,
+      "entryQueue": 2216207,
+      "exitWaitDays": 0,
+      "ethPrice": 2444.99,
+      "exitQueueUSD": 0.16
     }
   ]
 }
