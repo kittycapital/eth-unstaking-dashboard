@@ -1,29 +1,23 @@
 {
   "meta": {
-    "lastUpdated": "2026-09-08 00:07 UTC",
+    "lastUpdated": "2026-09-08 23:58 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko + Historical CSV",
-    "recordCount": 1195,
+    "recordCount": 1196,
     "priceRecords": 3835,
-    "recordsWithPrice": 1195
+    "recordsWithPrice": 1196
   },
   "stats": {
     "currentQueue": 6752,
-    "currentEntryQueue": 1993972,
-    "currentNetFlow": 1987220,
+    "currentEntryQueue": 1965493,
+    "currentNetFlow": 1958741,
     "avgQueue": 257454.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 2514.01,
+    "currentPrice": 2483.92,
     "correlation": 0.5167,
-    "lastUpdated": "2026-09-08 00:07 UTC"
+    "lastUpdated": "2026-09-08 23:58 UTC"
   },
   "inflectionPoints": [
-    {
-      "date": "2026-05-27",
-      "type": "peak",
-      "exitQueue": 222195,
-      "ethPrice": 2072.35
-    },
     {
       "date": "2026-06-01",
       "type": "trough",
@@ -137,6 +131,12 @@
       "type": "trough",
       "exitQueue": 352,
       "ethPrice": 2480.0
+    },
+    {
+      "date": "2026-09-07",
+      "type": "peak",
+      "exitQueue": 6752,
+      "ethPrice": 2514.01
     }
   ],
   "ethPrices": [
@@ -14018,7 +14018,7 @@
     },
     {
       "date": "2025-09-08",
-      "price": 4305.71
+      "price": 4306.59
     },
     {
       "date": "2025-09-09",
@@ -15478,7 +15478,7 @@
     },
     {
       "date": "2026-09-08",
-      "price": 2487.52
+      "price": 2483.92
     }
   ],
   "data": [
@@ -22191,8 +22191,8 @@
       "exitQueue": 662566,
       "entryQueue": 828204,
       "exitWaitDays": 0,
-      "ethPrice": 4305.71,
-      "exitQueueUSD": 2852.82
+      "ethPrice": 4306.59,
+      "exitQueueUSD": 2853.4
     },
     {
       "date": "2025-09-09",
@@ -25041,6 +25041,14 @@
       "exitWaitDays": 0,
       "ethPrice": 2514.01,
       "exitQueueUSD": 16.97
+    },
+    {
+      "date": "2026-09-08",
+      "exitQueue": 0,
+      "entryQueue": 1965493,
+      "exitWaitDays": 0,
+      "ethPrice": 2483.92,
+      "exitQueueUSD": 0.0
     }
   ]
 }
