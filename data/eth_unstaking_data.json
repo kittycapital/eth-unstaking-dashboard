@@ -1,21 +1,21 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-06 02:08 UTC",
+    "lastUpdated": "2026-10-07 01:21 UTC",
     "dataSource": "ValidatorQueue.com + CoinGecko + Historical CSV",
-    "recordCount": 1223,
-    "priceRecords": 3863,
-    "recordsWithPrice": 1223
+    "recordCount": 1225,
+    "priceRecords": 3864,
+    "recordsWithPrice": 1225
   },
   "stats": {
-    "currentQueue": 786275,
-    "currentEntryQueue": 1457964,
-    "currentNetFlow": 671689,
-    "avgQueue": 257483.0,
+    "currentQueue": 837187,
+    "currentEntryQueue": 1409392,
+    "currentNetFlow": 572205,
+    "avgQueue": 258614.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 2725.91,
-    "correlation": 0.5165,
-    "lastUpdated": "2026-10-06 02:08 UTC"
+    "currentPrice": 2689.68,
+    "correlation": 0.5152,
+    "lastUpdated": "2026-10-07 01:21 UTC"
   },
   "inflectionPoints": [
     {
@@ -14134,7 +14134,7 @@
     },
     {
       "date": "2025-10-07",
-      "price": 4690.84
+      "price": 4447.77
     },
     {
       "date": "2025-10-08",
@@ -15590,7 +15590,11 @@
     },
     {
       "date": "2026-10-06",
-      "price": 2704.68
+      "price": 2710.42
+    },
+    {
+      "date": "2026-10-07",
+      "price": 2689.68
     }
   ],
   "data": [
@@ -22535,8 +22539,8 @@
       "exitQueue": 2426439,
       "entryQueue": 181944,
       "exitWaitDays": 0,
-      "ethPrice": 4690.84,
-      "exitQueueUSD": 11382.04
+      "ethPrice": 4447.77,
+      "exitQueueUSD": 10792.24
     },
     {
       "date": "2025-10-08",
@@ -25377,6 +25381,22 @@
       "exitWaitDays": 0,
       "ethPrice": 2725.91,
       "exitQueueUSD": 2143.31
+    },
+    {
+      "date": "2026-10-06",
+      "exitQueue": 857082,
+      "entryQueue": 1432630,
+      "exitWaitDays": 0,
+      "ethPrice": 2710.42,
+      "exitQueueUSD": 2323.05
+    },
+    {
+      "date": "2026-10-07",
+      "exitQueue": 837187,
+      "entryQueue": 1409392,
+      "exitWaitDays": 0,
+      "ethPrice": 2689.68,
+      "exitQueueUSD": 2251.77
     }
   ]
 }
