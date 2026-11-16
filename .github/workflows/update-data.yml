@@ -2,8 +2,9 @@ name: Update ETH Unstaking Data
 
 on:
   schedule:
-    # Run daily at 7:00 AM KST (22:00 UTC previous day)
-    - cron: '0 22 * * *'
+    # Every 3 hours. The script records the first successful reading of each
+    # UTC day, so a single failed run no longer costs a whole day of history.
+    - cron: '0 */3 * * *'
   workflow_dispatch:  # Allow manual trigger
   push:
     branches:
@@ -19,67 +20,92 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
-    
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
+      queue_stale: ${{ steps.fetch.outputs.queue_stale }}
+      stale_days: ${{ steps.fetch.outputs.stale_days }}
+      data_through: ${{ steps.fetch.outputs.data_through }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
-      
+
       - name: Fetch ETH unstaking data
+        id: fetch
+        env:
+          BEACONCHAIN_TOKEN: ${{ secrets.BEACONCHAIN_TOKEN }}
         run: python scripts/fetch_data.py
-      
+
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet data/; then
+          if [ -z "$(git status --porcelain data/)" ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Commit and push changes
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/
-          git commit -m "📊 Update ETH unstaking data - $(date +'%Y-%m-%d %H:%M UTC')"
+          git commit -m "📊 Update ETH unstaking data - through ${{ steps.fetch.outputs.data_through }} ($(date -u +'%Y-%m-%d %H:%M UTC'))"
           git pull --rebase origin main
           git push
 
   deploy:
     needs: update-data
+    # Only redeploy when the data actually changed.
+    if: needs.update-data.outputs.changed == 'true'
     runs-on: ubuntu-latest
-    
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: main
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-      
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Separate job so the data still commits and the dashboard still deploys with
+  # its staleness badge, while the run itself goes red and emails you.
+  alert-stale:
+    needs: update-data
+    if: needs.update-data.outputs.queue_stale == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report stale queue data
+        run: |
+          echo "::error title=Queue data is stale::No new queue data since \
+          ${{ needs.update-data.outputs.data_through }} \
+          (${{ needs.update-data.outputs.stale_days }} days old)."
+          echo "Check that BEACONCHAIN_TOKEN is valid and that beaconcha.in is up."
+          exit 1
