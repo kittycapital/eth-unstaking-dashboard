@@ -655,6 +655,7 @@ def main() -> int:
     data_through = merged[-1]["date"]
     stale_days = days_since(data_through)
     is_stale = stale_days > STALE_AFTER_DAYS
+    queue_source = history[-1].get("source", "seeded history")
 
     output = {
         "meta": {
@@ -664,8 +665,10 @@ def main() -> int:
             "queueStaleDays": stale_days,
             "queueStale": is_stale,
             "staleAfterDays": STALE_AFTER_DAYS,
-            "dataSource": "beaconcha.in + CoinGecko + Historical CSV",
-            "queueSource": "beaconcha.in/api/v1/validators/queue (self-owned history)",
+            # Derived from the newest record, never hardcoded -- the whole point
+            # of this file is that its metadata cannot drift from reality.
+            "dataSource": f"{queue_source} + CoinGecko + Historical CSV",
+            "queueSource": queue_source,
             "recordCount": len(merged),
             "priceRecords": len(price_list),
             "recordsWithPrice": sum(1 for d in merged if d["ethPrice"] > 0),
