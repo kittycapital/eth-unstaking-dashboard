@@ -53,6 +53,9 @@ a{color:var(--hv-primary-light);text-decoration:none}
 .hv-header-right{display:flex;align-items:center;justify-content:flex-end;gap:var(--hv-space-xs);flex-shrink:0}
 .hv-update-badge{font-family:var(--hv-font-mono);font-size:.688rem;color:var(--hv-text-tertiary);white-space:nowrap;display:flex;align-items:center;gap:6px}
 .hv-live-dot{width:5px;height:5px;background:var(--hv-up);border-radius:50%;animation:pulse 2s infinite}
+.hv-update-badge.is-stale{color:#f5a524}
+.hv-update-badge.is-stale .hv-live-dot{background:#f5a524;animation:none}
+.stale-msg{background:rgba(245,165,36,.07);border:1px solid rgba(245,165,36,.22);color:#f5a524;padding:14px 20px;border-radius:var(--hv-radius-md);margin-bottom:14px;font-size:13px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* PAGE + GRID */
@@ -154,13 +157,14 @@ a{color:var(--hv-primary-light);text-decoration:none}
       <span class="hv-header-category">Staking · Queue Analysis</span>
     </div>
     <div class="hv-header-right">
-      <div class="hv-update-badge"><span class="hv-live-dot"></span><span id="lastUpdated">업데이트 중...</span></div>
+      <div class="hv-update-badge" id="updateBadge"><span class="hv-live-dot"></span><span id="lastUpdated">업데이트 중...</span></div>
     </div>
   </div>
 </header>
 
 <div class="hv-page">
   <div class="error-msg" id="errorMsg" style="display:none;"></div>
+  <div class="stale-msg" id="staleMsg" style="display:none;"></div>
 
   <div class="dash-grid">
 
@@ -288,8 +292,40 @@ function formatNumber(num){if(Math.abs(num)>=1e6)return(num/1e6).toFixed(2)+'M';
 function formatNumberSigned(num){return(num>=0?'+':'')+formatNumber(num);}
 
 async function loadData(){
-  try{var r=await fetch('./data/eth_unstaking_data.json');if(!r.ok)throw new Error('Data file not found');DATA=await r.json();updateStats();updateExitChart();updateEntryChart();if(DATA.meta&&DATA.meta.lastUpdated)document.getElementById('lastUpdated').textContent=DATA.meta.lastUpdated;}
+  try{var r=await fetch('./data/eth_unstaking_data.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Data file not found');DATA=await r.json();updateStats();updateExitChart();updateEntryChart();updateFreshness();}
   catch(e){document.getElementById('errorMsg').style.display='block';document.getElementById('errorMsg').textContent='데이터 로드 실패: '+e.message;}
+}
+
+/* Shows when the QUEUE DATA actually ends -- not when the job last ran.
+   Prices keep updating even when the queue feed dies, so "last run" is not
+   a freshness signal. */
+function daysSinceUTC(dateStr){
+  var t=Date.parse(dateStr+'T00:00:00Z');
+  if(isNaN(t))return null;
+  return Math.floor((Date.now()-t)/86400000);
+}
+
+function updateFreshness(){
+  var m=(DATA&&DATA.meta)||{};
+  var badge=document.getElementById('updateBadge');
+  var label=document.getElementById('lastUpdated');
+  var through=m.dataThrough||'';
+  var age=(typeof m.queueStaleDays==='number')?m.queueStaleDays:(through?daysSinceUTC(through):null);
+
+  if(through){
+    label.textContent='큐 데이터 '+through+(age===0?' (오늘)':(age>0?' ('+age+'일 전)':''));
+  }else if(m.lastUpdated){
+    label.textContent=m.lastUpdated;
+  }
+
+  var limit=(typeof m.staleAfterDays==='number')?m.staleAfterDays:3;
+  var isStale=(m.queueStale===true)||(typeof age==='number'&&age>limit);
+  if(!isStale)return;
+
+  if(badge)badge.classList.add('is-stale');
+  var warn=document.getElementById('staleMsg');
+  warn.style.display='block';
+  warn.textContent='⚠ 큐 데이터가 '+age+'일째 갱신되지 않았습니다 (마지막 수집일 '+through+'). 아래 수치는 그 시점의 값입니다.';
 }
 
 function updateStats(){
