@@ -1,29 +1,29 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-16 00:26 UTC",
-    "dataThrough": "2026-10-25",
-    "queueStaleDays": 22,
-    "queueStale": true,
+    "lastUpdated": "2026-11-16 00:33 UTC",
+    "dataThrough": "2026-11-16",
+    "queueStaleDays": 0,
+    "queueStale": false,
     "staleAfterDays": 3,
     "dataSource": "beaconcha.in + CoinGecko + Historical CSV",
     "queueSource": "beaconcha.in/api/v1/validators/queue (self-owned history)",
-    "recordCount": 1243,
+    "recordCount": 1244,
     "priceRecords": 3904,
-    "recordsWithPrice": 1243,
+    "recordsWithPrice": 1244,
     "priceThrough": "2026-11-16"
   },
   "stats": {
-    "currentQueue": 364665,
-    "currentEntryQueue": 1309352,
-    "currentNetFlow": 944687,
-    "currentExitWaitDays": 6.33,
-    "currentEntryWaitDays": 22.73,
-    "avgQueue": 267833.0,
+    "currentQueue": 229080,
+    "currentEntryQueue": 924904,
+    "currentNetFlow": 695824,
+    "currentExitWaitDays": 3.98,
+    "currentEntryWaitDays": 16.06,
+    "avgQueue": 267797.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1823.47,
-    "correlation": 0.5009,
-    "lastUpdated": "2026-11-16 00:26 UTC"
+    "currentPrice": 1821.19,
+    "correlation": 0.5006,
+    "lastUpdated": "2026-11-16 00:33 UTC"
   },
   "inflectionPoints": [
     {
@@ -15762,7 +15762,7 @@
     },
     {
       "date": "2026-11-16",
-      "price": 1823.47
+      "price": 1821.19
     }
   ],
   "data": [
@@ -28195,6 +28195,16 @@
       "validators": 819745,
       "ethPrice": 2356.57,
       "exitQueueUSD": 859.36
+    },
+    {
+      "date": "2026-11-16",
+      "exitQueue": 229080,
+      "entryQueue": 924904,
+      "exitWaitDays": 3.98,
+      "entryWaitDays": 16.06,
+      "validators": 0,
+      "ethPrice": 1821.19,
+      "exitQueueUSD": 417.2
     }
   ]
 }
