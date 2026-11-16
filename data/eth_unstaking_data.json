@@ -1,12 +1,12 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-16 00:33 UTC",
+    "lastUpdated": "2026-11-16 00:37 UTC",
     "dataThrough": "2026-11-16",
     "queueStaleDays": 0,
     "queueStale": false,
     "staleAfterDays": 3,
-    "dataSource": "beaconcha.in + CoinGecko + Historical CSV",
-    "queueSource": "beaconcha.in/api/v1/validators/queue (self-owned history)",
+    "dataSource": "beacon-node https://ethereum-beacon-api.publicnode.com + CoinGecko + Historical CSV",
+    "queueSource": "beacon-node https://ethereum-beacon-api.publicnode.com",
     "recordCount": 1244,
     "priceRecords": 3904,
     "recordsWithPrice": 1244,
@@ -21,9 +21,9 @@
     "avgQueue": 267797.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1821.19,
+    "currentPrice": 1820.05,
     "correlation": 0.5006,
-    "lastUpdated": "2026-11-16 00:33 UTC"
+    "lastUpdated": "2026-11-16 00:37 UTC"
   },
   "inflectionPoints": [
     {
@@ -15762,7 +15762,7 @@
     },
     {
       "date": "2026-11-16",
-      "price": 1821.19
+      "price": 1820.05
     }
   ],
   "data": [
@@ -28203,8 +28203,8 @@
       "exitWaitDays": 3.98,
       "entryWaitDays": 16.06,
       "validators": 0,
-      "ethPrice": 1821.19,
-      "exitQueueUSD": 417.2
+      "ethPrice": 1820.05,
+      "exitQueueUSD": 416.94
     }
   ]
 }
