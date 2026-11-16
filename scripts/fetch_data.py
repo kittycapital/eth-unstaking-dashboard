@@ -34,6 +34,20 @@ import requests
 
 # ---------------------------------------------------------------- config
 
+# --- Queue source 1: a public consensus-layer node. No API key, no quota. ---
+# Post-Pectra (EIP-6110) the entry queue lives in state.pending_deposits and is
+# denominated in ETH, so both queues can be read straight off the beacon state.
+# Override with BEACON_NODE_URLS (comma-separated) to use your own node.
+DEFAULT_BEACON_NODES = [
+    "https://ethereum-beacon-api.publicnode.com",
+]
+BEACON_NODE_URLS = [
+    u.strip().rstrip("/")
+    for u in os.environ.get("BEACON_NODE_URLS", "").split(",")
+    if u.strip()
+] or DEFAULT_BEACON_NODES
+
+# --- Queue source 2: beaconcha.in v1. Needs a paid/trial key; kept as fallback. ---
 BEACONCHAIN_TOKEN = os.environ.get("BEACONCHAIN_TOKEN", "").strip()
 QUEUE_ENDPOINT = "https://beaconcha.in/api/v1/validators/queue"
 
@@ -184,28 +198,107 @@ def save_queue_history(records: list) -> None:
     print(f"  + saved {len(records)} records to {QUEUE_HISTORY_FILE.name}")
 
 
+def _beacon_get(base: str, path: str, timeout: int):
+    """GET a beacon node endpoint, returning the parsed `data` field."""
+    r = requests.get(f"{base}{path}", timeout=timeout,
+                     headers={"Accept": "application/json"})
+    if r.status_code != 200:
+        raise RuntimeError(f"HTTP {r.status_code} on {path}")
+    payload = r.json()
+    if "data" not in payload:
+        raise RuntimeError(f"no 'data' field on {path}; keys={list(payload)[:8]}")
+    return payload["data"]
+
+
+def fetch_queue_from_beacon_node() -> dict | None:
+    """Read both queues directly off the beacon state. Keyless.
+
+    entry queue = sum of state.pending_deposits amounts
+    exit queue  = sum of effective balances of validators that filed to exit
+    """
+    for base in BEACON_NODE_URLS:
+        print(f"  trying beacon node: {base}")
+        try:
+            # The deposit backlog can be tens of MB when the queue is long.
+            deposits = _beacon_get(base, "/eth/v1/beacon/states/head/pending_deposits",
+                                   timeout=180)
+            entry_gwei = sum(int(d["amount"]) for d in deposits if "amount" in d)
+            entry_eth = round(entry_gwei / GWEI)
+            print(f"    pending_deposits: {len(deposits):,} entries = {entry_eth:,} ETH")
+
+            # Validators that filed to exit, plus slashed ones still exiting.
+            exit_gwei = 0
+            exit_count = 0
+            for status in ("active_exiting", "active_slashed"):
+                vals = _beacon_get(
+                    base,
+                    f"/eth/v1/beacon/states/head/validators?status={status}",
+                    timeout=180,
+                )
+                for v in vals:
+                    eb = (v.get("validator") or {}).get("effective_balance")
+                    if eb is not None:
+                        exit_gwei += int(eb)
+                        exit_count += 1
+                print(f"    {status}: {len(vals):,} validators")
+            exit_eth = round(exit_gwei / GWEI)
+            print(f"    exit queue: {exit_count:,} validators = {exit_eth:,} ETH")
+
+            return {
+                "date": today_utc(),
+                # Counting the full active set would mean downloading ~900k
+                # validators, so it is left out; the dashboard does not use it.
+                "validators": 0,
+                "entry_queue": entry_eth,
+                "entry_wait": wait_days(entry_eth),
+                "exit_queue": exit_eth,
+                "exit_wait": wait_days(exit_eth),
+                "current_entry_churn": CHURN_ETH_PER_EPOCH,
+                "current_exit_churn": CHURN_ETH_PER_EPOCH,
+                "source": f"beacon-node {base}",
+            }
+
+        except Exception as e:
+            print(f"    x {e}")
+
+    print("  x no beacon node answered")
+    return None
+
+
 def fetch_current_queue() -> dict | None:
-    """Fetch today's queue snapshot from beaconcha.in."""
-    print("Fetching current queue from beaconcha.in...")
+    """Today's queue snapshot: keyless beacon node first, beaconcha.in second."""
+    print("Fetching current queue...")
+
+    record = fetch_queue_from_beacon_node()
+    if record:
+        print(f"  + entry {record['entry_queue']:,} ETH / "
+              f"exit {record['exit_queue']:,} ETH (beacon node)")
+        return record
+
+    print("  falling back to beaconcha.in...")
+    return fetch_queue_from_beaconchain()
+
+
+def fetch_queue_from_beaconchain() -> dict | None:
+    """Fetch today's queue snapshot from beaconcha.in (requires a paid/trial key)."""
     if not BEACONCHAIN_TOKEN:
-        print("  x BEACONCHAIN_TOKEN is not set -- cannot fetch queue data")
-        print("    Get a free key at https://beaconcha.in/user/settings and add it")
-        print("    as a repository secret named BEACONCHAIN_TOKEN.")
+        print("  x BEACONCHAIN_TOKEN is not set -- skipping beaconcha.in")
         return None
 
     params = {"apikey": BEACONCHAIN_TOKEN}
     headers = {"apikey": BEACONCHAIN_TOKEN, "Accept": "application/json"}
 
-    for attempt in range(1, 4):
+    # Only two tries here: this is the fallback, and a 429 from beaconcha.in
+    # means the account has no quota, which waiting will not fix.
+    for attempt in range(1, 3):
         try:
             r = requests.get(QUEUE_ENDPOINT, params=params, headers=headers, timeout=30)
-            print(f"  attempt {attempt}/3 -- HTTP {r.status_code}")
+            print(f"  attempt {attempt}/2 -- HTTP {r.status_code}")
 
             if r.status_code == 429:
-                wait = 30 * attempt
-                print(f"  rate limited, waiting {wait}s...")
-                time.sleep(wait)
-                continue
+                print("  x HTTP 429 -- the key has no usable quota "
+                      "(beaconcha.in ended its free tier in May 2026)")
+                return None
 
             r.raise_for_status()
             payload = r.json()
@@ -242,12 +335,12 @@ def fetch_current_queue() -> dict | None:
             return record
 
         except Exception as e:
-            print(f"  attempt {attempt}/3 failed: {e}")
-            if attempt < 3:
+            print(f"  attempt {attempt}/2 failed: {e}")
+            if attempt < 2:
                 print("  waiting 15s before retry...")
                 time.sleep(15)
 
-    print("  x all attempts failed")
+    print("  x beaconcha.in fallback failed")
     return None
 
 
