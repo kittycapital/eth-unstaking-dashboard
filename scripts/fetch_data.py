@@ -37,7 +37,26 @@ import requests
 BEACONCHAIN_TOKEN = os.environ.get("BEACONCHAIN_TOKEN", "").strip()
 QUEUE_ENDPOINT = "https://beaconcha.in/api/v1/validators/queue"
 
-COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"
+# CoinGecko: Demo (free) and Pro keys use different hosts AND different headers,
+# so the tier decides both. Keyless still works, just with tighter rate limits.
+COINGECKO_API_KEY = os.environ.get("COINGECKO_API_KEY", "").strip()
+COINGECKO_PRO_API_KEY = os.environ.get("COINGECKO_PRO_API_KEY", "").strip()
+COINGECKO_DEMO_BASE = "https://api.coingecko.com/api/v3"
+COINGECKO_PRO_BASE = "https://pro-api.coingecko.com/api/v3"
+COINGECKO_PATH = "/coins/ethereum/market_chart"
+
+
+def coingecko_auth() -> tuple[str, dict, str]:
+    """Return (url, headers, tier_label) for the key we actually have."""
+    if COINGECKO_PRO_API_KEY:
+        return (COINGECKO_PRO_BASE + COINGECKO_PATH,
+                {"x-cg-pro-api-key": COINGECKO_PRO_API_KEY},
+                "pro")
+    if COINGECKO_API_KEY:
+        return (COINGECKO_DEMO_BASE + COINGECKO_PATH,
+                {"x-cg-demo-api-key": COINGECKO_API_KEY},
+                "demo")
+    return (COINGECKO_DEMO_BASE + COINGECKO_PATH, {}, "keyless")
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_FILE = DATA_DIR / "eth_unstaking_data.json"
@@ -309,19 +328,31 @@ def load_historical_prices() -> dict:
 
 
 def fetch_eth_prices(days: int = 365) -> dict:
-    """Fetch ETH prices from CoinGecko (free tier, max 365 days)."""
-    print(f"Fetching ETH prices from CoinGecko (last {days} days)...")
+    """Fetch ETH prices from CoinGecko (max 365 days on the free tier)."""
+    url, headers, tier = coingecko_auth()
+    print(f"Fetching ETH prices from CoinGecko (last {days} days, auth={tier})...")
     params = {"vs_currency": "usd", "days": days, "interval": "daily"}
 
     for attempt in range(1, 4):
         try:
-            r = requests.get(COINGECKO_URL, params=params, timeout=30)
+            r = requests.get(url, params=params, headers=headers, timeout=30)
             print(f"  attempt {attempt}/3 -- HTTP {r.status_code}")
 
             if r.status_code == 429:
                 wait = 30 * attempt
                 print(f"  rate limited, waiting {wait}s...")
                 time.sleep(wait)
+                continue
+
+            # A key of the wrong tier (or an expired one) is rejected here.
+            # Prices matter more than auth, so drop the key and carry on.
+            if r.status_code in (400, 401, 403) and headers:
+                print(f"  ! {tier} key rejected (HTTP {r.status_code}) -- "
+                      f"retrying keyless")
+                print("::warning title=CoinGecko key rejected::"
+                      f"COINGECKO_API_KEY was refused with HTTP {r.status_code}. "
+                      "Check whether it is a Demo or Pro key.")
+                url, headers, tier = COINGECKO_DEMO_BASE + COINGECKO_PATH, {}, "keyless"
                 continue
 
             r.raise_for_status()
