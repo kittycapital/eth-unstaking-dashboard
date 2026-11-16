@@ -46,6 +46,10 @@ jobs:
         id: fetch
         env:
           BEACONCHAIN_TOKEN: ${{ secrets.BEACONCHAIN_TOKEN }}
+          # Demo (free) key. If you ever upgrade, add COINGECKO_PRO_API_KEY
+          # instead -- paid keys use a different host and header.
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          COINGECKO_PRO_API_KEY: ${{ secrets.COINGECKO_PRO_API_KEY }}
         run: python scripts/fetch_data.py
 
       - name: Check for changes
