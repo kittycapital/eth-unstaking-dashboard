@@ -45,6 +45,11 @@ jobs:
       - name: Fetch ETH unstaking data
         id: fetch
         env:
+          # Optional: comma-separated public/own beacon nodes, tried in order.
+          # Leave unset to use the built-in default (publicnode, keyless).
+          BEACON_NODE_URLS: ${{ vars.BEACON_NODE_URLS }}
+          # Only used if every beacon node fails. beaconcha.in ended its free
+          # tier in May 2026, so a key without a paid plan returns HTTP 429.
           BEACONCHAIN_TOKEN: ${{ secrets.BEACONCHAIN_TOKEN }}
           # Demo (free) key. If you ever upgrade, add COINGECKO_PRO_API_KEY
           # instead -- paid keys use a different host and header.
