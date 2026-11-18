@@ -1,29 +1,29 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-17 15:10 UTC",
-    "dataThrough": "2026-11-17",
+    "lastUpdated": "2026-11-18 00:13 UTC",
+    "dataThrough": "2026-11-18",
     "queueStaleDays": 0,
     "queueStale": false,
     "staleAfterDays": 3,
     "dataSource": "beacon-node https://ethereum-beacon-api.publicnode.com + CoinGecko + Historical CSV",
     "queueSource": "beacon-node https://ethereum-beacon-api.publicnode.com",
-    "recordCount": 1245,
-    "priceRecords": 3905,
-    "recordsWithPrice": 1245,
-    "priceThrough": "2026-11-17"
+    "recordCount": 1246,
+    "priceRecords": 3906,
+    "recordsWithPrice": 1246,
+    "priceThrough": "2026-11-18"
   },
   "stats": {
-    "currentQueue": 223611,
-    "currentEntryQueue": 894287,
-    "currentNetFlow": 670676,
-    "currentExitWaitDays": 3.88,
-    "currentEntryWaitDays": 15.53,
-    "avgQueue": 267755.0,
+    "currentQueue": 283156,
+    "currentEntryQueue": 867592,
+    "currentNetFlow": 584436,
+    "currentExitWaitDays": 4.92,
+    "currentEntryWaitDays": 15.06,
+    "avgQueue": 267769.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1799.66,
-    "correlation": 0.5001,
-    "lastUpdated": "2026-11-17 15:10 UTC"
+    "currentPrice": 1821.68,
+    "correlation": 0.4998,
+    "lastUpdated": "2026-11-18 00:13 UTC"
   },
   "inflectionPoints": [
     {
@@ -15766,7 +15766,11 @@
     },
     {
       "date": "2026-11-17",
-      "price": 1799.66
+      "price": 1819.45
+    },
+    {
+      "date": "2026-11-18",
+      "price": 1821.68
     }
   ],
   "data": [
@@ -28217,8 +28221,18 @@
       "exitWaitDays": 3.88,
       "entryWaitDays": 15.53,
       "validators": 0,
-      "ethPrice": 1799.66,
-      "exitQueueUSD": 402.42
+      "ethPrice": 1819.45,
+      "exitQueueUSD": 406.85
+    },
+    {
+      "date": "2026-11-18",
+      "exitQueue": 283156,
+      "entryQueue": 867592,
+      "exitWaitDays": 4.92,
+      "entryWaitDays": 15.06,
+      "validators": 0,
+      "ethPrice": 1821.68,
+      "exitQueueUSD": 515.82
     }
   ]
 }
