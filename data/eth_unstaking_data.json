@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-20 01:57 UTC",
+    "lastUpdated": "2026-11-20 10:44 UTC",
     "dataThrough": "2026-11-20",
     "queueStaleDays": 0,
     "queueStale": false,
@@ -21,9 +21,9 @@
     "avgQueue": 267759.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1733.87,
+    "currentPrice": 1757.66,
     "correlation": 0.4985,
-    "lastUpdated": "2026-11-20 01:57 UTC"
+    "lastUpdated": "2026-11-20 10:44 UTC"
   },
   "inflectionPoints": [
     {
@@ -15778,7 +15778,7 @@
     },
     {
       "date": "2026-11-20",
-      "price": 1733.87
+      "price": 1757.66
     }
   ],
   "data": [
@@ -28259,8 +28259,8 @@
       "exitWaitDays": 4.73,
       "entryWaitDays": 14.43,
       "validators": 0,
-      "ethPrice": 1733.87,
-      "exitQueueUSD": 472.87
+      "ethPrice": 1757.66,
+      "exitQueueUSD": 479.36
     }
   ]
 }
