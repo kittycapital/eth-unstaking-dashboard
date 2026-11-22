@@ -3,8 +3,8 @@
   "description": "Self-owned ETH validator queue history. Seeded from etheralpha/validatorqueue-com (frozen 2026-10-25), appended daily thereafter.",
   "seededFrom": "etheralpha/validatorqueue-com@historical_data.json",
   "seedThrough": "2026-10-25",
-  "recordCount": 1249,
-  "lastAppended": "2026-11-21 01:53 UTC"
+  "recordCount": 1250,
+  "lastAppended": "2026-11-22 00:47 UTC"
  },
  "records": [
   {
@@ -19661,6 +19661,17 @@
    "entry_wait": 14.12,
    "exit_queue": 256196,
    "exit_wait": 4.45,
+   "current_entry_churn": 256,
+   "current_exit_churn": 256,
+   "source": "beacon-node https://ethereum-beacon-api.publicnode.com"
+  },
+  {
+   "date": "2026-11-22",
+   "validators": 0,
+   "entry_queue": 772771,
+   "entry_wait": 13.42,
+   "exit_queue": 157572,
+   "exit_wait": 2.74,
    "current_entry_churn": 256,
    "current_exit_churn": 256,
    "source": "beacon-node https://ethereum-beacon-api.publicnode.com"

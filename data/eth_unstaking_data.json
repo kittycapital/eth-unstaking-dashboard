@@ -1,29 +1,29 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-21 18:28 UTC",
-    "dataThrough": "2026-11-21",
+    "lastUpdated": "2026-11-22 00:47 UTC",
+    "dataThrough": "2026-11-22",
     "queueStaleDays": 0,
     "queueStale": false,
     "staleAfterDays": 3,
     "dataSource": "beacon-node https://ethereum-beacon-api.publicnode.com + CoinGecko + Historical CSV",
     "queueSource": "beacon-node https://ethereum-beacon-api.publicnode.com",
-    "recordCount": 1249,
-    "priceRecords": 3909,
-    "recordsWithPrice": 1249,
-    "priceThrough": "2026-11-21"
+    "recordCount": 1250,
+    "priceRecords": 3910,
+    "recordsWithPrice": 1250,
+    "priceThrough": "2026-11-22"
   },
   "stats": {
-    "currentQueue": 256196,
-    "currentEntryQueue": 813416,
-    "currentNetFlow": 557220,
-    "currentExitWaitDays": 4.45,
-    "currentEntryWaitDays": 14.12,
-    "avgQueue": 267749.0,
+    "currentQueue": 157572,
+    "currentEntryQueue": 772771,
+    "currentNetFlow": 615199,
+    "currentExitWaitDays": 2.74,
+    "currentEntryWaitDays": 13.42,
+    "avgQueue": 267645.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1682.19,
-    "correlation": 0.4979,
-    "lastUpdated": "2026-11-21 18:28 UTC"
+    "currentPrice": 1681.2,
+    "correlation": 0.4976,
+    "lastUpdated": "2026-11-22 00:47 UTC"
   },
   "inflectionPoints": [
     {
@@ -14326,7 +14326,7 @@
     },
     {
       "date": "2025-11-22",
-      "price": 2763.9
+      "price": 2770.41
     },
     {
       "date": "2025-11-23",
@@ -15782,7 +15782,11 @@
     },
     {
       "date": "2026-11-21",
-      "price": 1682.19
+      "price": 1619.51
+    },
+    {
+      "date": "2026-11-22",
+      "price": 1681.2
     }
   ],
   "data": [
@@ -24923,8 +24927,8 @@
       "exitWaitDays": 30.75,
       "entryWaitDays": 17.89,
       "validators": 1000499,
-      "ethPrice": 2763.9,
-      "exitQueueUSD": 4895.77
+      "ethPrice": 2770.41,
+      "exitQueueUSD": 4907.3
     },
     {
       "date": "2025-11-23",
@@ -28273,8 +28277,18 @@
       "exitWaitDays": 4.45,
       "entryWaitDays": 14.12,
       "validators": 0,
-      "ethPrice": 1682.19,
-      "exitQueueUSD": 430.97
+      "ethPrice": 1619.51,
+      "exitQueueUSD": 414.91
+    },
+    {
+      "date": "2026-11-22",
+      "exitQueue": 157572,
+      "entryQueue": 772771,
+      "exitWaitDays": 2.74,
+      "entryWaitDays": 13.42,
+      "validators": 0,
+      "ethPrice": 1681.2,
+      "exitQueueUSD": 264.91
     }
   ]
 }
