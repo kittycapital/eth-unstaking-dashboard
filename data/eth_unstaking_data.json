@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-26 01:19 UTC",
+    "lastUpdated": "2026-11-26 11:42 UTC",
     "dataThrough": "2026-11-26",
     "queueStaleDays": 0,
     "queueStale": false,
@@ -21,9 +21,9 @@
     "avgQueue": 266965.0,
     "maxQueue": 2673349,
     "minQueue": 2,
-    "currentPrice": 1702.09,
+    "currentPrice": 1697.9,
     "correlation": 0.4981,
-    "lastUpdated": "2026-11-26 01:19 UTC"
+    "lastUpdated": "2026-11-26 11:42 UTC"
   },
   "inflectionPoints": [
     {
@@ -15066,15 +15066,15 @@
     },
     {
       "date": "2026-05-26",
-      "price": 2110.59
+      "price": 2110.66
     },
     {
       "date": "2026-05-27",
-      "price": 2072.35
+      "price": 2072.43
     },
     {
       "date": "2026-05-28",
-      "price": 2022.47
+      "price": 2022.69
     },
     {
       "date": "2026-05-29",
@@ -15802,7 +15802,7 @@
     },
     {
       "date": "2026-11-26",
-      "price": 1702.09
+      "price": 1697.9
     }
   ],
   "data": [
@@ -26753,7 +26753,7 @@
       "exitWaitDays": 0.0,
       "entryWaitDays": 58.21,
       "validators": 898252,
-      "ethPrice": 2110.59,
+      "ethPrice": 2110.66,
       "exitQueueUSD": 0.14
     },
     {
@@ -26763,8 +26763,8 @@
       "exitWaitDays": 3.86,
       "entryWaitDays": 57.63,
       "validators": 898887,
-      "ethPrice": 2072.35,
-      "exitQueueUSD": 460.47
+      "ethPrice": 2072.43,
+      "exitQueueUSD": 460.48
     },
     {
       "date": "2026-05-28",
@@ -26773,8 +26773,8 @@
       "exitWaitDays": 3.62,
       "entryWaitDays": 56.99,
       "validators": 898647,
-      "ethPrice": 2022.47,
-      "exitQueueUSD": 421.26
+      "ethPrice": 2022.69,
+      "exitQueueUSD": 421.3
     },
     {
       "date": "2026-05-29",
@@ -28343,8 +28343,8 @@
       "exitWaitDays": 1.33,
       "entryWaitDays": 12.01,
       "validators": 0,
-      "ethPrice": 1702.09,
-      "exitQueueUSD": 130.58
+      "ethPrice": 1697.9,
+      "exitQueueUSD": 130.26
     }
   ]
 }
